@@ -76,6 +76,7 @@
 
     },
     computed: {
+
     },
     created(){
       
@@ -88,7 +89,7 @@
     },
     data:function() {
       return{
-        
+        text:""
       }
    },
   methods: {
