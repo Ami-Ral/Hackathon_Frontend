@@ -15,7 +15,7 @@ class Admin {
 
     }
     test(){
-        return http.get('/auth/test')
+        return http.get('/test')
     }
     getOne(id) {
 
