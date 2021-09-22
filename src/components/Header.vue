@@ -33,17 +33,6 @@
             </ul>
         </div>
         <div class="collapse navcollaspse" id="navbarSupportedContent">
-            <ul class="navbar-nav3">
-                <li class="nav-item">
-                    <i class="fab fa-facebook-f"></i>
-                </li>
-                <li class="nav-item">
-                    <i class="fab fa-twitter"></i>
-                </li>
-                <li class="nav-item">
-                    <i class="fab fa-instagram"></i>
-                </li>
-            </ul>
             <ul class="navbar-nav2">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Accueil</a>
@@ -58,6 +47,18 @@
                     <a class="nav-link" href="#">plantes</a>
                 </li>
             </ul>
+            <ul class="navbar-nav3">
+                <li class="nav-item">
+                    <i class="fab fa-facebook-f"></i>
+                </li>
+                <li class="nav-item">
+                    <i class="fab fa-twitter"></i>
+                </li>
+                <li class="nav-item">
+                    <i class="fab fa-instagram"></i>
+                </li>
+            </ul>
+            
             
         </div>
        
@@ -148,7 +149,7 @@
     width: 100%;
     height: 100px;
     left: 0px;
-    background-color: green;
+    background-color: rgb(37, 141, 84);
     top:50px;
 }
 .navbar-nav2{

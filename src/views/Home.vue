@@ -181,7 +181,6 @@
                     <img width="100%" height="100%" class="zoom"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzEV8Nk-vQ7Qmy-RnJf5UvZdQvj5QgJFyOGg&usqp=CAU"  alt="...">
                 </div>
               </div>
-              
             </div>
           </div>
       </div>
@@ -234,13 +233,13 @@
       },
     handleResize(){
       this.scrolly=window.scrollY
-      if(this.scrolly>636){
+      if(this.scrolly>510){
         this.showup = true
       }else{
         this.showup = false
       }
       if(this.scrolly>0){
-        this.bgcolor ='green'
+        this.bgcolor ='rgb(37, 141, 84)'
       }else{
         this.bgcolor ='linear-gradient(to bottom, rgb(0, 0, 0,1), rgb(0, 0, 0,0.1))'
       }
@@ -263,7 +262,9 @@
 #header-default{
   overflow: hidden;
 }
-
+a{
+  text-decoration: none;
+}
 
 #container {
   width: 100%;
@@ -450,7 +451,7 @@
    left: 92%;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 767px) and (max-width: 991px) {
   #container {
     margin-top: -20px
   }
@@ -549,7 +550,7 @@
     margin-left: 10px
   }
   .technique{
-    height: 205vh;
+    height: 175vh;
   }
   .responsiveimage{
     width: 80% !important;
@@ -559,7 +560,7 @@
     margin-top: 50%
   }
   .galery{
-    height: 130vh;
+    height: 100vh;
   }
   .up{
 
