@@ -2,7 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
-
+import Technique from '../views/Technique.vue'
+import Carte from '../views/Carte.vue'
+import Plantes from '../views/Plantes.vue'
+import Climat from '../views/Climat.vue'
+import DetailTechnique from '../views/DetailTechnique.vue'
 
 
 
@@ -13,7 +17,32 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home,
-    }
+    },
+    {
+        path: '/techniques',
+        name: 'Technique',
+        component: Technique,
+    },
+    {
+        path: '/carte',
+        name: 'Carte',
+        component: Carte,
+    },
+    {
+        path: '/plantes',
+        name: 'Plantes',
+        component: Plantes,
+    },
+    {
+        path: '/climat',
+        name: 'Climat',
+        component: Climat,
+    },
+    {
+        path: '/detailTechnique',
+        name: 'DetailTechnique',
+        component: DetailTechnique,
+    },
 ]
 
 

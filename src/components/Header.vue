@@ -1,23 +1,29 @@
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg bg-fade-up navbar-light align-items-center" id="bgcolor" :style="{ background:bgcolor,transition:'all 1s'}">
+  <nav class="navbar fixed-top shadow navbar-expand-lg bg-fade-up navbar-light align-items-center" id="bgcolor" :style="{ background:bgcolor,transition:'all 0.5s'}">
     <div class="container-fluid">
-        <a class="navbar-brand navbar-left" href="#">Hackathon</a>
-        <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <router-link class="navbar-brand navbar-left mt-4" to="/">
+            <img src="../assets/images/logo-sm.png" alt="" width="34px" height="35px" class="mx-3">
+            <p style="font-size:11px;font-weight:bold" class="mx-0">TANIMBOLY</p>
+        </router-link>
+        <button class="navbar-toggler bg-white botton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class=" collapse navbar-collapse align-items-center">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-center navbar-nav-scroll " style="bs-scroll-height: 100px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                    <router-link class="nav-link" :style="{color:active1,fontWeight:fontWeight1}" aria-current="page" to="/">Accueil</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Techniques</a>
+                    <router-link to="/techniques" :style="{color:active2,fontWeight:fontWeight2}" class="nav-link" >Techniques</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">carte</a>
+                    <router-link to="/climat" :style="{color:active5,fontWeight:fontWeight5}" class="nav-link" >Climat</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">plantes</a>
+                    <router-link class="nav-link" :style="{color:active3,fontWeight:fontWeight3}" to="/carte">carte</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link"  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">plantes</router-link>
                 </li>
             </ul>
              <ul class="navbar-nav me-auto mb-0 mb-lg-0 navbar-right">
@@ -35,16 +41,19 @@
         <div class="collapse navcollaspse" id="navbarSupportedContent">
             <ul class="navbar-nav2">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                     <router-link class="nav-link" :style="{color:active1,fontWeight:fontWeight1}" aria-current="page" to="/">Accueil</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Techniques</a>
+                    <router-link to="/techniques" :style="{color:active2,fontWeight:fontWeight2}" class="nav-link" >Techniques</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">carte</a>
+                    <router-link to="/climat" :style="{color:active5,fontWeight:fontWeight5}" class="nav-link" >Climat</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">plantes</a>
+                    <router-link class="nav-link" :style="{color:active3,fontWeight:fontWeight3}" to="/carte">carte</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link"  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">plantes</router-link>
                 </li>
             </ul>
             <ul class="navbar-nav3">
@@ -74,7 +83,47 @@
     props:{
       bgcolor:{
           type:String,
-          default:()=>'linear-gradient(to bottom, rgb(0, 0, 0,1), rgb(0, 0, 0,0.1))'
+          default:()=>'transparent'
+      },
+      active1:{
+          type:String,
+          default:()=>'rgb(206, 195, 195)'
+      },
+      active2:{
+          type:String,
+          default:()=>'rgb(206, 195, 195)'
+      },
+       active3:{
+          type:String,
+          default:()=>'rgb(206, 195, 195)'
+      },
+       active4:{
+          type:String,
+          default:()=>'rgb(206, 195, 195)'
+      },
+     active5:{
+          type:String,
+          default:()=>'rgb(206, 195, 195)'
+      },
+      fontWeight1:{
+          type:String,
+          default:()=>''
+      },
+      fontWeight2:{
+          type:String,
+          default:()=>''
+      },
+       fontWeight3:{
+          type:String,
+          default:()=>''
+      },
+       fontWeight4:{
+          type:String,
+          default:()=>''
+      },
+      fontWeight5:{
+          type:String,
+          default:()=>''
       }
     },
     components: {
@@ -96,14 +145,17 @@
     box-shadow: rgb(0, 0, 0,0.9);
 
 }
+.navbar{
+    height: 55px !important;
+}
 .navbar-nav.navbar-center li a{
     text-transform: uppercase;
     font-size: 14px  !important;
     font-style: italic;
-    color: rgb(219, 219, 219,0.5);
 }
-.navbar-nav.navbar-center li a:hover{
-    color: rgb(219, 219, 219)
+
+.navbar-nav.navbar-center li .nav-link:hover{
+    color: rgb(255, 255, 255)!important
 }
  .navbar-right i{
     font-size: 20px;
@@ -118,12 +170,19 @@
     color: rgb(255, 255, 255)
 }
 .navbar-left{
-    margin-left: 10px;
+    margin-left: 20px !important;
     color: rgb(219, 219, 219) !important
 }
 .active{
-    color:white !important
+    color:white !important;
+    font-weight: bold
 }
+.navcollaspse{
+    height: 80px !important;
+    padding-top: 10px;
+
+}
+
 @media (min-width: 1200px) {
 
     .navbar-nav.navbar-center {
@@ -150,7 +209,7 @@
     height: 100px;
     left: 0px;
     background-color: rgb(37, 141, 84);
-    top:50px;
+    top:60px;
 }
 .navbar-nav2{
     list-style: none;
@@ -208,6 +267,24 @@
         padding-left: 40% !important;
         flex-direction: row
     }
+     .botton{
+        margin-top: -30px !important
+    }
+    .navbar-left{
+        margin-top: -8px !important
+    }
+    .navcollaspse{
+        top:55px;
+    }
+    .navbar-nav3{
+         margin-top: -20px
+     }
+    .navbar-nav3 i{
+        font-size: 20px!important;
+    }
+    .navbar-nav2{
+        margin-left: -30px!important
+    }
 }
 @media only screen and (max-width: 767px) {
     .navbar-nav2{
@@ -223,13 +300,49 @@
         padding-left: 35% !important;
         flex-direction: row
     }
+    .botton{
+        margin-top: -28px !important
+    }
+    .navbar-left{
+        margin-top: -8px !important
+    }
+    .navcollaspse{
+        top:55px;
+    }
+    .navbar-nav3{
+         margin-top: -20px
+     }
+    .navbar-nav3 i{
+        font-size: 20px!important;
+    }
+    .navbar-nav2{
+        margin-left: -45px!important
+    }
 }
 @media only screen and (max-width: 479px) {
+    .botton{
+        margin-top: -28px !important
+    }
+    .navbar-left{
+        margin-top: -8px !important
+    }
      .navbar-nav2{
         list-style: none;
         display: flex;
         padding-left: 10% !important;
         flex-direction: row
+    }
+    .navcollaspse{
+        top:55px;
+    }
+     .navbar-nav3{
+         margin-top: -20px
+     }
+    .navbar-nav3 i{
+        font-size: 20px!important;
+    }
+    .navbar-nav2{
+        margin-left: -30px!important
     }
 }
 </style>

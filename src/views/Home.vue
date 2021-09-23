@@ -3,16 +3,35 @@
   <div>
     <div class="">
       <header id="header-default"  >
-        <Header :bgcolor="bgcolor"/>
+        <Header :bgcolor="bgcolor" :active1="active1" :fontWeight1="fontWeight1"/>
       </header>
       <div class="" id="container">
-        <div class="container">
+        <div class="container" id="recherche">
           <div class="inner-container">
               <h2>Agriculture pour la vie <br>Produits et techniques</h2>
               <p>Concours afass hackathon</p>
-              <div class="d-flex decouvre" @click="testConnection()" >
-                <a href="#decouvrir" class="btn-get-started scrollto"><i class="fas fa-long-arrow-alt-down"></i></a>
-              </div>
+             
+              <transition name="fade">
+                <div  class="container  min-vh-80 py-4" style="position:absolute" v-if="!showsearch">
+                    <div class="row pl-2">
+                        <div class="col-md-5 mx-auto" style="width:300px">
+                            <div class="input-group">
+                                <input class="form-control border-end-0 border rounded-pill" type="search" placeholder="Rechercher..." value="" id="example-search-input">
+                                <span class="input-group-append" style="margin-left:-42px">
+                                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </transition>
+               <transition name="fade">
+                <div class="d-flex decouvre" @click="showCherche()" v-if="showsearch">
+                  <i class="fa fa-search"></i>
+                </div>
+              </transition>
           </div>
         </div>
       </div>
@@ -23,7 +42,7 @@
                 <div class="col col-lg-6  my-lg-10 pl-4">
                   <div class="container2">
                     <div class="min-card ml-4">
-                        <i class="fas fa-truck-pickup"></i>
+                        <img src="../assets/images/outils.png" class="" width="35px" height="35px" alt="">
                     </div>
                     <div>
                       <h6 class="mt-2">
@@ -38,7 +57,7 @@
                 <div class="col col-lg-6  my-lg-10">
                   <div class="container2">
                     <div class="min-card ml-4">
-                        <i class="fas fa-truck-pickup"></i>
+                        <img src="../assets/images/technologie.png" width="35px" height="35px" alt="">
                     </div>
                     <div>
                       <h6 class="mt-2">
@@ -55,7 +74,7 @@
                 <div class="col col-lg-6  my-lg-10">
                   <div class="container2">
                     <div class="min-card ml-4">
-                        <i class="fas fa-truck-pickup"></i>
+                      <img src="../assets/images/technique.png" width="35px" height="35px" alt="">
                     </div>
                     <div>
                       <h6 class="mt-2">
@@ -70,7 +89,7 @@
                 <div class="col col-lg-6 my-lg-10">
                    <div class="container2">
                     <div class="min-card ml-4">
-                        <i class="fas fa-truck-pickup"></i>
+                        <img src="../assets/images/rendement.png" width="35px" height="35px" alt="">
                     </div>
                     <div>
                       <h6 class="mt-2">
@@ -84,7 +103,7 @@
                 </div>
             </div>
           </div>
-          <div class="col col-lg-7 text-justify my-lg-10 ">
+          <div class="col col-lg-6 text-justify my-lg-10 p bl-4 responsiveconne">
             <div class="row align-items-center pt-3 ml-2">
               <div class="col col-lg-12 text-justify connresponive">
                 <h2>Connaissance</h2>
@@ -124,7 +143,7 @@
           <div class="col col-lg-3 col-sm-12 col-md-12 col-12 mr-4">
             <div class="card Bgimage zoom responsiveimage" style="width: 16rem;height:20rem" :style="backgroundStyles('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzEV8Nk-vQ7Qmy-RnJf5UvZdQvj5QgJFyOGg&usqp=CAU')">
               <div class="card-body mt">
-                <h4 class="card-title">Agri Tech 1</h4>
+                 <h4 class="card-title"><router-link to="/detailTechnique" style="text-decoration:none;color:white">Agri Tech 1 </router-link></h4>
                 <h6 class="card-subtitle mb-2">2 pots / kg</h6>
               </div>
             </div>
@@ -132,7 +151,7 @@
           <div class="col-md-12 col-12 col-sm-12 col-lg-3 mr-4">
              <div class="card Bgimage zoom  responsiveimage" style="width: 16rem;height:20rem" :style="backgroundStyles('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa3ILHANpQ0TESoSWTNSSjDk-FpmeKFQRpOA&usqp=CAU')" >
               <div class="card-body mt" >
-                <h4 class="card-title">Agri Tech 2</h4>
+                <h4 class="card-title"><router-link to="/detailTechnique" style="text-decoration:none;color:white">Agri Tech 2 </router-link></h4>
                 <h6 class="card-subtitle mb-2 ">2 pots / kg</h6>
               </div>
             </div>
@@ -140,7 +159,7 @@
           <div class="col col-md-12 col-lg-3 col-12">
              <div class="card Bgimage zoom  responsiveimage" style="width: 16rem;height:20rem" :style="backgroundStyles('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMTAOIEEHEtOktOxxQm6k--2riGBT35pRKkQ&usqp=CAU')">
               <div class="card-body mt">
-                <h4 class="card-title">Agri Tech 3</h4>
+                 <h4 class="card-title"><router-link to="/detailTechnique" style="text-decoration:none;color:white">Agri Tech 3 </router-link></h4>
                 <h6 class="card-subtitle mb-2 ">2 pots / kg</h6>
               </div>
             </div>
@@ -157,7 +176,7 @@
           </div>
           <div class="row align-items-center pt-1">
             <div class="col col-lg-12 text-center my-lg-10">
-            <span class="under"></span>
+              <span class="under"></span>
             </div>
           </div>
           <div class="row row-cols-lg-2 row-cols-md-2 row-cols-1 row-cols-sm-1 mt-5 justify-content-lg-center">
@@ -185,6 +204,8 @@
           </div>
       </div>
       </div>
+      <Contact/>
+      <Footer/>
       <transition name="fade">
         <div class="up" v-if="showup">
           <a href="#header-default"><i class="fas fa-long-arrow-alt-up"></i></a>
@@ -196,13 +217,17 @@
 
 <script>
   import Header from "../components/Header"
+  import Contact from "../components/Contact"
+  import Footer from "../components/Footer"
   import AOS from 'aos'
   import Admin from '../service/Admin'
 
   export default {
     name: 'Home',
     components: {
-      Header
+      Header,
+      Contact,
+      Footer
 
     },
     computed: {
@@ -221,14 +246,17 @@
         text:"",
         scrolly: 0,
         bgcolor:"",
-        showup:false
+        showup:false,
+        active1:'white',
+        fontWeight1:'bolder',
+        showsearch:true
       }
    },
   methods: {
    
     backgroundStyles(image) {
 				return {
-					'background-image': `url(${image})`,
+					'background-image': `linear-gradient(to bottom,rgba(44, 44, 44, 0.3),rgb(44, 44, 44, 0.3)),url(${image})`,
 				}
       },
     handleResize(){
@@ -241,20 +269,18 @@
       if(this.scrolly>0){
         this.bgcolor ='rgb(37, 141, 84)'
       }else{
-        this.bgcolor ='linear-gradient(to bottom, rgb(0, 0, 0,1), rgb(0, 0, 0,0.1))'
+        this.bgcolor ='transparent'
       }
     },
-    testConnection(){
-      Admin.test()
-        .then((res)=>console.log(res.data))
-        .catch((error)=>console.log(error))
+    showCherche(){
+     this.showsearch =false
     }
   }
 }
 </script>
 <style>
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity .5s
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
@@ -269,7 +295,7 @@ a{
 #container {
   width: 100%;
   height: 100vh;
-  background: url("../assets/images/bg.jpg") top center;
+  background: linear-gradient(to bottom,rgba(44, 44, 44, 0.4),rgb(44, 44, 44, 0.4)),url("../assets/images/bg.jpg") top center;
   background-size: cover;
   position: relative;
   padding: 0;
@@ -300,7 +326,7 @@ a{
    width: 50px;
    height: 50px;
    border-radius: 50%;
-   background-color: green;
+   background-color: rgb(37, 141, 84);
    margin-top: 40px;
 }
 .up{
@@ -309,21 +335,24 @@ a{
    width: 50px;
    height: 50px;
    border-radius: 50%;
-   background-color: green;
+   background-color: rgb(37, 141, 84);
    position: fixed;
    top:90%;
    left: 95%;
 }
 
-.decouvre a,.up a{
+.decouvre i,.up a{
   font-size:30px ;
   text-align: center;
   margin-left: 0px;
   margin-top: 5px;
   color: rgb(243, 243, 243)
 }
-.decouvre a{
+.decouvre i{
   margin-left: 17px;
+  margin-top: 12px;
+  margin-left: 11px;
+  cursor: pointer;
 }
 .technique{
   width: 100%;
@@ -405,9 +434,10 @@ a{
   background: linear-gradient(to right, rgba(255,0,0,0), rgb(37, 141, 84));
   height: 45vh;
   padding-left: 60px;
-  border-radius: 30px
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 70px
 }
-.bgskills p{
+.bgskills p,label{
   font-size: 11px;
   color: rgb(222, 225, 228)
 }
@@ -415,11 +445,10 @@ a{
    font-size: 13px;
   color: white
 }
-.bgskills i{
+.bgskills img{
   font-size: 30px !important;
   margin: 10px 0px 0px 0px;
-  margin-left: 5px;
-  color: green;
+  margin-left: 7px;
   transition: all 0.3s;
   
 }
@@ -430,15 +459,23 @@ a{
   background-color: rgb(233, 233, 233);
   border-radius: 10px;
 }
-.min-card:hover i{
+.min-card:hover img{
   transform: scale(1.1);
 }
+
+
+
+
 @media (max-width: 992px) {
   #header-default {
     padding: 12px 0;
   }
 }
 @media only screen and (min-width: 1200px) {
+  .responsiveconne{
+    margin-left: 40px
+  }
+ 
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .inner-container{
@@ -446,10 +483,14 @@ a{
     padding-top: 25%;
 
   }
+  .responsiveconne{
+    margin-left: 40px
+  }
   .up{
    top:90%;
    left: 92%;
   }
+  
 }
 @media only screen and (min-width: 767px) and (max-width: 991px) {
   #container {
@@ -487,6 +528,7 @@ a{
    top:90%;
    left: 90%;
   }
+  
 }
 @media only screen and (max-width: 767px) {
   #container {
@@ -527,6 +569,8 @@ a{
    top:90%;
    left: 85%;
   }
+  
+  
 }
 @media only screen and (max-width: 479px) {
   #container {
@@ -560,13 +604,14 @@ a{
     margin-top: 50%
   }
   .galery{
-    height: 100vh;
+    height: 120vh;
   }
   .up{
 
    top:90%;
    left: 85%;
-}
+  }
 
 }
+
 </style>
