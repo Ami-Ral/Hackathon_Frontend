@@ -1,8 +1,9 @@
 
 <template>
   <div>
-    <div class="">
-      <header id="header-default"  >
+    <transition name="fade2">
+    <div class="" v-if="!overlay">
+      <header  id="scrollId">
         <Header :bgcolor="bgcolor" :active1="active1" :fontWeight1="fontWeight1"/>
       </header>
       <div class="" id="container">
@@ -35,9 +36,9 @@
           </div>
         </div>
       </div>
-      <div class="connaissance">
+      <div class="connaissance  pb-5">
         <div class="row  align-items-center row-cols-1  pt-5" id="decouvrir">
-          <div class="col col-lg-5 col-12 my-lg-10 bgskills">
+          <div class="col col-lg-5 col-12 col-md-6 my-lg-10 bgskills">
             <div class="row align-items-center pt-4">
                 <div class="col col-lg-6  my-lg-10 pl-4">
                   <div class="container2">
@@ -103,7 +104,7 @@
                 </div>
             </div>
           </div>
-          <div class="col col-lg-6 text-justify my-lg-10 p bl-4 responsiveconne">
+          <div class="col col-lg-6 text-justify col-md-6 my-lg-10 p bl-4 responsiveconne">
             <div class="row align-items-center pt-3 ml-2">
               <div class="col col-lg-12 text-justify connresponive">
                 <h2>Connaissance</h2>
@@ -122,7 +123,7 @@
             </div>
           </div>
       </div>
-      <div class="technique">
+      <div class="technique pt-5 pb-5">
         <div class="container">
         <div class="row align-items-center pt-5">
           <div class="col col-lg-12 text-center my-lg-10">
@@ -143,7 +144,7 @@
           <div class="col col-lg-3 col-sm-12 col-md-12 col-12 mr-4">
             <div class="card Bgimage zoom responsiveimage" style="width: 16rem;height:20rem" :style="backgroundStyles('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzEV8Nk-vQ7Qmy-RnJf5UvZdQvj5QgJFyOGg&usqp=CAU')">
               <div class="card-body mt">
-                 <h4 class="card-title"><router-link to="/detailTechnique" style="text-decoration:none;color:white">Agri Tech 1 </router-link></h4>
+                 <h4 class="card-title"><router-link :to="{name:'DetailTechnique',params:{technique:split('Agri Tech 1')}}" style="text-decoration:none;color:white">Agri Tech 1 </router-link></h4>
                 <h6 class="card-subtitle mb-2">2 pots / kg</h6>
               </div>
             </div>
@@ -151,7 +152,7 @@
           <div class="col-md-12 col-12 col-sm-12 col-lg-3 mr-4">
              <div class="card Bgimage zoom  responsiveimage" style="width: 16rem;height:20rem" :style="backgroundStyles('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa3ILHANpQ0TESoSWTNSSjDk-FpmeKFQRpOA&usqp=CAU')" >
               <div class="card-body mt" >
-                <h4 class="card-title"><router-link to="/detailTechnique" style="text-decoration:none;color:white">Agri Tech 2 </router-link></h4>
+                <h4 class="card-title"><router-link :to="{name:'DetailTechnique',params:{technique:split('Agri Tech 2')}}" style="text-decoration:none;color:white">Agri Tech 2 </router-link></h4>
                 <h6 class="card-subtitle mb-2 ">2 pots / kg</h6>
               </div>
             </div>
@@ -159,7 +160,7 @@
           <div class="col col-md-12 col-lg-3 col-12">
              <div class="card Bgimage zoom  responsiveimage" style="width: 16rem;height:20rem" :style="backgroundStyles('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMTAOIEEHEtOktOxxQm6k--2riGBT35pRKkQ&usqp=CAU')">
               <div class="card-body mt">
-                 <h4 class="card-title"><router-link to="/detailTechnique" style="text-decoration:none;color:white">Agri Tech 3 </router-link></h4>
+                 <h4 class="card-title"><router-link :to="{name:'DetailTechnique',params:{technique:split('Agri Tech 3')}}" style="text-decoration:none;color:white">Agri Tech 3 </router-link></h4>
                 <h6 class="card-subtitle mb-2 ">2 pots / kg</h6>
               </div>
             </div>
@@ -167,7 +168,7 @@
         </div>
       </div>
       </div>
-      <div class="galery">
+      <div class="galery  pb-5">
         <div class="container">
           <div class="row align-items-center pt-5">
             <div class="col col-lg-12 text-center my-lg-10">
@@ -205,12 +206,13 @@
       </div>
       </div>
       <Contact/>
-      <Footer/>
-      <transition name="fade">
-        <div class="up" v-if="showup">
-          <a href="#header-default"><i class="fas fa-long-arrow-alt-up"></i></a>
-        </div>
-      </transition>
+      <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId"/>
+    </div>
+    </transition>
+    <div class="d-flex justify-content-center overlay"  v-if="overlay">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
   </div>
 </template>
@@ -233,6 +235,11 @@
     computed: {
 
     },
+    created(){
+      this.setTimeout(() => {
+          this.overlay = false
+      })
+    },
     mounted() {
       AOS.init()
       window.addEventListener('scroll', this.handleResize);
@@ -244,12 +251,16 @@
     data:function() {
       return{
         text:"",
+        rechercheId:'#recherche',
         scrolly: 0,
         bgcolor:"",
         showup:false,
+        scrollId:"#scrollId",
         active1:'white',
         fontWeight1:'bolder',
-        showsearch:true
+        showsearch:true,
+        overlay:true,
+        timeout: null,
       }
    },
   methods: {
@@ -274,7 +285,27 @@
     },
     showCherche(){
      this.showsearch =false
-    }
+    },
+    split(url){
+      var newUrl="";
+      if(url){
+        newUrl= url.split(' ').join('_');
+      }
+      return newUrl
+    },
+    clearTimeout() {
+				if (this.timeout) {
+				clearTimeout(this.timeout)
+				this.timeout = null
+				}
+			},
+		setTimeout(callback) {
+				this.clearTimeout()
+				this.timeout = setTimeout(() => {
+				this.clearTimeout()
+				callback()
+				}, 1000)
+    },
   }
 }
 </script>
@@ -285,13 +316,24 @@
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+.fade2-enter-active, .fade2-leave-active {
+  transition: opacity 2s
+}
+.fade2-enter, .fade2-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 #header-default{
   overflow: hidden;
 }
 a{
   text-decoration: none;
 }
-
+.overlay{
+  padding-top: 20%;
+  background-size: cover;
+  position: relative;
+  width:100%;
+}
 #container {
   width: 100%;
   height: 100vh;
@@ -329,19 +371,9 @@ a{
    background-color: rgb(37, 141, 84);
    margin-top: 40px;
 }
-.up{
-   text-align: center;
-   display: block;
-   width: 50px;
-   height: 50px;
-   border-radius: 50%;
-   background-color: rgb(37, 141, 84);
-   position: fixed;
-   top:90%;
-   left: 95%;
-}
 
-.decouvre i,.up a{
+
+.decouvre i{
   font-size:30px ;
   text-align: center;
   margin-left: 0px;
@@ -356,7 +388,6 @@ a{
 }
 .technique{
   width: 100%;
-  height: 85vh;
   background-size: cover;
   background-color: rgb(15, 15, 17);
   position: relative;
@@ -365,7 +396,6 @@ a{
 }
 .galery{
   width: 100%;
-  height: 80vh;
   background-size: cover;
   background-color: rgb(15, 15, 17);
   position: relative;
@@ -374,7 +404,6 @@ a{
 }
 .connaissance{
   width: 100%;
-  height: 60vh;
   background-size: cover;
   background-color: rgb(15, 15, 17);
   position: relative;
@@ -432,7 +461,6 @@ a{
 }
 .bgskills{
   background: linear-gradient(to right, rgba(255,0,0,0), rgb(37, 141, 84));
-  height: 45vh;
   padding-left: 60px;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 70px
@@ -480,19 +508,18 @@ a{
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .inner-container{
     text-align: center;
-    padding-top: 25%;
+    padding-top: 45%;
 
   }
+  
   .responsiveconne{
     margin-left: 40px
   }
-  .up{
-   top:90%;
-   left: 92%;
+  .overlay{
+    padding-top: 25%;
   }
-  
 }
-@media only screen and (min-width: 767px) and (max-width: 991px) {
+@media only screen and (min-width: 770px) and (max-width: 991px) {
   #container {
     margin-top: -20px
   }
@@ -500,9 +527,6 @@ a{
     text-align: center;
     padding-top: 40%;
 
-  }
-  .connaissance{
-     height: 80vh;
   }
   .connresponive{
     text-align: center;
@@ -514,23 +538,18 @@ a{
     margin-left: 30px
   }
   .technique{
-    height: 190vh;
+    height: 190vh !important;
   }
   .responsiveimage{
     width: 65% !important;
     margin-bottom: 40px;
     margin-left: 15%
   }
-  .galery{
-    height: 80vh;
+  .overlay{
+    padding-top: 30%;
   }
-  .up{
-   top:90%;
-   left: 90%;
-  }
-  
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 769px) {
   #container {
     margin-top: -20px
   }
@@ -538,9 +557,6 @@ a{
     text-align: center;
     padding-top: 50%;
 
-  }
-  .connaissance{
-     height: 80vh;
   }
   .connresponive{
     text-align: center;
@@ -551,9 +567,6 @@ a{
   .connaissance p{
     margin-left: 10px
   }
-  .technique{
-    height: 190vh;
-  }
   .responsiveimage{
     width: 80% !important;
     margin-bottom: 40px;
@@ -562,14 +575,9 @@ a{
   .mt{
     margin-top: 50%
   }
-  .galery{
-    height: 130vh;
+  .overlay{
+    padding-top: 40%;
   }
-  .up{
-   top:90%;
-   left: 85%;
-  }
-  
   
 }
 @media only screen and (max-width: 479px) {
@@ -581,10 +589,7 @@ a{
     padding-top: 60%;
 
   }
-  .connaissance{
-     height: 80vh;
-  }
-  .connresponive{
+  connresponive{
     text-align: center;
   }
   .under2,.under{
@@ -593,9 +598,6 @@ a{
   .connaissance p{
     margin-left: 10px
   }
-  .technique{
-    height: 175vh;
-  }
   .responsiveimage{
     width: 80% !important;
     margin-bottom: 40px
@@ -603,15 +605,9 @@ a{
   .mt{
     margin-top: 50%
   }
-  .galery{
-    height: 120vh;
+  .overlay{
+    padding-top: 50%;
   }
-  .up{
-
-   top:90%;
-   left: 85%;
-  }
-
 }
 
 </style>

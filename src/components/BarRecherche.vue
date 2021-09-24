@@ -1,0 +1,75 @@
+<template>
+    <div class="recherche">
+            <div class="container-fluid">
+                <div class="row row-cols-lg-4 row-cols-4 row-cols-md-4 row-cols-sm-4">
+                    <div class="col col-lg-1 col-sm-2 col-md-2 col-12">
+                        <label for="searchValue" class="recherchep">Rechercher:</label>
+                    </div>
+                    <div class="col-lg-9 col-sm-4 col-md-6 col-3 responsive2 inputresponsive">
+                        <input type="text" v-model="searchValue" class="form-control bg-white mt-2" id="searchValue" value="">
+                    </div>
+                    <div class="col-lg-1 col-sm-3 col-md-2 col mt-lg-2 mt-sm-2  mt-md-2 pt-lg-0 pt-sm-0  pt-md-0 responseSelect responsive2 pt-2">
+                        <select class="form-select form-select-md mb-3" v-model="typeSearch" aria-label=".form-select-lg example">
+                            <option value="tout">Tout</option>
+                            <option value="technique">Technique</option>
+                            <option value="region">Région</option>
+                            <option value="plante">Plante</option>
+                        </select>
+                    </div>
+                    <div class="col col-lg-1 col-sm-2 col-md-2 mt-lg-2 mt-sm-2 mt-md-2  pt-lg-0 pt-sm-0  pt-md-0 responsive2 pt-2">
+                        <button type="submit"  class="btn btn-success">Rechercher</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</template>
+<script>
+export default {
+    name:'BarRecherche',
+    data:function(){
+        return{
+            searchValue:'',
+            typeSearch:'tout',
+        }
+    }
+}
+</script>
+
+<style>
+.recherche{
+  width: 100%;
+  background: rgb(182, 182, 182);
+  background-size: cover;
+  position: relative;
+  padding-top: 70px
+}
+.recherchep{
+    margin-top: 15px;
+    color: black !important;
+    font-size: 16px
+}
+.responseSelect{
+    margin-left: -20px
+}
+@media only screen and (min-width: 1200px) {
+ 
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+ 
+}
+@media only screen and (min-width: 767px) and (max-width: 991px) {
+ 
+}
+@media only screen and (max-width: 767px) {
+  
+}
+@media only screen and (max-width: 479px) {
+   .responsive2{
+       margin-top: -40px
+   }
+   .inputresponsive{
+       margin-left: 100px;
+
+   }
+}
+</style>

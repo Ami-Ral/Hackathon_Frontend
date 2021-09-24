@@ -1,114 +1,147 @@
 <template>
     <div>
-        <header id="header-default"  >
-            <Header :bgcolor="bgcolor" :active2="active2" :fontWeight2="fontWeight2"/>
-        </header>
-        <div class="recherche">
-            <div class="container-fluid">
-                <div class="row row-cols-lg-4 row-cols-4 row-cols-md-4 row-cols-sm-4">
-                    <div class="col col-lg-1 col-sm-2 col-md-2 col-12">
-                        <label for="searchValue" class="recherchep">Rechercher:</label>
-                    </div>
-                    <div class="col-lg-9 col-sm-4 col-md-6 col-3 responsive2 inputresponsive">
-                        <input type="text" v-model="searchValue" class="form-control bg-white mt-2" id="searchValue" value="">
-                    </div>
-                    <div class="col-lg-1 col-sm-3 col-md-2 col mt-lg-2 mt-sm-2  mt-md-2 pt-lg-0 pt-sm-0  pt-md-0 responseSelect responsive2 pt-2">
-                        <select class="form-select form-select-md mb-3" v-model="typeSearch" aria-label=".form-select-lg example">
-                            <option value="tout">Tout</option>
-                            <option value="technique">Technique</option>
-                            <option value="region">Région</option>
-                            <option value="plante">Plante</option>
-                        </select>
-                    </div>
-                    <div class="col col-lg-1 col-sm-2 col-md-2 mt-lg-2 mt-sm-2 mt-md-2  pt-lg-0 pt-sm-0  pt-md-0 responsive2 pt-2">
-                        <button type="submit"  class="btn btn-success">Rechercher</button>
-                    </div>
-                </div>
+        <transition name="fade">
+            <div v-if="!overlay">
+                <header id="scrollId3"  >
+                <Header :bgcolor="bgcolor" :active2="active2" :fontWeight2="fontWeight2"/>
+                </header>
+                <BarRecherche/>
+                <List :items="backItems" :nameList="nameList"/>
+                <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId"/>
+            </div>
+        </transition>
+        <div class="d-flex justify-content-center overlay"  v-if="overlay">
+            <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
             </div>
         </div>
-        <div class="listTechnique">
-            <div class="container">
-               <div class="row row-cols-lg-3 row-cols-1 row-cols-md-1 row-cols-sm-1 ml-lg-6 justify-content-lg-center justify-content-center">
-                    <div class="col col-lg-3 col-sm-12 col-md-12 col-12 mr-4">
-
-                    </div>
-                </div>
-                <div class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 ml-lg-6 justify-content-lg-center text-center justify-content-center">
-                    <div class="col-12 col-lg-3 col-sm-12 col-md-12 col-12 mr-4">
-                        <button type="button" class="btn btn-success mx-4 mt-5">Afficher plus</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <Footer/>
     </div>
 </template>
 <script>
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import List from "../components/List"
+import BarRecherche from "../components/BarRecherche"
+
 
 export default {
     name:'Technique',
      components: {
        Header,
-       Footer
+       Footer,
+       List,
+       BarRecherche
+    },
+    created(){
+      this.setTimeout(() => {
+          this.overlay = false
+      })
+    },
+    mounted() {
+      window.addEventListener('scroll', this.handleResize);
+      this.handleResize()
+    },
+    destroyed() {
+      window.removeEventListener('scroll', this.handleResize);
     },
     data:function() {
       return{
         bgcolor :'rgb(37, 141, 84)',
+        nameList:'Listes des techniques',
         active2:'white',
         fontWeight2:'bolder',
-        searchValue:'',
-        typeSearch:'tout'
+        backItems:[
+            {
+                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
+                title:'Technique 1',
+                detail:'rendement 1'
+            },
+            {
+                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
+                title:'Technique 2',
+                detail:'rendement 2'
+            },
+            {
+                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
+                title:'Technique 3',
+                detail:'rendement 3'
+            },
+             {
+                 src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
+                title:'Technique 4',
+                detail:'rendement 4'
+             },
+            {
+                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
+                title:'Technique 5',
+                detail:'rendement 5'
+            },
+            {
+                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
+                title:'Technique 6',
+                detail:'rendement 6'
+            },
+            {
+                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
+                title:'Technique 7',
+                detail:'rendement 7'
+            },
+            {
+                 src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
+                title:'Technique 8',
+                detail:'rendement 8'
+            }
+        ],
+        scrollId:"#scrollId3",
+        scrolly: 0,
+        showup:false,
+        rechercheId:'#scrollId3',
+        overlay:true,
+        timeout: null,
       }
    },
+    methods: {
+        handleResize(){
+            this.scrolly=window.scrollY
+            if(this.scrolly>110){
+                this.showup = true
+            }else{
+                this.showup = false
+            }
+        },
+        clearTimeout() {
+			if (this.timeout) {
+				clearTimeout(this.timeout)
+				this.timeout = null
+				}
+			},
+		setTimeout(callback) {
+			this.clearTimeout()
+			this.timeout = setTimeout(() => {
+				this.clearTimeout()
+				callback()
+			}, 1000)
+        },
+    }
 }
 </script>
 <style scoped>
-.recherche{
-  width: 100%;
-  height: 20vh;
-  background: rgb(182, 182, 182);
-  background-size: cover;
-  position: relative;
-  padding-top: 70px
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 2s
 }
-.listTechnique{
-  width: 100%;
-  background: rgb(15, 15, 17) top center;
-  padding-bottom: 20vh !important; 
-  background-size: cover;
-  position: relative;
-  padding: 0;
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
-.recherchep{
-    margin-top: 15px;
-    color: black !important;
-    font-size: 16px
-}
-.responseSelect{
-    margin-left: -20px
-}
+
 @media only screen and (min-width: 1200px) {
- 
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
- 
 }
 @media only screen and (min-width: 767px) and (max-width: 991px) {
- 
 }
 @media only screen and (max-width: 767px) {
-  
 }
 @media only screen and (max-width: 479px) {
-   .responsive2{
-       margin-top: -40px
-   }
-   .inputresponsive{
-       margin-left: 100px;
-
-   }
 }
 </style>
 

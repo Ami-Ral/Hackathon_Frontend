@@ -22,7 +22,7 @@
                     <p style="margin-left: -20px" class="lienp">Liens</p>
                     <ul class="">
                       <li><a href="#" style="margin-left:30px" class="apropos">A propos de nous</a></li>
-                      <li><a href="#recherche" @click="showCherche()" style="margin-left:-10px" class="ct3">Rechercher</a></li>
+                      <li><a :href="rechercheId" style="margin-left:-10px" class="ct3">Rechercher</a></li>
                     </ul>
                   </div>
                   <div class="col-6  col-md-3 col-lg-3 contacterresponsive ct2">
@@ -43,20 +43,61 @@
               </div> 
             </div> 
         </div> 
+        <transition name="fade">
+          <div class="up" v-if="showup">
+            <a :href="scrollId"><i class="fas fa-long-arrow-alt-up"></i></a>
+          </div>
+      </transition>
       </div>
 </template>
 <script>
 export default {
     name:'Footer',
-
+    props:{
+      showup:{
+        type:Boolean,
+        default:()=>false
+      },
+      scrollId:{
+        type:String,
+        default:()=>'#'
+      },
+      rechercheId:{
+        type:String,
+        default:()=>'#'
+      }
+    }
 }
 </script>
 
 <style>
 /* footer*/
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.up{
+   text-align: center;
+   display: block;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   background-color: rgb(37, 141, 84);
+   position: fixed;
+   top:90%;
+   left: 95%;
+}
+.up i{
+  font-size:30px ;
+  text-align: center;
+  margin-left: 0px;
+  margin-top: 5px;
+  color: rgb(243, 243, 243)
+}
 .footer{
   width: 100%;
-  height: 72vh !important;
   padding-left: 15px!important;
   background-size: cover;
   background-color: rgb(0, 0, 0);
@@ -90,20 +131,14 @@ export default {
   margin-left:55px
 }
 @media only screen and (min-width: 1200px) {
-     /* footer*/
-  .footer{
-    height: 48vh !important;
-  }
+ 
    .logofoot{
     padding-left: 50px !important;
     margin-left: -70px
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    /**/
-  .footer{
-    height: 48vh !important;
-  }
+
   .support{
     margin-left:32px!important
   }
@@ -111,12 +146,13 @@ export default {
     padding-left: 50px !important;
     margin-left: -70px
   }
+   .up{
+   top:90%;
+   left: 92%;
+  }
 }
 @media only screen and (min-width: 767px) and (max-width: 991px) {
-    /* footer*/
-  .footer{
-    height: 48vh !important;
-  }
+
   .support{
     margin-left:10px!important
   }
@@ -136,12 +172,13 @@ export default {
   .lienp{
     margin-left: -65px !important
   }
-}
-@media only screen and (max-width: 767px) {
-    /*footer*/
-  .footer{
-    height: 73vh !important;
+  .up{
+   top:88%;
+   left: 90%;
   }
+}
+@media only screen and (max-width: 769px) {
+ 
   .contacterresponsive2{
     padding-left: 20px !important
   }
@@ -151,12 +188,14 @@ export default {
   .logofoot{
     padding-left: 90px !important
   }
+  .up{
+   top:90% !important;;
+   left: 87%;
+  }
+  
 }
 @media only screen and (max-width: 479px) {
-    /* footer*/
-  .footer{
-    height: 79vh !important;
-  }
+  
   .lienresponsive{
    
     margin-left: -40px !important
@@ -179,5 +218,11 @@ export default {
   .logofoot{
     padding-left: 0px !important
   }
+  .up{
+
+   top:90%;
+   left: 85%;
+  }
+
 }
 </style>

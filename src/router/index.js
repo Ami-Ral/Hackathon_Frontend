@@ -39,8 +39,9 @@ const routes = [
         component: Climat,
     },
     {
-        path: '/detailTechnique',
+        path: '/technique/:technique',
         name: 'DetailTechnique',
+        props: true ,
         component: DetailTechnique,
     },
 ]

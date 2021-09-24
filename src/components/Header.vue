@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar fixed-top shadow navbar-expand-lg bg-fade-up navbar-light align-items-center" id="bgcolor" :style="{ background:bgcolor,transition:'all 0.5s'}">
-    <div class="container-fluid">
+  <nav  class="navbar fixed-top shadow navbar-expand-lg bg-fade-up navbar-light align-items-center" id="bgcolor" :style="{ background:bgcolor,transition:'all 0.5s'}">
+    <div class="container-fluid" id="header-default">
         <router-link class="navbar-brand navbar-left mt-4" to="/">
             <img src="../assets/images/logo-sm.png" alt="" width="34px" height="35px" class="mx-3">
             <p style="font-size:11px;font-weight:bold" class="mx-0">TANIMBOLY</p>
@@ -8,7 +8,7 @@
         <button class="navbar-toggler bg-white botton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class=" collapse navbar-collapse align-items-center">
+        <div class="collapse navbar-collapse align-items-center">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-center navbar-nav-scroll " style="bs-scroll-height: 100px;">
                 <li class="nav-item">
                     <router-link class="nav-link" :style="{color:active1,fontWeight:fontWeight1}" aria-current="page" to="/">Accueil</router-link>
@@ -268,10 +268,11 @@
         flex-direction: row
     }
      .botton{
-        margin-top: -30px !important
+        margin-top: -39px !important;
+        margin-right: 10px;
     }
     .navbar-left{
-        margin-top: -8px !important
+        margin-top: -18px !important
     }
     .navcollaspse{
         top:55px;
@@ -301,10 +302,11 @@
         flex-direction: row
     }
     .botton{
-        margin-top: -28px !important
+        margin-top: -39px !important;
+        margin-right: 10px;
     }
     .navbar-left{
-        margin-top: -8px !important
+        margin-top: -18px !important
     }
     .navcollaspse{
         top:55px;
@@ -321,10 +323,11 @@
 }
 @media only screen and (max-width: 479px) {
     .botton{
-        margin-top: -28px !important
+        margin-top: -39px !important;
+        margin-right: 10px;
     }
     .navbar-left{
-        margin-top: -8px !important
+        margin-top: -18px !important
     }
      .navbar-nav2{
         list-style: none;

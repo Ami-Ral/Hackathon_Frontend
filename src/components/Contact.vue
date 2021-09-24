@@ -1,5 +1,5 @@
 <template>
-    <div class="contact">
+    <div class="contact  pb-5  pt-md-3">
         <div class="container">
           <form action="" @submit.prevent="handleEmail()">
             <div class="row row-cols-lg-1  justify-content-lg-center">
@@ -103,7 +103,6 @@ export default {
 /*conctact*/
 .contact{
   width: 100%;
-  height: 90vh;
   background-size: cover;
   background-color: rgb(15, 15, 17);
   position: relative;
@@ -116,8 +115,6 @@ export default {
 }
 /*conctact*/
 .contact{
-  width: 100%;
-  height: 90vh;
   background-size: cover;
   background-color: rgb(15, 15, 17);
   position: relative;
@@ -127,6 +124,15 @@ export default {
 .contact label{
   font-size: 16px;
   color: white
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+ 
+}
+@media only screen and (max-width: 769px) {
+ 
+}
+@media only screen and (max-width: 479px) {
+
 }
  </style>
  
