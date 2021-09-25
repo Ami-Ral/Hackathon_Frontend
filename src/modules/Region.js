@@ -5,7 +5,9 @@ import Regions from '../service/Regions'
 
 
 const state = {
-    all:{},
+    all:{
+        items:[]
+    },
     OneRegion:{},
     statusDelete:false
 }
@@ -33,10 +35,10 @@ const actions = {
             })
     },
 
-    getRegion({ commit }, region) {
+    getRegion({ commit },{langage,id}) {
 
         commit('getOneRegionLoading');
-        Regions.getOne(region)
+        Regions.getOne(langage,id)
             .then((res)=>{
                 commit('getOneRegionSuccess', res.data)
             })
@@ -67,13 +69,13 @@ const actions = {
             })
     },
 
-    getAllRegion({ commit }){
+    getAllRegion({ commit },{langage,nbr_list}){
         commit('getAllRegionLoading');
-        Regions.getAll()
+        Regions.getAll(langage,nbr_list)
             .then((res)=>{
                 commit('getAllRegionSuccess',res.data)
             })
-            .catch(() => commit('getAllRegionFailure'))
+            .catch((error) => commit('getAllRegionFailure',error))
     },
     
    
@@ -105,13 +107,13 @@ const mutations = {
 
     getAllRegionSuccess(state, region) {
 
-        state.all= {items:region};
+        state.all.items = region ;
     },
 
 
-    getAllRegionFailure(state) {
+    getAllRegionFailure(state,error) {
 
-        state.all = {};
+        state.all.error = error;
     },
 
     getOneRegionLoading(state) {
@@ -140,12 +142,12 @@ const mutations = {
 
     UpdateRegionSuccess(state, region) {
 
-        state.all = { items: region };
+        state.all.items = region ;
     },
 
-    UpdateRegionFailure(state) {
+    UpdateRegionFailure(state,error) {
 
-        state.all = { items: state.all.items };
+        state.all.error = error
     },
 
     deleteRegionLoading(state) {

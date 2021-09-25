@@ -1,46 +1,67 @@
 <template>
-    <router-link style="text-decoration:none;color:white" class="card" :to="{name:'DetailTechnique',params:{technique:split(title)}}">
-        <img :src="src" alt="" class="card-image">
+<div class="card">
+
+    <router-link style="text-decoration:none;color:white" v-if="NameRoute == 1 ? true:false" class="card2" :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}">
+        <img :src="donnee.couverture" alt="" class="card-image">
         <div class="under-image"></div>
-        <div class="detail">
-            <h4><router-link :to="{name:'DetailTechnique',params:{technique:split(title)}}" style="text-decoration:none;color:white">{{title}}</router-link></h4>
-            <h6>{{detail}}</h6>
+        <div class="detail" v-if="donnee.nom_fr == undefined || donnee.nom_fr=='null' ? false:true">
+            <h4><router-link :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
+            <h6>{{donnee.info_fr}}</h6>
+        </div>
+        <div class="detail" v-else>
+            <h4><router-link :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}" style="text-decoration:none;color:white">{{donnee.nom_mg}}</router-link></h4>
+            <h6>{{donnee.info_mg}}</h6>
         </div>
     </router-link>
+
+    <router-link style="text-decoration:none;color:white" v-else-if="NameRoute == 2" class="card2" :to="{name:'DetailClimat',params:{id:parse(donnee.id_climat)}}">
+        <img :src="donnee.couverture" alt="" class="card-image">
+        <div class="under-image"></div>
+        <div class="detail" v-if="donnee.nom_fr==undefined || donnee.nom_fr=='null' ? false:true">
+            <h4><router-link :to="{name:'DetailClimat',params:{id:parse(donnee.id_climat)}}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
+            <h6>{{donnee.info_fr}}</h6>
+        </div>
+        <div class="detail" v-else>
+            <h4><router-link :to="{name:'DetailClimat',params:{id:parse(donnee.id_climat)}}" style="text-decoration:none;color:white">{{donnee.nom_mg}}</router-link></h4>
+            <h6>{{donnee.info_mg}}</h6>
+        </div>
+    </router-link>
+
+    <router-link style="text-decoration:none;color:white" v-else-if="NameRoute == 3" class="card2" :to="{name:'DetailPlante',params:{id:parse(donnee.id_plante)}}">
+        <img :src="donnee.path_image" alt="" class="card-image">
+        <div class="under-image"></div>
+        <div class="detail" v-if="donnee.nom_fr==undefined || donnee.nom_fr=='null' ? false:true">
+            <h4><router-link :to="{name:'DetailPlante',params:{id:parse(donnee.id_plante)}}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
+            <h6>{{donnee.nom_scientifique}}</h6>
+        </div>
+        <div class="detail" v-else>
+            <h4><router-link :to="{name:'DetailPlante',params:{id:parse(donnee.id_plante)}}" style="text-decoration:none;color:white">{{donnee.nom_mg}}</router-link></h4>
+            <h6>{{donnee.nom_scientifique}}</h6>
+        </div>
+    </router-link>
+</div>
 </template>
 <script>
 export default {
     name:"Card",
     props:{
-        src:{
-            type:String,
-            default:()=>""
+        donnee:{
+            type:Object,
+            default:()=>{}
         },
-        title:{
-            type:String,
-            default:()=>""
+        NameRoute:{
+            type:Number,
+            default:()=>1
         },
-        detail:{
-            type:String,
-            default:()=>""
-        },
-        /*nameUrl:{
-            type:String,
-            default:()=>""
-        }*/
-        /*paramsName:{
-            type:String,
-            default:()=>""
-        }*/
     },
     methods:{
-        split(url){
-            var newUrl="";
+        parse(url){
+            var newUrl;
             if(url){
-                newUrl= url.split(' ').join('_');
+                newUrl= parseInt(url);
             }
-            return newUrl
-        }
+        return newUrl
+        },
     }
 }
 </script>
@@ -54,10 +75,13 @@ export default {
     transform: scale(1);
     transition: transform 0.3s
 }
-.card-image{
-    margin: 0px;
+.card2{
     width: 100%;
     height: 100%;
+}
+.card-image{
+    width: 100%;
+    height: 250px;
     border: none;
 }
 .under-image{
@@ -88,8 +112,18 @@ export default {
     color: rgb(165, 165, 165)
 }
 .card:hover{
-    transform: scale(1.03);
-    transition: all 0.3s
+    transform: scale(1.02);
+    border: none;
+    transition: transform 0.3s
+}
+@media only screen and (min-width: 1200px) {
+  .detail{
+        position:absolute;
+        padding: 10px;
+        top:25vh;
+        left: 3vh;
+    }
+ 
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .detail{

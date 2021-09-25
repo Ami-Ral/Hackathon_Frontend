@@ -6,7 +6,9 @@ import Climats from '../service/Climats'
 
 
 const state = {
-    all:{},
+    all:{
+        items:[]
+    },
     OneClimat:{},
     statusDelete:false
 }
@@ -37,17 +39,26 @@ const actions = {
             })
     },
 
-    getOneClimat({ commit }, climat) {
+    getOneClimat({ commit }, {langage,id}) {
 
         commit('getOneClimatLoading');
 
-        Climats.getOne(climat)
+        Climats.getOne(langage,id)
             .then((res)=>{
                 commit('getOneClimatSuccess', res.data)
                 
             })
             .catch(() => commit('getOneClimatFailure'))
 
+    },
+
+    getAllClimat({ commit },{langage,nbr_list}){
+        commit('getAllClimatLoading');
+        Climats.getAll(langage,nbr_list)
+            .then((res)=>{
+                commit('getAllClimatSuccess',res.data)
+            })
+            .catch((error) => commit('getAllClimatFailure',error))
     },
 
     UpdateClimat({ commit }, climat){
@@ -113,6 +124,21 @@ const mutations = {
         state.OneClimat = { };
     },
 
+    getAllClimatLoading(state) {
+
+        state.all = { loading: true };
+    },
+
+    getAllClimatSuccess(state, plante) {
+
+        state.all.items = plante ;
+    },
+
+
+    getAllClimatFailure(state,error) {
+
+        state.all.error = error;
+    },
 
     UpdateClimatLoading(state) {
 
@@ -122,12 +148,12 @@ const mutations = {
 
     UpdateClimatSuccess(state, climat) {
 
-        state.all = { items: climat };
+        state.all.items = climat ;
     },
 
-    UpdateClimatFailure(state) {
+    UpdateClimatFailure(state,error) {
 
-        state.all = { items: state.all.items };
+        state.all.error = error
     },
 
     deleteClimatLoading(state) {

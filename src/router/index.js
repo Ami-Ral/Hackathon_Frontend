@@ -7,7 +7,7 @@ import Carte from '../views/Carte.vue'
 import Plantes from '../views/Plantes.vue'
 import Climat from '../views/Climat.vue'
 import DetailTechnique from '../views/DetailTechnique.vue'
-
+import DetailPlante from '../views/DetailPlante.vue'
 
 
 Vue.use(VueRouter)
@@ -39,10 +39,16 @@ const routes = [
         component: Climat,
     },
     {
-        path: '/technique/:technique',
+        path: '/technique/:id',
         name: 'DetailTechnique',
         props: true ,
         component: DetailTechnique,
+    },
+    {
+        path: '/plantes/:id',
+        name: 'DetailPlante',
+        props: true ,
+        component: DetailPlante,
     },
 ]
 

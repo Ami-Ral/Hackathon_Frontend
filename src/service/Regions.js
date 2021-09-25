@@ -10,13 +10,13 @@ class Regions {
         return httpForm.post('/student/create',region);
     }
     
-    getOne(id) {
+    getOne(langage,id) {
 
-        return http.get(`/region/read/${id}`)
+        return http.get(`/region/getDetails/${langage}/${id}`)
     }
-    getAll() {
+    getAll(langage,nbr_list) {
 
-        return http.get('/region/list')
+        return http.get(`/region/list/${langage}/${nbr_list}`)
     }
 
     delete(student) {

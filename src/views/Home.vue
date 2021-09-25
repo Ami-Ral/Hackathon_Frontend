@@ -141,29 +141,15 @@
           </div>
         </div>
         <div class="row row-cols-lg-3 row-cols-1 row-cols-md-1 row-cols-sm-1 ml-lg-6  justify-content-lg-center lg-content justify-content-center">
-          <div class="col col-lg-3 col-sm-12 col-md-12 col-12 mr-4">
-            <div class="card Bgimage zoom responsiveimage" style="width: 16rem;height:20rem" :style="backgroundStyles('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzEV8Nk-vQ7Qmy-RnJf5UvZdQvj5QgJFyOGg&usqp=CAU')">
+          <div class="col col-lg-3 col-sm-12 col-md-12 col-12 mr-4" v-for="(item,index) in AllTechnique2" :key="index">
+            <router-link :to="{name:'DetailTechnique',params:{id:parse(item.id_technique)}}" class="card Bgimage zoom responsiveimage" style="width: 16rem;height:20rem;text-decoration:none;color:white" :style="backgroundStyles(item.couverture)">
               <div class="card-body mt">
-                 <h4 class="card-title"><router-link :to="{name:'DetailTechnique',params:{technique:split('Agri Tech 1')}}" style="text-decoration:none;color:white">Agri Tech 1 </router-link></h4>
-                <h6 class="card-subtitle mb-2">2 pots / kg</h6>
+                 <h4 class="card-title" v-if="item.nom_fr==undefined || item.nom_fr=='null' ? false:true"><router-link :to="{name:'DetailTechnique',params:{id:parse(item.id_technique)}}" style="text-decoration:none;color:white">{{item.nom_fr}}</router-link></h4>
+                 <h4 class="card-title" v-else><router-link   :to="{name:'DetailTechnique',params:{id:parse(item.id_technique)}}" style="text-decoration:none;color:white" >{{item.nom_mg}}</router-link></h4>
+                <h6 class="card-subtitle mb-2" v-if="item.nom_fr==undefined || item.info_fr=='null' ? false:true">{{item.info_fr}}</h6>
+                <h6 class="card-subtitle mb-2" v-else>{{item.info_mg}}</h6>
               </div>
-            </div>
-          </div>
-          <div class="col-md-12 col-12 col-sm-12 col-lg-3 mr-4">
-             <div class="card Bgimage zoom  responsiveimage" style="width: 16rem;height:20rem" :style="backgroundStyles('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa3ILHANpQ0TESoSWTNSSjDk-FpmeKFQRpOA&usqp=CAU')" >
-              <div class="card-body mt" >
-                <h4 class="card-title"><router-link :to="{name:'DetailTechnique',params:{technique:split('Agri Tech 2')}}" style="text-decoration:none;color:white">Agri Tech 2 </router-link></h4>
-                <h6 class="card-subtitle mb-2 ">2 pots / kg</h6>
-              </div>
-            </div>
-          </div>
-          <div class="col col-md-12 col-lg-3 col-12">
-             <div class="card Bgimage zoom  responsiveimage" style="width: 16rem;height:20rem" :style="backgroundStyles('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMTAOIEEHEtOktOxxQm6k--2riGBT35pRKkQ&usqp=CAU')">
-              <div class="card-body mt">
-                 <h4 class="card-title"><router-link :to="{name:'DetailTechnique',params:{technique:split('Agri Tech 3')}}" style="text-decoration:none;color:white">Agri Tech 3 </router-link></h4>
-                <h6 class="card-subtitle mb-2 ">2 pots / kg</h6>
-              </div>
-            </div>
+            </router-link>
           </div>
         </div>
       </div>
@@ -182,23 +168,23 @@
           </div>
           <div class="row row-cols-lg-2 row-cols-md-2 row-cols-1 row-cols-sm-1 mt-5 justify-content-lg-center">
             <div class="col-12 col-sm-12 col-md-5 col-lg-5 mr-4" style="height:18rem !important">
-              <img width="100%" height="100%" class="zoom" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzEV8Nk-vQ7Qmy-RnJf5UvZdQvj5QgJFyOGg&usqp=CAU"  alt="...">
+              <img width="100%" height="100%" class="zoom" src="https://images.pexels.com/photos/1065753/pexels-photo-1065753.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"  alt="...">
             </div>
             <div class=" col-12 col-sm-12 col-md-7 col-lg-5 mr-4 mt-lg-0 mt-md-0 mt-4">
               <div class="row row-cols-lg-2 mt-0 justify-content-lg-center">
-                <div class="col col-lg-6 text-center"  style="height:132px !important">
-                    <img width="100%" height="100%" class="zoom"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzEV8Nk-vQ7Qmy-RnJf5UvZdQvj5QgJFyOGg&usqp=CAU"  alt="...">
+                <div class="col col-lg-6 text-center"  style="height:132px !important"> 
+                    <img width="100%" height="100%" class="zoom"  src="https://images.pexels.com/photos/5231014/pexels-photo-5231014.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"  alt="...">
                 </div>
-                <div class="col col-lg-6 text-center">
-                    <img width="100%" height="100%" class="zoom" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzEV8Nk-vQ7Qmy-RnJf5UvZdQvj5QgJFyOGg&usqp=CAU"  alt="...">
+                <div class="col col-lg-6 text-center" style="height:132px !important">
+                    <img width="100%" height="100%" class="zoom" src="https://pbs.twimg.com/media/DfeCP_KXUAAzIiD.jpg"  alt="...">
                 </div>
               </div>
               <div class="row row-cols-lg-2 mt-4 justify-content-lg-center">
                 <div class="col col-lg-6 text-center " style="height:132px !important" >
                     <img width="100%" height="100%"  class="zoom" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzEV8Nk-vQ7Qmy-RnJf5UvZdQvj5QgJFyOGg&usqp=CAU"  alt="...">
                 </div>
-                <div class="col col-lg-6 text-center">
-                    <img width="100%" height="100%" class="zoom"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzEV8Nk-vQ7Qmy-RnJf5UvZdQvj5QgJFyOGg&usqp=CAU"  alt="...">
+                <div class="col col-lg-6 text-center" style="height:132px !important">
+                    <img width="100%" height="100%" class="zoom"  src="https://images.pexels.com/photos/6780331/pexels-photo-6780331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"  alt="...">
                 </div>
               </div>
             </div>
@@ -206,7 +192,7 @@
       </div>
       </div>
       <Contact/>
-      <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId"/>
+      <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique"/>
     </div>
     </transition>
     <div class="d-flex justify-content-center overlay"  v-if="overlay">
@@ -218,6 +204,8 @@
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex'
+
   import Header from "../components/Header"
   import Contact from "../components/Contact"
   import Footer from "../components/Footer"
@@ -232,22 +220,6 @@
       Footer
 
     },
-    computed: {
-
-    },
-    created(){
-      this.setTimeout(() => {
-          this.overlay = false
-      })
-    },
-    mounted() {
-      AOS.init()
-      window.addEventListener('scroll', this.handleResize);
-      this.handleResize()
-    },
-    destroyed() {
-      window.removeEventListener('scroll', this.handleResize);
-    },
     data:function() {
       return{
         text:"",
@@ -261,10 +233,32 @@
         showsearch:true,
         overlay:true,
         timeout: null,
+        nbr_list:5,
+        AllTechnique2:[]
       }
    },
+    computed: {
+      ...mapGetters('Technique',['AllTechnique']),
+      ...mapGetters('Langage',['getLangage'])
+    },
+    created(){
+      this.getAll()
+      this.setTimeout(() => {
+          this.overlay = false
+          this.initialValue(this.AllTechnique)
+      })
+    },
+    mounted() {
+      AOS.init()
+      window.addEventListener('scroll', this.handleResize);
+      this.handleResize()
+    },
+    destroyed() {
+      window.removeEventListener('scroll', this.handleResize);
+    },
+    
   methods: {
-   
+    ...mapActions('Technique',['getAllTechnique']),
     backgroundStyles(image) {
 				return {
 					'background-image': `linear-gradient(to bottom,rgba(44, 44, 44, 0.3),rgb(44, 44, 44, 0.3)),url(${image})`,
@@ -286,10 +280,10 @@
     showCherche(){
      this.showsearch =false
     },
-    split(url){
-      var newUrl="";
+    parse(url){
+      var newUrl;
       if(url){
-        newUrl= url.split(' ').join('_');
+        newUrl= parseInt(url);
       }
       return newUrl
     },
@@ -306,6 +300,18 @@
 				callback()
 				}, 1000)
     },
+    getAll(){
+      var langage = this.getLangage
+      var nbr_list = this.nbr_list
+      let techniques = this.getAllTechnique({langage,nbr_list})
+      return techniques
+    },
+    initialValue(table){
+      for(let i=0;i<=2;i++){
+        this.AllTechnique2[i]=table[i]
+        if(table[i]==undefined) break
+      }
+    }
   }
 }
 </script>

@@ -46,12 +46,12 @@
                         <label for="message">Message</label>
                         <input type="textarea" v-model="bodyEmail.message" class="form-control bg-white mt-2 pb-5" id="message" value="">
                       </div>
-                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
-                          <transition name="fade">
-                                <div class="up" v-if="status">
-                                  <p :style="{color:statusColor}"><i class="fas fa-long-arrow-alt-up"></i>{{textStatus}}</p>
-                                </div>
-                          </transition>
+                      <transition name="fade">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3" v-if="status">     
+                          <p :style="{color:statusColor}">{{textStatus}} <i :class="classStatus"></i></p>
+                        </div>
+                      </transition>
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">     
                         <button type="submit" class="btn btn-success">Envoyer</button>
                       </div>
                     </div>
@@ -79,21 +79,32 @@ export default {
           },
           status:false,
           textStatus:'',
+          classStatus:'',
           statusColor:'white'
       }
    },
     methods: {
         handleEmail(){
-            axios.post(baseUrl + 'autre/contacter',this.bodyEmail)
-            .then(()=>{
-                this.status = true
-                this.textStatus= 'Envoie succes'
+          console.log(this.bodyEmail)
+            axios.post(baseUrl + '/div/contacter ',this.bodyEmail)
+            .then((res)=>{
+                this.classStatus="fas fa-check-circle"
+                this.textStatus= res.data
                 this.statusColor = 'green'
+                this.bodyEmail.message =''
+                this.bodyEmail.objet =''
+                this.status = true
+                let vm = this
+                setTimeout(function(){
+                  vm.status = false
+                },5000)
             })
             .catch(()=>{
-                this.status = true
+               
+                this.classStatus="fas fa-times"
                 this.textStatus= 'Envoie erreur'
                 this.statusColor = 'red'
+                 this.status = true
             })
         }
     }
@@ -101,6 +112,12 @@ export default {
 </script>
  <style>
 /*conctact*/
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 .contact{
   width: 100%;
   background-size: cover;

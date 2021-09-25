@@ -9,7 +9,7 @@
                 </div>
                <div class="row row-cols-lg-4 row-cols-1 row-cols-md-2 row-cols-sm-2 ml-lg-6 pt-2 mx-4 mx-md-0 mx-lg-0 mx-sm-0">
                     <div class="col col-lg-3  col-sm-6 col-md-6 col-10  mt-lg-3 mt-4 mx-4 mx-lg-0 mx-md-0 mx-sm-0" v-for="(item,index) in items" :key="index">
-                        <Card :src="item.src" :title="item.title" :detail="item.detail"/>
+                        <Card :donnee="item" :NameRoute="NameRoute"/>
                     </div>
                 </div>
                 <div class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 ml-lg-6 justify-content-lg-center text-center justify-content-center">
@@ -35,60 +35,24 @@ export default {
         nameList:{
             type:String,
             default:()=>""
+        },
+        NameRoute:{
+            type:Number,
+            default:()=>1
         }
     },
     data:function() {
         return{
-             backItems2:[
-                {
-                    src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                    title:'Technique 10',
-                    detail:'rendement 10'
-                },
-                {
-                    src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                    title:'Technique 20',
-                    detail:'rendement 20'
-                },
-                {
-                    src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                    title:'Technique 30',
-                    detail:'rendement 30'
-                },
-                {
-                    src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                    title:'Technique 40',
-                    detail:'rendement 40'
-                },
-                {
-                    src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                    title:'Technique 50',
-                    detail:'rendement 50'
-                },
-                {
-                    src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                    title:'Technique 60',
-                    detail:'rendement 60'
-                },
-                {
-                    src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                    title:'Technique 70',
-                    detail:'rendement 70'
-                },
-                {
-                    src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                    title:'Technique 80',
-                    detail:'rendement 80'
-                }
-            ]
+            
         }
     },
     methods:{
         afficherPlus(){
-            var _vm = this
+            /*var _vm = this
             setTimeout(function() {
                 _vm.items = _vm.items.concat(_vm.backItems2); 
-            },100)
+            },100)*/
+            console.log('afficher plus')
         }
     }
 }

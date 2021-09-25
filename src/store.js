@@ -5,7 +5,9 @@ import {admins } from './modules/admins'
 import {Region } from './modules/Region'
 import {Climat } from './modules/Climat'
 import {Plante } from './modules/Plante'
-import {Technique } from './modules/Technique'
+import {Technique } from './modules/Technique' 
+import {Langage } from './modules/Langage' 
+
 
  Vue.use(Vuex)
 
@@ -15,6 +17,7 @@ import {Technique } from './modules/Technique'
         Plante,
         Region,
         Climat,
-        Technique
+        Technique,
+        Langage
     }
  })

@@ -2,8 +2,8 @@
     <div>
         <transition name="fade">
             <div v-if="!overlay">
-               <header id="header-default"  >
-                    <Header :bgcolor="bgcolor" :active5="active5" :fontWeight5="fontWeight5"/>
+                <header id="header-default"  >
+                    <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4"/>
                 </header>
             </div>
         </transition>
@@ -18,7 +18,7 @@
 import Header from "../components/Header"
 
 export default {
-    name:'Climat',
+    name:'DetailPlante',
      components: {
       Header
     },
@@ -30,14 +30,13 @@ export default {
     data:function() {
       return{
         bgcolor :'rgb(37, 141, 84)',
-        active5:'white',
-        fontWeight5:'bolder',
+        active4:'white',
+        fontWeight4:'bolder',
         overlay:true,
         timeout: null,
-        NameRoute:1,
       }
    },
-   methods:{
+    methods:{
         clearTimeout() {
 			if (this.timeout) {
 				clearTimeout(this.timeout)
@@ -62,4 +61,3 @@ export default {
   opacity: 0;
 }
 </style>
-

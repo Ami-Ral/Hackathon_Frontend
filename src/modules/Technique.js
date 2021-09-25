@@ -5,7 +5,9 @@ import Techniques from '../service/Techniques'
 
 
 const state = {
-    all:{},
+    all:{
+        items:[]
+    },
     OneTechnique:{},
     statusDelete : false
 }
@@ -35,11 +37,11 @@ const actions = {
             })
     },
 
-    getOneTechnique({ commit }, id) {
+    getOneTechnique({ commit },{langage, id}) {
 
         commit('getOneTechniqueLoading');
 
-        Techniques.getOne(id)
+        Techniques.getOne(langage, id)
             .then((res)=>{
                 commit('getOneTechniqueSuccess', res.data)
                 
@@ -47,13 +49,12 @@ const actions = {
             .catch(() => commit('getOneTechniqueFailure'))
 
     },
-
-    getAllTechnique({ commit }, parent){
+    getAllTechnique({ commit},{langage,nbr_list}){
         commit('getAllTechniqueLoading');
-
-        Techniques.getAll(parent)
+        Techniques.getAll(langage,nbr_list)
             .then((res)=>{
                 commit('getAllTechniqueSuccess', res.data)
+                console.log(getters.AllTechnique(state))
             })
             .catch(() => commit('getAllTechniqueFailure'))
     },
@@ -131,12 +132,12 @@ const mutations = {
 
     getAllTechniqueSuccess(state, technique) {
 
-        state.all = { items: technique };
+        state.all.items = technique ;
     },
 
-    getAllTechniqueFailure(state) {
+    getAllTechniqueFailure(state,error) {
 
-        state.all = { items: state.all.items };
+        state.all.error = error;
     },
     deleteTechniqueLoading(state) {
 
@@ -161,12 +162,12 @@ const mutations = {
 
     UpdateTechniqueSuccess(state, technique) {
 
-        state.all = { items: technique };
+        state.all.items = technique
     },
 
-    UpdateTechniqueFailure(state) {
+    UpdateTechniqueFailure(state,error) {
 
-        state.all = { items: state.all.items };
+        state.all.items = error
     },
 
 

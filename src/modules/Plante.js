@@ -4,7 +4,9 @@ import Plantes from '../service/Plantes'
 
 
 const state = {
-    all:{},
+    all:{
+        items:[]
+    },
     OnePlante:{},
     statusDelete:false
 }
@@ -34,16 +36,26 @@ const actions = {
             })
     },
 
-    getOnePlante({ commit }, id) {
+    getOnePlante({ commit },{langage,id}) {
 
         commit('getOnePlanteLoading');
 
-        Plantes.getOne(id)
+        Plantes.getOne(langage,id)
             .then((res)=>{
-                commit('getOneTuteurSuccess', res.data)
+                commit('getOnePlanteSuccess', res.data)
                
             })
             .catch(() => commit('getOnePlanteFailure'))
+    },
+
+    getAllPlante({ commit },{langage,nbr_list}){
+        commit('getAllPlanteLoading');
+        Plantes.getAll(langage,nbr_list)
+            .then((res)=>{
+                commit('getAllPlanteSuccess',res.data)
+                console.log(res.data)
+            })
+            .catch((error) => commit('getAllPlanteFailure',error))
     },
 
     UpdatePlante({ commit }, plante){
@@ -55,6 +67,7 @@ const actions = {
             })
             .catch(() => commit('UpdatePlanteFailure'))
     },
+    
     deletePlante({commit},plante){
         commit('deletePlanteLoading');
         Plantes.delete(plante.id)
@@ -92,34 +105,49 @@ const mutations = {
 
     getOnePlanteLoading(state) {
 
-        state.OneTuteur = { loading: true };
+        state.OnePlante = { loading: true };
     },
 
 
     getOnePlanteSuccess(state, plante) {
 
-        state.OneTuteur = plante;
+        state.OnePlante = plante;
     },
 
 
-    getOneTuteurFailure(state) {
-
-        state.OneTuteur = {};
+    getOnePlanteFailure(state) {
+        state.OnePlante = {};
     },
+
+    getAllPlanteLoading(state) {
+
+        state.all = { loading: true };
+    },
+
+    getAllPlanteSuccess(state, plante) {
+
+        state.all.items = plante ;
+    },
+
+
+    getAllPlanteFailure(state,error) {
+
+        state.all.error = error;
+    },
+
+
 
     UpdatePlanteLoading(state) {
         state.all = { loading: true };
     },
 
-
     UpdatePlanteSuccess(state, plante) {
 
-        state.all = { items: plante };
+        state.all.items=plante ;
     },
 
-    UpdatePlanteFailure(state) {
-
-        state.all = { items: state.all.items };
+    UpdatePlanteFailure(state,error) {
+        state.all.error = error
     },
     
     deletePlanteLoading(state) {

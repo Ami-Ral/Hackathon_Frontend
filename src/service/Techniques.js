@@ -11,15 +11,15 @@ class Techniques {
         return https.post('/technique/add',technique);
     }
     
-    getOne(id) {
+    getOne(langage,id) {
 
-        return https.get(`/technique/${id}`)
+        return https.get(`/technique/getDetails/${langage}/${id}`)
     }
-    getAll() {
+    getAll(langage,nbr_list) {
 
-        return https.get('/technique/')
+        return https.get(`/technique/list/${langage}/${nbr_list}`)
     }
-   delete(id) {
+    delete(id) {
 
         return https.delete(`/technique/remove/${id}`)
     }

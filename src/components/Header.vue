@@ -1,6 +1,6 @@
 <template>
-  <nav  class="navbar fixed-top shadow navbar-expand-lg bg-fade-up navbar-light align-items-center" id="bgcolor" :style="{ background:bgcolor,transition:'all 0.5s'}">
-    <div class="container-fluid" id="header-default">
+  <nav  class="navbar fixed-top shadow navbar-expand-lg bg-fade-up navbar-light align-items-center px-0" id="bgcolor" :style="{ background:bgcolor,transition:'all 0.5s'}">
+    <div class="container-fluid px-0" id="header-default">
         <router-link class="navbar-brand navbar-left mt-4" to="/">
             <img src="../assets/images/logo-sm.png" alt="" width="34px" height="35px" class="mx-3">
             <p style="font-size:11px;font-weight:bold" class="mx-0">TANIMBOLY</p>
@@ -8,18 +8,18 @@
         <button class="navbar-toggler bg-white botton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse align-items-center">
+        <div class="collapse navbar-collapse align-items-center px-">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-center navbar-nav-scroll " style="bs-scroll-height: 100px;">
-                <li class="nav-item">
+                <li class="nav-item px-0">
                     <router-link class="nav-link" :style="{color:active1,fontWeight:fontWeight1}" aria-current="page" to="/">Accueil</router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item px-0">
                     <router-link to="/techniques" :style="{color:active2,fontWeight:fontWeight2}" class="nav-link" >Techniques</router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item px-0">
                     <router-link to="/climat" :style="{color:active5,fontWeight:fontWeight5}" class="nav-link" >Climat</router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item px-0">
                     <router-link class="nav-link" :style="{color:active3,fontWeight:fontWeight3}" to="/carte">carte</router-link>
                 </li>
                 <li class="nav-item">
@@ -38,8 +38,8 @@
                 </li>
             </ul>
         </div>
-        <div class="collapse navcollaspse" id="navbarSupportedContent">
-            <ul class="navbar-nav2">
+        <div class="collapse navcollaspse pr-4" id="navbarSupportedContent">
+            <ul class="navbar-nav2 px-0" >
                 <li class="nav-item">
                      <router-link class="nav-link" :style="{color:active1,fontWeight:fontWeight1}" aria-current="page" to="/">Accueil</router-link>
                 </li>
@@ -52,8 +52,8 @@
                 <li class="nav-item">
                     <router-link class="nav-link" :style="{color:active3,fontWeight:fontWeight3}" to="/carte">carte</router-link>
                 </li>
-                <li class="nav-item">
-                    <router-link class="nav-link"  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">plantes</router-link>
+                <li class="nav-item mr-5">
+                    <router-link class="nav-link "  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">plantes</router-link>
                 </li>
             </ul>
             <ul class="navbar-nav3">

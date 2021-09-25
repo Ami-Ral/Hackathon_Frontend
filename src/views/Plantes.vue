@@ -2,12 +2,12 @@
     <div>
         <transition name="fade">
             <div v-if="!overlay">
-                <header id="scrollId2"  >
+                <header id="scrollId3">
                     <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4"/>
                 </header>
                 <BarRecherche/>
-                <List :items="backItems" :nameList="nameList"/>
-                <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId"/>
+                <List :items="AllPlante2" :nameList="nameList" :NameRoute="NameRoute"/>
+                <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
             </div>
         </transition>
         <div class="d-flex justify-content-center overlay"  v-if="overlay">
@@ -18,6 +18,8 @@
     </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import List from "../components/List"
@@ -32,9 +34,37 @@ export default {
        List,
        BarRecherche
     },
+     data:function() {
+      return{
+        bgcolor :'rgb(37, 141, 84)',
+        nameList:'Listes des plantes',
+        active4:'white',
+        fontWeight4:'bolder',
+        scrollId:"#scrollId3",
+        scrolly: 0,
+        showup:false,
+        rechercheId:'#scrollId3',
+        overlay:true,
+        timeout: null,
+        AllPlante2:[],
+        AllTechnique2:[],
+        nbr_list:5,
+        nbr_list2:5,
+        NameRoute:3,
+      }
+   },
+    computed: {
+      ...mapGetters('Plante',['AllPlante']),
+      ...mapGetters('Technique',['AllTechnique']),
+      ...mapGetters('Langage',['getLangage'])
+    },
     created(){
+      this.getAll()
+      this.getAll2()
       this.setTimeout(() => {
           this.overlay = false
+          this.initialValue(this.AllPlante)
+          this.initialValue2(this.AllTechnique)
       })
     },
     mounted() {
@@ -44,63 +74,9 @@ export default {
     destroyed() {
       window.removeEventListener('scroll', this.handleResize);
     },
-    data:function() {
-      return{
-        bgcolor :'rgb(37, 141, 84)',
-        nameList:'Listes des plantes',
-        active4:'white',
-        rechercheId:'#scrollId2',
-        fontWeight4:'bolder',
-        showup:false,
-        backItems:[
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Plante 1',
-                detail:'rendement 1'
-            },
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Plante 2',
-                detail:'rendement 2'
-            },
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Plante 3',
-                detail:'rendement 3'
-            },
-             {
-                 src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Plante 4',
-                detail:'rendement 4'
-             },
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Plante 5',
-                detail:'rendement 5'
-            },
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Plante 6',
-                detail:'rendement 6'
-            },
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Plante 7',
-                detail:'rendement 7'
-            },
-            {
-                 src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Plante 8',
-                detail:'rendement 8'
-            }
-        ],
-        scrollId:"#scrollId2",
-        scrolly: 0,
-        overlay:true,
-        timeout: null,
-      }
-   },
     methods: {
+        ...mapActions('Plante',['getAllPlante']),
+        ...mapActions('Technique',['getAllTechnique']),
         handleResize(){
             this.scrolly=window.scrollY
             if(this.scrolly>110){
@@ -122,6 +98,24 @@ export default {
 				callback()
 			}, 1000)
         },
+        getAll(){
+            var langage = this.getLangage
+            var nbr_list = this.nbr_list
+            let Plante = this.getAllPlante({langage,nbr_list})
+            return Plante
+        },
+        getAll2(){
+            var langage = this.getLangage
+            var nbr_list = this.nbr_list2
+            let techniques = this.getAllTechnique({langage,nbr_list})
+            return techniques
+        },
+        initialValue2(table){
+           this.AllTechnique2 = table
+        },
+        initialValue(table){
+           this.AllPlante2 = table
+        }
     }
 }
 </script>

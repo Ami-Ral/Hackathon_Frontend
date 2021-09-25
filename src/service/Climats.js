@@ -1,4 +1,4 @@
-import http from './http.js'
+
 import https from './https.js'
 
 
@@ -9,15 +9,15 @@ class Climats {
     register(climat) {
 
         
-        return http.post('/climat/create',climat);
+        return https.post('/climat/create',climat);
     }
-    getOne() {
+    getOne(langage,id) {
 
-        return http.get(`/climat/getOne`)
+        return  https.get(`/climat/getDetails/${langage}/${id}`)
     }
-    getAll() {
+    getAll(langage,nbr_list) {
 
-        return http.get('/climat/getAll')
+        return  https.get(`/climat/list/${langage}/${nbr_list}`)
     }
     delete(id) {
 

@@ -2,12 +2,12 @@
     <div>
         <transition name="fade">
             <div v-if="!overlay">
-                <header id="scrollId3"  >
-                <Header :bgcolor="bgcolor" :active2="active2" :fontWeight2="fontWeight2"/>
+                <header id="scrollId3">
+                    <Header :bgcolor="bgcolor" :active2="active2" :fontWeight2="fontWeight2"/>
                 </header>
                 <BarRecherche/>
-                <List :items="backItems" :nameList="nameList"/>
-                <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId"/>
+                <List :items="AllTechnique2" :nameList="nameList" :NameRoute="NameRoute"/>
+                <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
             </div>
         </transition>
         <div class="d-flex justify-content-center overlay"  v-if="overlay">
@@ -18,6 +18,8 @@
     </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import List from "../components/List"
@@ -32,9 +34,32 @@ export default {
        List,
        BarRecherche
     },
+     data:function() {
+      return{
+        bgcolor :'rgb(37, 141, 84)',
+        nameList:'Listes des techniques',
+        active2:'white',
+        fontWeight2:'bolder',
+        scrollId:"#scrollId3",
+        scrolly: 0,
+        showup:false,
+        rechercheId:'#scrollId3',
+        overlay:true,
+        timeout: null,
+        AllTechnique2:[],
+        nbr_list:5,
+        NameRoute:1,
+      }
+   },
+    computed: {
+      ...mapGetters('Technique',['AllTechnique']),
+      ...mapGetters('Langage',['getLangage'])
+    },
     created(){
+      this.getAll()
       this.setTimeout(() => {
           this.overlay = false
+          this.initialValue(this.AllTechnique)
       })
     },
     mounted() {
@@ -44,63 +69,8 @@ export default {
     destroyed() {
       window.removeEventListener('scroll', this.handleResize);
     },
-    data:function() {
-      return{
-        bgcolor :'rgb(37, 141, 84)',
-        nameList:'Listes des techniques',
-        active2:'white',
-        fontWeight2:'bolder',
-        backItems:[
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Technique 1',
-                detail:'rendement 1'
-            },
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Technique 2',
-                detail:'rendement 2'
-            },
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Technique 3',
-                detail:'rendement 3'
-            },
-             {
-                 src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Technique 4',
-                detail:'rendement 4'
-             },
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Technique 5',
-                detail:'rendement 5'
-            },
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Technique 6',
-                detail:'rendement 6'
-            },
-            {
-                src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Technique 7',
-                detail:'rendement 7'
-            },
-            {
-                 src:'https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/9/d/b/9db0e9a29d_50038038_tracteur-openfield-jenny222-flickr-cc-by-nc-nd-20.jpg',
-                title:'Technique 8',
-                detail:'rendement 8'
-            }
-        ],
-        scrollId:"#scrollId3",
-        scrolly: 0,
-        showup:false,
-        rechercheId:'#scrollId3',
-        overlay:true,
-        timeout: null,
-      }
-   },
     methods: {
+         ...mapActions('Technique',['getAllTechnique']),
         handleResize(){
             this.scrolly=window.scrollY
             if(this.scrolly>110){
@@ -122,6 +92,15 @@ export default {
 				callback()
 			}, 1000)
         },
+        getAll(){
+            var langage = this.getLangage
+            var nbr_list = this.nbr_list
+            let techniques = this.getAllTechnique({langage,nbr_list})
+            return techniques
+        },
+        initialValue(table){
+           this.AllTechnique2 = table
+        }
     }
 }
 </script>
