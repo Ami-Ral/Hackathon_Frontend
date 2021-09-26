@@ -38,7 +38,7 @@ export default {
       return{
         bgcolor :'rgb(37, 141, 84)',
         nameList:'Listes des techniques',
-        active2:'white',
+        active2:'white!important',
         fontWeight2:'bolder',
         scrollId:"#scrollId3",
         scrolly: 0,

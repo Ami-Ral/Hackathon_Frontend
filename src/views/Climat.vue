@@ -30,7 +30,7 @@ export default {
     data:function() {
       return{
         bgcolor :'rgb(37, 141, 84)',
-        active5:'white',
+        active5:'white!important',
         fontWeight5:'bolder',
         overlay:true,
         timeout: null,

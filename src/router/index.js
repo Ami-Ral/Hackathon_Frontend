@@ -8,6 +8,10 @@ import Plantes from '../views/Plantes.vue'
 import Climat from '../views/Climat.vue'
 import DetailTechnique from '../views/DetailTechnique.vue'
 import DetailPlante from '../views/DetailPlante.vue'
+import Admin from '../views/Admin.vue'
+import AddClimat from '../views/AddClimat.vue'
+import AddPlante from '../views/AddPlante.vue'
+import AddRegion from '../views/AddRegion.vue'
 
 
 Vue.use(VueRouter)
@@ -49,6 +53,30 @@ const routes = [
         name: 'DetailPlante',
         props: true ,
         component: DetailPlante,
+    },
+    {
+        path: '/admin/home',
+        name: 'Admin',
+        props: true ,
+        component: Admin,
+    },
+    {
+        path: '/admin/add/climat',
+        name: 'AddClimat',
+        props: true ,
+        component: AddClimat,
+    },
+    {
+        path: '/admin/add/plante',
+        name: 'AddPlante',
+        props: true ,
+        component: AddPlante,
+    },
+    {
+        path: '/admin/add/region',
+        name: 'AddRegion',
+        props: true ,
+        component: AddRegion,
     },
 ]
 

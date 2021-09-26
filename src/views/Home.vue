@@ -228,7 +228,7 @@
         bgcolor:"",
         showup:false,
         scrollId:"#scrollId",
-        active1:'white',
+        active1:'white!important',
         fontWeight1:'bolder',
         showsearch:true,
         overlay:true,

@@ -12,8 +12,6 @@ const getters = {
 }
 const actions = {
 
-    
-    
     setLangage({ commit }, langage) {
 
         commit('setOneLangageLoading');

@@ -38,7 +38,7 @@ export default {
       return{
         bgcolor :'rgb(37, 141, 84)',
         nameList:'Listes des plantes',
-        active4:'white',
+        active4:'white!important',
         fontWeight4:'bolder',
         scrollId:"#scrollId3",
         scrolly: 0,
