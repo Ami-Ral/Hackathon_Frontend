@@ -1,10 +1,11 @@
-var data = ({
+var langue = ({
     fr:{
-        accueil : "ACCUEIL" ,
-        technique : "TECHNIQUE",
-        climat : "CLIMAT",
-        carte : "CARTE",
-        plante : "PLANTES",
+        accueil : "Accueil" ,
+        technique : "Technique",
+        climat : "Climat",
+        Region : "Region",
+        carte : "Carte",
+        plante : "Plantes",
         titre1 : "Agricuture pour la vie",
         titre2 : "Produits et téchnique",
         sous_titre : "Concours afass hackathon",
@@ -20,6 +21,8 @@ var data = ({
         description_connaissance :"La sécurité alimentaire et le  changement climatique peuvent être abordés ensemble en transformant l'agriculture et en adoptant des pratiques",
         description_technique : "Les techniques agricoles intelligentes face au climat peuvent augmenter la productivité agricole et les revenus, rendre les communautés rurales plus résilientes au changement climatique et, si possible, atténuer le changement climatique.",
         gallerie : 'GALLERIE',
+        afficher_plus:'Afficher plus',
+        tout:'Tout',
         contacter : "Contacter-nous" ,
         nom : "Nom",
         prenom : "Prenom",
@@ -35,11 +38,12 @@ var data = ({
         copyright : "Copyright © 2021 Tanimboly. Tout droits réserves."
     },
     mg:{
-        accueil : "TONGASOA" ,
-        technique : "TEKNIKA",
-        climat : "TOE-TANY",
-        carte : "SARY",
-        plante : "ZAVA-MANIRY",
+        accueil : "Tongasoa" ,
+        technique : "Teknika",
+        Region : "Faritra",
+        climat : "Toe-tany",
+        carte : "Sary",
+        plante : "Zava-maniry",
         titre1 : "Fambolena ho an'ny rehetra",
         titre2 : "Vokatra sy Teknika",
         sous_titre : "Concours afass hackathon",
@@ -55,13 +59,15 @@ var data = ({
         description_connaissance :"Ny filaminana ara-tsakafo sy ny fiovan'ny toetrandro dia azo iaraha-miaina amin'ny fanovana ny fambolena sy ny fampiharana fomba fanao",
         description_technique : "Ny teknikan'ny fambolena sy fihenan-tsaina amin'ny toetrandro dia afaka mampitombo ny vokatra sy ny fidiram-bolan'ny fambolena, mahatonga ny vondrom-piarahamonina ambanivohitra mahazaka kokoa ny fiovan'ny toetr'andro ary, raha azo atao, dia manalefaka ny fiovan'ny toetr'andro.",
         gallerie : 'SARY',
+        afficher_plus:'Manaraka',
+        tout:'Rehetra',
         contacter : "Hiresaka aminay" ,
         nom : "Anarana",
         prenom : "Fanampin'anarana",
         email : "Mailaka" ,
         telephone : "Laharana finday",
         Objet : "Zavatra",
-        message : "Hafatr",
+        message : "Hafatra",
         envoyer : "Alefa",
         liens : "Rohy" ,
         a_propos : "Mombamoba anay",
@@ -70,3 +76,4 @@ var data = ({
         copyright : "Copyright © 2021 Tanimboly. Tout droits réserves."
     }
 })
+export default langue

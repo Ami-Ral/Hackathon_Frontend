@@ -1,6 +1,6 @@
 
 const state = {
-    langage:'fr',
+    langage:'mg',
     status:false
 }
 

@@ -9,7 +9,7 @@
         </transition>
         <div class="d-flex justify-content-center overlay"  v-if="overlay">
             <div class="spinner-border text-success" role="status">
-                <span class="visually-hidden">Loading...</span>
+                
             </div>
         </div>
     </div>

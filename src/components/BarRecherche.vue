@@ -3,33 +3,40 @@
             <div class="container-fluid">
                 <div class="row row-cols-lg-4 row-cols-4 row-cols-md-4 row-cols-sm-4">
                     <div class="col col-lg-1 col-sm-2 col-md-2 col-12">
-                        <label for="searchValue" class="recherchep">Rechercher:</label>
+                        <label for="searchValue" class="recherchep">{{OptionLangue[getLangage].rechercher}}:</label>
                     </div>
                     <div class="col-lg-9 col-sm-4 col-md-6 col-3 responsive2 inputresponsive">
                         <input type="text" v-model="searchValue" class="form-control bg-white mt-2" id="searchValue" value="">
                     </div>
                     <div class="col-lg-1 col-sm-3 col-md-2 col mt-lg-2 mt-sm-2  mt-md-2 pt-lg-0 pt-sm-0  pt-md-0 responseSelect responsive2 pt-2">
                         <select class="form-select form-select-md mb-3" v-model="typeSearch" aria-label=".form-select-lg example">
-                            <option value="tout">Tout</option>
-                            <option value="technique">Technique</option>
-                            <option value="region">Région</option>
-                            <option value="plante">Plante</option>
+                            <option value="tout">{{OptionLangue[getLangage].tout}}</option>
+                            <option value="technique">{{OptionLangue[getLangage].technique}}</option>
+                            <option value="region">{{OptionLangue[getLangage].Region}}</option>
+                            <option value="plante">{{OptionLangue[getLangage].plante}}</option>
                         </select>
                     </div>
                     <div class="col col-lg-1 col-sm-2 col-md-2 mt-lg-2 mt-sm-2 mt-md-2  pt-lg-0 pt-sm-0  pt-md-0 responsive2 pt-2">
-                        <button type="submit"  class="btn btn-success">Rechercher</button>
+                        <button type="submit"  class="btn btn-success">{{OptionLangue[getLangage].rechercher}}</button>
                     </div>
                 </div>
             </div>
         </div>
 </template>
 <script>
+import langue from '../service/Multilangue.js'
+import { mapGetters} from 'vuex'
+
 export default {
     name:'BarRecherche',
+    computed: {
+      ...mapGetters('Langage',['getLangage'])
+    },
     data:function(){
         return{
             searchValue:'',
             typeSearch:'tout',
+            OptionLangue:langue
         }
     }
 }

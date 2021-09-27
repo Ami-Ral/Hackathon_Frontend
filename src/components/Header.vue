@@ -11,22 +11,37 @@
         <div class="collapse navbar-collapse align-items-center px-">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-center navbar-nav-scroll " style="bs-scroll-height: 100px;">
                 <li class="nav-item px-0">
-                    <router-link class="nav-link" :style="{color:active1,fontWeight:fontWeight1}" aria-current="page" to="/">Accueil</router-link>
+                    <router-link class="nav-link" :style="{color:active1,fontWeight:fontWeight1}" aria-current="page" to="/">{{OptionLangue[getLangage].accueil}}</router-link>
                 </li>
                 <li class="nav-item px-0">
-                    <router-link to="/techniques" :style="{color:active2,fontWeight:fontWeight2}" class="nav-link" >Techniques</router-link>
+                    <router-link to="/techniques" :style="{color:active2,fontWeight:fontWeight2}" class="nav-link" >{{OptionLangue[getLangage].technique}}</router-link>
                 </li>
                 <li class="nav-item px-0">
-                    <router-link to="/climat" :style="{color:active5,fontWeight:fontWeight5}" class="nav-link" >Climat</router-link>
+                    <router-link to="/climat" :style="{color:active5,fontWeight:fontWeight5}" class="nav-link" >{{OptionLangue[getLangage].climat}}</router-link>
                 </li>
                 <li class="nav-item px-0">
-                    <router-link class="nav-link" :style="{color:active3,fontWeight:fontWeight3}" to="/carte">carte</router-link>
+                    <router-link class="nav-link" :style="{color:active3,fontWeight:fontWeight3}" to="/carte">{{OptionLangue[getLangage].carte}}</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link"  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">plantes</router-link>
+                    <router-link class="nav-link"  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">{{OptionLangue[getLangage].plante}}</router-link>
                 </li>
+                
+            </ul>
+            <ul class="navbar-nav me-auto d-flex langue">
+                <div class="header__top__right__language">
+                    <img :src="src1" v-if="getLangage=='fr'? true :false" alt="" width="30px" height="30px"/>
+                    <img :src="src2" v-else alt="" width="30px" height="30px"/>
+                    <div v-if="getLangage=='fr'? true :false">Français</div>
+                    <div v-else>Malagasy</div>
+                    <span class="arrow_carrot-down"></span>
+                    <ul class="pt-2">
+                        <li class="d-flex px-2 pt-1" @click="changeLangue()" v-if="getLangage=='fr'? true :false"><img :src="src2" alt=""  width="30px" height="30px"/><a  class="mg ">Malagasy </a></li>
+                        <li class="d-flex px-2 pt-1" @click="changeLangue()" v-else><img :src="src1" alt="" width="30px" height="30px"/><a  class="mg ">Français</a></li>
+                    </ul>
+                </div>
             </ul>
              <ul class="navbar-nav me-auto mb-0 mb-lg-0 navbar-right">
+                 
                 <li class="nav-item">
                     <i class="fab fa-facebook-f"></i>
                 </li>
@@ -41,19 +56,19 @@
         <div class="collapse navcollaspse pr-4" id="navbarSupportedContent">
             <ul class="navbar-nav2 px-0" >
                 <li class="nav-item">
-                     <router-link class="nav-link" :style="{color:active1,fontWeight:fontWeight1}" aria-current="page" to="/">Accueil</router-link>
+                     <router-link class="nav-link" :style="{color:active1,fontWeight:fontWeight1}" aria-current="page" to="/">{{OptionLangue[getLangage].accueil}}</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/techniques" :style="{color:active2,fontWeight:fontWeight2}" class="nav-link" >Techniques</router-link>
+                    <router-link to="/techniques" :style="{color:active2,fontWeight:fontWeight2}" class="nav-link" >{{OptionLangue[getLangage].technique}}</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/climat" :style="{color:active5,fontWeight:fontWeight5}" class="nav-link" >Climat</router-link>
+                    <router-link to="/climat" :style="{color:active5,fontWeight:fontWeight5}" class="nav-link" >{{OptionLangue[getLangage].climat}}</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" :style="{color:active3,fontWeight:fontWeight3}" to="/carte">carte</router-link>
+                    <router-link class="nav-link" :style="{color:active3,fontWeight:fontWeight3}" to="/carte">{{OptionLangue[getLangage].carte}}</router-link>
                 </li>
                 <li class="nav-item mr-5">
-                    <router-link class="nav-link "  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">plantes</router-link>
+                    <router-link class="nav-link "  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">{{OptionLangue[getLangage].plante}}</router-link>
                 </li>
             </ul>
             <ul class="navbar-nav3">
@@ -77,7 +92,8 @@
 </template>
 
 <script>
-
+import langue from '../service/Multilangue.js'
+import { mapGetters,mapActions} from 'vuex'
   export default {
     name: 'Header',
     props:{
@@ -128,14 +144,33 @@
     },
     components: {
     },
+    computed: {
+      ...mapGetters('Langage',['getLangage'])
+    },
     data:function() {
       return{
-     
+          OptionLangue:langue,
+          imageMg:require('../assets/images/malagasy.png'),
+          imageFr:require('../assets/images/français.png'),
+          src1:require('../assets/images/français.png'),
+          src2:require('../assets/images/malagasy.png'),
+          fr:'fr',
+          mg:'mg'
       }
    },
    
   methods: {
-     
+     ...mapActions('Langage',['setLangage']),
+     changeLangue(){
+         var setLan
+         if(this.getLangage == 'mg'){
+            setLan = this.setLangage(this.fr)
+         }else{
+            setLan = this.setLangage(this.mg)
+         }
+         console.log(this.getLangage)
+         return setLan
+     }
     }
   }
 </script>
@@ -182,7 +217,82 @@
     padding-top: 10px;
 
 }
+/* langue**/
+.langue{
+    position: absolute;
+    left: 80%;
+}
+.header__top__right__language {
+	position: relative;
+	display: inline-block;
+	margin-right: 40px;
+	cursor: pointer;
+}
 
+.header__top__right__language:hover ul {
+	top: 25px;
+	opacity: 1;
+	visibility: visible;
+}
+
+.header__top__right__language:after {
+	position: absolute;
+	right: -21px;
+	top: 1px;
+	height: 20px;
+	width: 1px;
+	background: #000000;
+	opacity: 0.1;
+	content: "";
+}
+.header__top__right__language .mg{
+    margin-left: -15px !important
+}
+.header__top__right__language img {
+	margin-right: 6px;
+}
+
+.header__top__right__language div {
+	font-size: 14px;
+	color: white;
+	display: inline-block;
+	margin-right: 4px;
+}
+
+.header__top__right__language span {
+	font-size: 14px;
+	color: rgb(37, 141, 84);
+	position: relative;
+	top: 2px;
+}
+
+.header__top__right__language ul {
+	background: rgb(37, 141, 84);
+	width: 100px;
+	text-align: left;
+	padding: 5px 0;
+	position: absolute;
+	left: 0;
+	top: 43px;
+	z-index: 9;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
+
+.header__top__right__language ul li {
+	list-style: none;
+}
+
+.header__top__right__language ul li a {
+	font-size: 14px;
+	color: #ffffff;
+	padding: 5px 10px;
+}
 @media (min-width: 1200px) {
 
     .navbar-nav.navbar-center {

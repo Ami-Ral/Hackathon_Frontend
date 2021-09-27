@@ -9,15 +9,15 @@
       <div class="" id="container">
         <div class="container" id="recherche">
           <div class="inner-container">
-              <h2>Agriculture pour la vie <br>Produits et techniques</h2>
-              <p>Concours afass hackathon</p>
+              <h2>{{OptionLangue[getLangage].titre1}}<br>{{OptionLangue[getLangage].titre2}}</h2>
+              <p>{{OptionLangue[getLangage].sous_titre}}</p>
              
               <transition name="fade">
                 <div  class="container  min-vh-80 py-4" style="position:absolute" v-if="!showsearch">
                     <div class="row pl-2">
                         <div class="col-md-5 mx-auto" style="width:300px">
                             <div class="input-group">
-                                <input class="form-control border-end-0 border rounded-pill" type="search" placeholder="Rechercher..." value="" id="example-search-input">
+                                <input class="form-control border-end-0 border rounded-pill" type="search" :placeholder="OptionLangue[getLangage].rechercher + '...'" value="" id="example-search-input">
                                 <span class="input-group-append" style="margin-left:-42px">
                                     <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
                                         <i class="fa fa-search"></i>
@@ -107,7 +107,7 @@
           <div class="col col-lg-6 text-justify col-md-6 my-lg-10 p bl-4 responsiveconne">
             <div class="row align-items-center pt-3 ml-2">
               <div class="col col-lg-12 text-justify connresponive">
-                <h2>Connaissance</h2>
+                <h2>{{OptionLangue[getLangage].connaissance}}</h2>
               </div>
               </div>
               <div class="row align-items-center pt-1">
@@ -117,7 +117,7 @@
               </div>
               <div class="row justify-content-md-center pt-3">
                 <div class="col col-lg-12 techtextresponsive">
-                  <p >La sécurité alimentaire et le changement climatique peuvent être abordés ensemble en transformant l'agriculture et en adoptant des pratiques "intelligentes face au climat". Les agriculteurs sont les plus menacés par le changement climatique, mais ils jouent aussi un rôle majeur dans la lutte contre celui-ci.</p>
+                  <p >{{OptionLangue[getLangage].description_connaissance}}</p>
                 </div>
               </div>
             </div>
@@ -127,7 +127,7 @@
         <div class="container">
         <div class="row align-items-center pt-5">
           <div class="col col-lg-12 text-center my-lg-10">
-           <h2>TECHNIQUES</h2>
+           <h2>{{OptionLangue[getLangage].technique}}</h2>
           </div>
         </div>
         <div class="row align-items-center pt-1">
@@ -136,11 +136,11 @@
           </div>
         </div>
         <div class="row justify-content-md-center pt-4">
-          <div class="col col-lg-9">
-            <p>Les techniques agricoles intelligentes face au climat peuvent augmenter la productivité agricole et les revenus, rendre les communautés rurales plus résilientes au changement climatique et, si possible, atténuer le changement climatique.</p>
+          <div class="col col-lg-9"> 
+            <p> {{OptionLangue[getLangage].description_technique}}</p>
           </div>
         </div>
-        <div class="row row-cols-lg-3 row-cols-1 row-cols-md-1 row-cols-sm-1 ml-lg-6  justify-content-lg-center lg-content justify-content-center">
+        <div v-if="AllTechnique2 != undefined ? true : false" class="row row-cols-lg-3 row-cols-1 row-cols-md-1 row-cols-sm-1 ml-lg-6  justify-content-lg-center lg-content justify-content-center">
           <div class="col col-lg-3 col-sm-12 col-md-12 col-12 mr-4" v-for="(item,index) in AllTechnique2" :key="index">
             <router-link :to="{name:'DetailTechnique',params:{id:parse(item.id_technique)}}" class="card Bgimage zoom responsiveimage" style="width: 16rem;height:20rem;text-decoration:none;color:white" :style="backgroundStyles(item.couverture)">
               <div class="card-body mt">
@@ -158,7 +158,7 @@
         <div class="container">
           <div class="row align-items-center pt-5">
             <div class="col col-lg-12 text-center my-lg-10">
-            <h2>GALLERIE</h2>
+            <h2>{{OptionLangue[getLangage].gallerie}}</h2>
             </div>
           </div>
           <div class="row align-items-center pt-1">
@@ -205,7 +205,7 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-
+  import langue from '../service/Multilangue.js'
   import Header from "../components/Header"
   import Contact from "../components/Contact"
   import Footer from "../components/Footer"
@@ -234,12 +234,14 @@
         overlay:true,
         timeout: null,
         nbr_list:5,
-        AllTechnique2:[]
+        AllTechnique2:[],
+        OptionLangue:langue
       }
    },
     computed: {
       ...mapGetters('Technique',['AllTechnique']),
-      ...mapGetters('Langage',['getLangage'])
+      ...mapGetters('Langage',['getLangage']),
+      ...mapGetters('Langage',['getLangage']),
     },
     created(){
       this.getAll()
@@ -307,15 +309,21 @@
       return techniques
     },
     initialValue(table){
-      for(let i=0;i<=2;i++){
-        this.AllTechnique2[i]=table[i]
-        if(table[i]==undefined) break
+      if(table){
+        for(let i=0;i<=2;i++){
+          this.AllTechnique2[i]=table[i]
+          if(table[i]==undefined) break
+        }
       }
+      
     }
   }
 }
 </script>
 <style>
+.technique h2{
+  text-transform: uppercase
+}
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }

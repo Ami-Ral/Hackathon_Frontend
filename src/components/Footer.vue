@@ -9,7 +9,7 @@
                     <p class="mt-2" style="font-size:12px;font-weight:bolder">TANIMBOLY</p>
                   </div>
                   <div class="col-9 px-0 col-sm-6 col-md-3 col-lg-3 text-justify pt-0">
-                    <p class="px-3 pt-5 my-2 my-md-2 my-sm-4 my-lg-3">Techniques</p>
+                    <p class="px-3 pt-5 my-2 my-md-2 my-sm-4 my-lg-3 low">{{OptionLangue[getLangage].technique}}</p>
                     <ul class="text-justify my-3">
                       <li v-for="(item,index) in items" :key="index">
                         <router-link :to="{name:'DetailTechnique',params:{id:item.id_technique}}" v-if="item.nom_fr==undefined || item.nom_fr=='null' ? false:true" style="text-decoration:none;color:rgb(110, 110, 110)">{{item.nom_fr}}</router-link>
@@ -18,14 +18,14 @@
                     </ul>
                   </div>
                   <div class="col-12 px-0 col-sm-6 col-md-3 col-lg-3 text-justify">
-                    <p class="px-3">Liens</p>
+                    <p class="px-3">{{OptionLangue[getLangage].liens}}</p>
                     <ul>
-                      <li><a href="#">A propos de nous</a></li>
-                      <li><a :href="rechercheId">Rechercher</a></li>
+                      <li><a href="#">{{OptionLangue[getLangage].a_propos}}</a></li>
+                      <li><a :href="rechercheId">{{OptionLangue[getLangage].rechercher}}</a></li>
                     </ul>
                   </div>
                   <div class="col-12 px-0 col-sm-6 col-md-3 col-lg-3 text-justify">
-                    <p class="px-3 pt-0 pt-md-5 pt-sm-5 pt-lg-5">Nous contacter</p>
+                    <p class="px-3 pt-0 pt-md-5 pt-sm-5 pt-lg-5">{{OptionLangue[getLangage].nous_contacter}}</p>
                     <ul>
                       <li><a href="#" >+261346668165</a></li>
                       <li><a href="#" >support@tanimboly.com</a></li>
@@ -38,7 +38,7 @@
             </div> 
             <div class="row row-cols-lg-1  justify-content-lg-center text-center">
               <div class="col-12 col-lg-12 col-md-12 mt-5">
-                <p class="p3  text-center">Copyright © 2021 Tanimboly. Tout droits réserves.</p>
+                <p class="p3  text-center">{{OptionLangue[getLangage].copyright}}</p>
               </div> 
             </div> 
         </div> 
@@ -50,6 +50,8 @@
       </div>
 </template>
 <script>
+import langue from '../service/Multilangue.js'
+import { mapGetters} from 'vuex'
 export default {
     name:'Footer',
     props:{
@@ -69,12 +71,21 @@ export default {
         type:String,
         default:()=>'#'
       }
-    }
+    },
+     computed: {
+      ...mapGetters('Langage',['getLangage'])
+    },
+    data:function() {
+      return{
+          OptionLangue:langue
+      }
+   },
 }
 </script>
 
 <style>
 /* footer*/
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }

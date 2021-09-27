@@ -6,7 +6,7 @@
               <div class="col col-lg-10 text-justify my-lg-10 pl-4">
                     <div class="row align-items-center pt-3 ml-2">
                       <div class="col col-lg-12 text-justify connresponive">
-                        <h2>Contactez-nous</h2>
+                        <h2>{{OptionLangue[getLangage].contacter}}</h2>
                       </div>
                     </div>
                     <div class="row align-items-center pt-1">
@@ -16,34 +16,34 @@
                     </div>
                     <div class="row justify-content-md-center pt-3 mt-3">
                       <div class="col-6 col-lg-6 col-sm-6 col-md-6">
-                        <label for="nom">Nom*</label>
+                        <label for="nom">{{OptionLangue[getLangage].nom}}*</label>
                         <input type="text" v-model="bodyEmail.nom"  class="form-control bg-white mt-2" id="nom" value="">
                       </div>
                       <div class="col-6 col-lg-6 col-sm-6 col-md-6">
-                        <label for="prenom">Prénom *</label>
+                        <label for="prenom">{{OptionLangue[getLangage].prenom}}*</label>
                         <input type="text" v-model="bodyEmail.prenom" class="form-control bg-white mt-2" id="prenom" value="">
                       </div>
                     </div>
                     <div class="row justify-content-md-center pt-3">
                       <div class="col-6 col-lg-6 col-sm-6 col-md-6">
-                        <label for="email">Email *</label>
+                        <label for="email">{{OptionLangue[getLangage].email}}*</label>
                         <input type="email" v-model="bodyEmail.email"  class="form-control bg-white mt-2" id="email" value="">
                       </div>
                       <div class="col-6 col-lg-6 col-sm-6 col-md-6">
-                        <label for="telephone">Téléphone</label>
+                        <label for="telephone">{{OptionLangue[getLangage].telephone}}</label>
                          <input type="telephone" v-model="bodyEmail.telephone" class="form-control bg-white mt-2" id="telephone" value="">
                       </div>
                     </div>
                     <div class="row justify-content-md-center pt-3">
                       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <label for="objet">Objet*</label>
+                        <label for="objet">{{OptionLangue[getLangage].Objet}}*</label>
                         <input type="text" v-model="bodyEmail.objet"  class="form-control bg-white mt-2" id="objet" value="">
                       </div>
                     </div>
                     <div class="row justify-content-md-center pt-3">
 
                       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <label for="message">Message</label>
+                        <label for="message">{{OptionLangue[getLangage].message}}</label>
                         <input type="textarea" v-model="bodyEmail.message" class="form-control bg-white mt-2 pb-5" id="message" value="">
                       </div>
                       <transition name="fade">
@@ -52,7 +52,7 @@
                         </div>
                       </transition>
                       <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">     
-                        <button type="submit" class="btn btn-success">Envoyer</button>
+                        <button type="submit" class="btn btn-success">{{OptionLangue[getLangage].envoyer}}</button>
                       </div>
                     </div>
               </div>
@@ -63,10 +63,16 @@
 </template>
 <script>
 import baseUrl from '../service/baseUrl'
+import langue from '../service/Multilangue.js'
+import { mapGetters} from 'vuex'
+
 const axios = require('axios');
 
 export default {
     name:'Contact',
+    computed: {
+      ...mapGetters('Langage',['getLangage'])
+    },
    data:function() {
       return{
           bodyEmail:{
@@ -80,9 +86,11 @@ export default {
           status:false,
           textStatus:'',
           classStatus:'',
-          statusColor:'white'
+          statusColor:'white',
+          OptionLangue:langue
       }
    },
+    
     methods: {
         handleEmail(){
           console.log(this.bodyEmail)
