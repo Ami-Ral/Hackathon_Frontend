@@ -12,6 +12,7 @@ import Admin from '../views/Admin.vue'
 import AddClimat from '../views/AddClimat.vue'
 import AddPlante from '../views/AddPlante.vue'
 import AddRegion from '../views/AddRegion.vue'
+import AddTechnique from '../views/AddTechnique.vue'
 
 
 Vue.use(VueRouter)
@@ -77,6 +78,13 @@ const routes = [
         name: 'AddRegion',
         props: true ,
         component: AddRegion,
+        
+    },
+    {
+        path: '/admin/add/technique',
+        name: 'AddTechnique',
+        props: true ,
+        component: AddTechnique,
     },
 ]
 
