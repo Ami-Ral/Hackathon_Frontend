@@ -1,63 +1,83 @@
 <template>
-    <div class="mg-map" :style="bg_style">
-        <div class="row" style="height: 100%;">
-            <div class="col-md-5" style="height: 100%; position: relative;">
-                <div id="desccc">
-                    <div class="desccc-item">
-                        <img src="../assets/images/shovel.png" alt="Tanimboly" />
-                        <div>
-                            <span><b>Type de Sol</b></span>
-                            <span class="desccc-item-value">
-                                {{ details['type_sol_'+getLangage] }}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="desccc-item">
-                        <img src="../assets/images/ground.png" alt="Tanimboly" />
-                        <div>
-                            <span><b>Structure du sol</b></span>
-                            <span class="desccc-item-value">
-                                {{ details['structure_sol_'+getLangage] }}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="desccc-item">
-                        <img src="../assets/images/soil.png" alt="Tanimboly" />
-                        <div>
-                            <span><b>Texture du sol</b></span>
-                            <span class="desccc-item-value">
-                                {{ details['texture_sol_'+getLangage] }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="map-site">
-                    <svg id="svg_map" v-if="details" baseprofile="tiny" fill="#7c7c7c" height="100%" width="100%" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" version="1.2" :viewBox="viewBox" xmlns="http://www.w3.org/2000/svg">
-                        <path class="component" v-bind:d="details ? details.path : ''" v-bind:id="details ? details.id_region : ''" v-bind:name="details ? details.nom : ''">
-                            <title>{{ details.nom }}</title>
-                        </path>
-                    </svg>
-                </div>
-            </div> 
-            <div class="col-md-7" style="height: 100%;">
-                <div class="details">
-                    <div v-if="details" class="card-region">
-                        <div class="card" style="width: 22rem; border-radius: 0px;background-color: transparent;">
-                          <img src="https://www.artnews.com/wp-content/uploads/2021/03/AdobeStock_263911828.jpeg" class="card-img-top" alt="...">
-                          <div class="card-body text-white" style="background-color: #0007;">
-                                <h5 class="card-title">{{ details.nom }}</h5>
-                                <p class="card-text">{{ details['description_'+getLangage] }}</p>
+    <div>
+        <div class="content-fluid" style="height: 100vh;">
+            <div class="mg-map" :style="bg_style">
+                <div class="row" style="height: 100%;">
+                    <div class="col-md-5" style="height: 100%; position: relative;">
+                        <div id="desccc">
+                            <div class="desccc-item">
+                                <img src="../assets/images/shovel.png" alt="Tanimboly" />
+                                <div>
+                                    <span><b>Type de Sol</b></span>
+                                    <span class="desccc-item-value">
+                                        {{ details['type_sol_'+getLangage] }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="desccc-item">
+                                <img src="../assets/images/ground.png" alt="Tanimboly" />
+                                <div>
+                                    <span><b>Structure du sol</b></span>
+                                    <span class="desccc-item-value">
+                                        {{ details['structure_sol_'+getLangage] }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="desccc-item">
+                                <img src="../assets/images/soil.png" alt="Tanimboly" />
+                                <div>
+                                    <span><b>Texture du sol</b></span>
+                                    <span class="desccc-item-value">
+                                        {{ details['texture_sol_'+getLangage] }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="map-site">
+                            <svg id="svg_map" v-if="details" baseprofile="tiny" fill="#7c7c7c" height="100%" width="100%" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" version="1.2" :viewBox="viewBox" xmlns="http://www.w3.org/2000/svg">
+                                <path class="component" v-bind:d="details ? details.path : ''" v-bind:id="details ? details.id_region : ''" v-bind:name="details ? details.nom : ''">
+                                    <title>{{ details.nom }}</title>
+                                </path>
+                            </svg>
+                        </div>
+                    </div> 
+                    <div class="col-md-7" style="height: 100%;">
+                        <div class="details">
+                            <div v-if="details" class="card-region">
+                                <div class="card" style="width: 22rem; border-radius: 0px;background-color: transparent;">
+                                  <img src="https://www.artnews.com/wp-content/uploads/2021/03/AdobeStock_263911828.jpeg" class="card-img-top" alt="...">
+                                  <div class="card-body text-white" style="background-color: #0007;">
+                                        <h5 class="card-title">{{ details.nom }}</h5>
+                                        <p class="card-text">{{ details['description_'+getLangage] }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
                 </div>
-            </div>  
+            </div>
+        </div>
+        <div style="position: relative; z-index: 2;">
+            <VueSlickCarousel v-if="techniques.length">
+                <router-link :to="{name:'DetailTechnique',params:{id:parseInt(tech.id_technique)}}" class="card ml-4 border-none" v-for="(tech,index) in techniques" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
+                    <img :src="baseUrl + tech.couverture.split('public')[1]" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text pb-0" style="font-size:12px" v-if="tech.nom_fr != undefined ? true :false">{{tech.nom_fr}}</p>
+                        <p class="card-text" v-else>{{tech.nom_mg}}</p>
+                    </div>
+                </router-link>
+            </VueSlickCarousel>
+            <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
         </div>
     </div>
 </template>
 <script>
 import langue from '../service/Multilangue.js'
 import MapService from '../service/Map.js'
+import Footer from "../components/Footer"
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 import { mapGetters} from 'vuex'
 
 export default {
@@ -72,6 +92,10 @@ export default {
             viewBox : "0 0 1000 1985",
             update_path : false
         }
+    },
+    components:{   
+      Footer,
+      VueSlickCarousel
     },
     computed: {
       ...mapGetters('Langage',['getLangage'])
@@ -119,6 +143,10 @@ export default {
 </script>
 
 <style scoped>
+.content-fluid{
+    background: linear-gradient(331deg, #222222, #0f322a);
+    display: flex;
+}
 .mg-map{
     overflow: hidden;
     z-index: 1;
