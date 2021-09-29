@@ -80,10 +80,6 @@ const actions = {
             })
             .catch(() => commit('UpdateTechniqueFailure'))
     },
-
-    
-    
-
 };
 
 const mutations = {

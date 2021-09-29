@@ -3,10 +3,10 @@
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="scrollId3">
-                    <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4" :set="changeLangue"/>
+                    <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4"/>
                 </header>
                 <BarRecherche/>
-                <List :items="AllPlante2" :nameList="nameList" :NameRoute="NameRoute" :showPlus="showPlus" :afficherPlus="afficherPlus"/>
+                <List :items="All" :nameList="nameList" :NameRoute="NameRoute"/>
                 <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
             </div>
         </transition>
@@ -24,11 +24,10 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import List from "../components/List"
 import BarRecherche from "../components/BarRecherche"
-import Plantes from '../service/Plantes'
-import { setTimeout } from 'timers';
+import baseUrl from "../service/baseUrl.js"
 
 export default {
-    name:'Plantes',
+    name:'ResultatRecherche',
      components: {
        Header,
        Footer,
@@ -47,14 +46,12 @@ export default {
         rechercheId:'#scrollId3',
         overlay:true,
         timeout: null,
-        AllPlante2:[],
+        All:[],
         AllTechnique2:[],
         nbr_list:8,
         nbr_list2:5,
         NameRoute:3,
-        showPlus:true,
-        fr:'fr',
-        mg:'mg',
+        baseUrl :baseUrl
       }
    },
     computed: {
@@ -63,16 +60,41 @@ export default {
       ...mapGetters('Langage',['getLangage'])
     },
     created(){
+      var type= this.$route.params.type;
+      var value = this.$route.params.value;
+      var vm = this;
+      var route ;
+      const axios = require('axios')
+      switch (type) {
+          case 0:
+              route = '/div/search/'
+              break;
+         case 1:
+              route = '/technique/search/'
+            break;
+        case 2:
+              route = '/region/search/'
+              break;
+        case 3:
+              route = '/climat/search/'
+              break;
+          default:
+              break;
+      }
+      var params={
+            query:value
+        }
+      axios.get(baseUrl + route + this.getLangage,{params})
+      .then((res)=>{
+          vm.All = res.data
+          console.log(res.data)
+      })
+      .catch((error)=>console.log(error))
       
       this.getAll2()
-      this.getAll()
       this.setTimeout(() => {
           this.overlay = false
-          this.initialValue2(this.AllTechnique)
-           this.initialValue(this.AllPlante)
-           if(this.AllPlante==undefined){
-              this.afficherPlus()
-          }
+          this.initialValue(this.AllTechnique)
       })
     },
     mounted() {
@@ -85,7 +107,6 @@ export default {
     methods: {
         ...mapActions('Plante',['getAllPlante']),
         ...mapActions('Technique',['getAllTechnique']),
-        ...mapActions('Langage',['setLangage']),
         handleResize(){
             this.scrolly=window.scrollY
             if(this.scrolly>110){
@@ -107,60 +128,15 @@ export default {
 				callback()
 			}, 1000)
         },
-        getAll(){
-            var langage = this.getLangage
-            var nbr_list = this.nbr_list
-            let Plante = this.getAllPlante({langage,nbr_list})
-            return Plante
-        },
         getAll2(){
             var langage = this.getLangage
             var nbr_list = this.nbr_list2-2
             let techniques = this.getAllTechnique({langage,nbr_list})
             return techniques
         },
-        initialValue2(table){
+        initialValue(table){
            this.AllTechnique2 = table
         },
-        initialValue(table){
-           this.AllPlante2 = table
-        },
-        afficherPlus(){
-            var langage = this.getLangage
-            var nbr_list = this.nbr_list 
-            var start = this.AllPlante2.length
-            Plantes.getAll(langage,nbr_list,start)
-                .then((res)=>{
-                    setTimeout(()=>{
-                        this.AllPlante2 = this.AllPlante2.concat(res.data)
-                        console.log(res.data)
-                        if(res.data.length<8){
-                            this.showPlus = false
-                        }
-                    },300)
-                })
-                .catch(()=>{
-                    this.showPlus = false
-                })
-        },
-        changeData(){
-            var langage = this.getLangage
-            var nbr_list = this.nbr_list 
-            var start = 0
-            Plantes.getAll(langage,nbr_list,start)
-            .then((res)=>{
-                this.AllPlante2 = res.data
-            })
-            .catch(()=>{})
-        },
-        changeLangue(){
-            if(this.getLangage == 'mg'){
-            this.setLangage(this.fr)
-            }else{
-            this.setLangage(this.mg)
-            }
-            this.changeData()
-        }
     }
 }
 </script>

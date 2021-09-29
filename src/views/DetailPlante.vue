@@ -3,22 +3,22 @@
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="scrollId3">
-                    <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4"/>
+                    <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4" :set="changeLangue"/>
                 </header>
                 <BarRecherche/>
                 <div class="body pb-1" v-if="getOne != undefined && getOne != 'null'?true:false">
                     <div class="container-fluid mx-0 px-0 pb-1">
                     <div class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-0">
-                        <div class="col-lg-12 col-sm-12 col-md-12 col-12 mt-4">
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-12 mt-4" >
                             <VueSlickCarousel  ref="c1" :asNavFor="$refs.c2" v-bind="setting2">
-                                <div v-for="(image,index) in images" :key="index" style="width:100% !important;height:200px!important">
-                                    <img :src="image.src" alt="" srcset="" width="100%" height="350px">
+                                <div v-for="(image0,index) in images" :key="index" style="width:100% !important;height:200px!important">
+                                    <img :src="baseUrl + image0.path.split('public')[1]" alt="" srcset="" width="100%" height="450px">
                                     <div class="under-image"></div>
                                     <div class="container detail">
                                         <div  class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-0">
                                             <div class="col-lg-12 col-sm-12 col-md-12 col-12 mt-0  mt-lg-5">
-                                                <h4 v-if="getOne.plante.nom_fr != undefined ? true :false" class="title mt-4">{{getOne.plante.nom_fr}}</h4>
-                                                <h4 class="title mt-4" v-else>{{getOne.plante.nom_mg}}</h4>
+                                                <h4 v-if="plante.nom_fr != undefined ? true :false" class="title mt-4">{{plante.nom_fr}}</h4>
+                                                <h4 class="title mt-4" v-else>{{plante.nom_mg}}</h4>
                                             </div>
                                         </div>
                                         <div class="row row-cols-lg-4 row-cols-1 row-cols-md-1 row-cols-sm-1">
@@ -29,7 +29,7 @@
                                                     </div>
                                                      <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-4">
                                                          <h6>Lumière</h6>
-                                                         <p>{{getOne.plante.lumiere}}</p>
+                                                         <p>{{plante.lumiere}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -40,7 +40,7 @@
                                                     </div>
                                                      <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-4">
                                                          <h6>Humidité</h6>
-                                                         <p>{{getOne.plante.humidite}}</p>
+                                                         <p>{{plante.humidite}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -51,7 +51,7 @@
                                                     </div>
                                                      <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-4">
                                                          <h6>Floraison</h6>
-                                                         <p>{{getOne.plante.floraison}}</p>
+                                                         <p>{{plante.floraison}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -62,7 +62,7 @@
                                                     </div>
                                                      <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-4">
                                                          <h6>Température</h6>
-                                                         <p>{{getOne.plante.temperature}}</p>
+                                                         <p>{{plante.temperature}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -75,11 +75,8 @@
                     <div class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-4 px-4">
                        <div class="col-lg-12 col-sm-12 col-md-12 col-12">
                            <VueSlickCarousel  ref="c2" :asNavFor="$refs.c1" v-bind="setting1">
-                                 <div v-for="(image,index) in images" :key="index" style="width:100px;height:200px" >
-                                    <img :src="image.src" alt="" srcset="" width="315px" height="200px">
-                                    <div class="container">
-                                        <p></p>
-                                    </div>
+                                 <div v-for="(image4,index) in images" :key="index" style="width:100px;height:200px" >
+                                    <img :src="baseUrl + image4.path.split('public')[1]" alt="" srcset="" width="315px" height="200px">
                                 </div>
                             </VueSlickCarousel>
                        </div>
@@ -90,48 +87,48 @@
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/adn.png" alt="" srcset="" width="40px" height="40px">
                                     <h6 class="mt-2">Nom scientifique</h6>
-                                    <p>{{getOne.plante.nom_scientifique}}</p>
+                                    <p>{{plante.nom_scientifique}}</p>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/planete-terre.png" alt="" srcset="" width="40px" height="40px">
                                     <h6 class="mt-2">Regne</h6>
-                                    <p>{{getOne.plante.regne}}</p>
+                                    <p>{{plante.regne}}</p>
                                 </div>
                             </div>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-4">
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/branche.png" alt="" srcset="" width="40px" height="40px">
                                     <h6 class="mt-2">Embranchement</h6>
-                                    <p>{{getOne.plante.embranchement}}</p>
+                                    <p>{{plante.embranchement}}</p>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/classification.png" alt="" srcset="" width="40px" height="40px">
                                     <h6 class="mt-2">Classe</h6>
-                                    <p>{{getOne.plante.classe}}</p>
+                                    <p>{{plante.classe}}</p>
                                 </div>
                             </div>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-4">
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/bonsai.png" alt="" srcset="" width="40px" height="40px">
                                     <h6 class="mt-2">Ordre</h6>
-                                    <p>{{getOne.plante.ordre}}</p>
+                                    <p>{{plante.ordre}}</p>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/famille.png" alt="" srcset="" width="40px" height="40px">
                                     <h6 class="mt-2">Famille</h6>
-                                    <p>{{getOne.plante.famille}}</p>
+                                    <p>{{plante.famille}}</p>
                                 </div>
                             </div>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-4">
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/feuille.png" alt="" srcset="" width="40px" height="40px">
                                     <h6 class="mt-2">Genre</h6>
-                                    <p>{{getOne.plante.genre}}</p>
+                                    <p>{{plante.genre}}</p>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/cactus.png" alt="" srcset="" width="40px" height="40px">
                                     <h6 class="mt-2">Éspèce</h6>
-                                    <p>{{getOne.plante.espece}}</p>
+                                    <p>{{plante.espece}}</p>
                                 </div>
                             </div>
                         </div>
@@ -142,8 +139,8 @@
                                     <span></span>
                                 </div>
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
-                                    <p v-if="getOne.plante.description_fr != undefined?true:false">{{getOne.plante.description_fr}}</p>
-                                    <p v-else>{{getOne.plante.description_mg}}</p>
+                                    <p v-if="plante.description_fr != undefined?true:false">{{plante.description_fr}}</p>
+                                    <p v-else>{{plante.description_mg}}</p>
                                 </div>
                             </div>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-2">
@@ -153,28 +150,30 @@
                                 </div>
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
                                     <VueSlickCarousel    v-bind="setting3">
-                                        <div class="card ml-4 border-none" v-for="(image,index) in images" :key="index" style="margin-right:10px;width:30px !important">
-                                            <img :src="image.src" class="card-img-top" alt="...">
+                                        <router-link    :to="{name:'DetailTechnique',params:{id:parseInt(image2.id_technique)}}" class="card ml-4 border-none" v-for="(image2,index) in technique" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
+                                            <img :src="baseUrl + image2.couverture.split('public')[1]" class="card-img-top" alt="...">
                                             <div class="card-body">
-                                                <p class="card-text">Some </p>
+                                                <p class="card-text pb-4" style="font-size:12px" v-if="image2.nom_fr != undefined ? true :false">{{image2.nom_fr}}</p>
+                                                <p class="card-text" v-else>{{image2.nom_mg}}</p>
                                             </div>
-                                        </div>
+                                        </router-link>
                                     </VueSlickCarousel>
                                 </div>
                             </div>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-4">
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
-                                    <h5>Climat</h5>
+                                    <h5>Region</h5>
                                     <span></span>
                                 </div>
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
                                      <VueSlickCarousel    v-bind="setting3">
-                                        <div class="card ml-4 border-none" v-for="(image,index) in images" :key="index" style="margin-right:10px;width:40px;height:20px !important">
-                                            <img :src="image.src" class="card-img-top" alt="...">
+                                        <router-link  :to="{name:'DetailRegion',params:{id:image3.id_region}}" class="card ml-4 border-none" v-for="(image3,index) in region" :key="index" style="margin-right:10px;width:40px;height:20px !important;text-decoration:none">
+                                            <img :src="baseUrl + image3.path" class="card-img-top" alt="...">
                                             <div class="card-body">
-                                                <p class="card-text">Some </p>
+                                                <p class="card-text" v-if="image3.nom != undefined ? true :false">{{image3.nom}}</p>
+                                                <p class="card-text" v-else>{{image3.nom_mg}}</p>
                                             </div>
-                                        </div>
+                                        </router-link>
                                     </VueSlickCarousel>
                                 </div>
                             </div>
@@ -195,11 +194,12 @@ import { mapGetters, mapActions } from 'vuex'
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import BarRecherche from "../components/BarRecherche"
-
+import baseUrl from '../service/baseUrl.js'
 import VueSlickCarousel from 'vue-slick-carousel'
-  import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-  // optional style for arrows & dots
-  import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import Plantes from '../service/Plantes'
+import Techniques from '../service/Techniques'
 
 export default {
     name:'DetailPlante',
@@ -208,29 +208,6 @@ export default {
       Footer,
       BarRecherche,
       VueSlickCarousel
-    },
-    computed: {
-      ...mapGetters('Technique',['AllTechnique']),
-      ...mapGetters('Langage',['getLangage']),
-       ...mapGetters('Plante',['getOne'])
-    },
-    created(){
-      this.getAll2()
-      var id_plante =parseInt(this.$route.params.id);
-      var langage = this.getLangage
-      this.getOnePlante({langage,id_plante})
-      this.setTimeout(() => {
-          this.overlay = false
-          this.initialValue2(this.AllTechnique)
-          console.log(this.getOne)
-      })
-    },
-    mounted() {
-      window.addEventListener('scroll', this.handleResize);
-      this.handleResize()
-    },
-    destroyed() {
-      window.removeEventListener('scroll', this.handleResize);
     },
     data:function() {
       return{
@@ -241,9 +218,10 @@ export default {
         timeout: null,
         scrollId:"#scrollId3",
         scrolly: 0,
+        baseUrl:baseUrl,
         showup:false,
         AllTechnique2:[],
-        nbr_list2:5,
+        nbr_list:5,
         rechercheId:'#scrollId3',
         setting1:{
             dots: false,
@@ -293,8 +271,6 @@ export default {
             slidesToScroll: 1,
             touchThreshold: 5,
             arrows: false,
-
-
         },
         setting3:{
             dots: false,
@@ -305,38 +281,78 @@ export default {
             slidesToScroll: 1,
             touchThreshold: 5,
             arrows: false,
+            responsive: [
+                {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+                },
+                {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                        slidesToScroll: 2,
+                        initialSlide: 2
+                    }
+                },
+                {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+                }
+            ]
         },
-        images:[
-            {
-                src:'https://images.pexels.com/photos/6780331/pexels-photo-6780331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-            },
-            {
-                src:'https://images.pexels.com/photos/6780331/pexels-photo-6780331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-            },
-            {
-                src:'https://images.pexels.com/photos/6780331/pexels-photo-6780331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-            },
-            {
-                src:'https://images.pexels.com/photos/6780331/pexels-photo-6780331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-            },
-            {
-                src:'https://images.pexels.com/photos/6780331/pexels-photo-6780331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-            },
-            {
-                src:'https://images.pexels.com/photos/6780331/pexels-photo-6780331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-            },
-            {
-                src:'https://images.pexels.com/photos/6780331/pexels-photo-6780331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-            },
-            {
-                src:'https://images.pexels.com/photos/6780331/pexels-photo-6780331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-            },
-        ]
+        images:[],
+        technique:[],
+        region:[],
+        plante:[],
+        fr:'fr',
+        mg:'mg',
       }
    },
+    computed: {
+      ...mapGetters('Technique',['AllTechnique']),
+      ...mapGetters('Langage',['getLangage']),
+       ...mapGetters('Plante',['getOne'])
+    },
+    created(){
+      this.getAll2()
+      var id_plante =parseInt(this.$route.params.id);
+      var langage = this.getLangage
+      this.getOnePlante({langage,id_plante})
+      
+      this.setTimeout(() => {
+          this.overlay = false
+           this.change(this.getOne)
+           this.initialValue2(this.AllTechnique)
+          if(this.getOne == undefined){
+              Plantes.getOne(langage,id_plante)
+              .then((res)=>{
+                    this.change(res.data)
+              })
+              .catch(()=>{})
+          }
+      })
+      
+    },
+    mounted() {
+      window.addEventListener('scroll', this.handleResize);
+      this.handleResize()
+    },
+    destroyed() {
+      window.removeEventListener('scroll', this.handleResize);
+    },
+    
     methods:{
         ...mapActions('Technique',['getAllTechnique']),
         ...mapActions('Plante',['getOnePlante']),
+        ...mapActions('Langage',['setLangage']),
         clearTimeout() {
 			if (this.timeout) {
 				clearTimeout(this.timeout)
@@ -353,7 +369,7 @@ export default {
         },
         getAll2(){
             var langage = this.getLangage
-            var nbr_list = this.nbr_list2-2
+            var nbr_list = this.nbr_list - 2
             let techniques = this.getAllTechnique({langage,nbr_list})
             return techniques
         },
@@ -367,7 +383,42 @@ export default {
 				callback()
 			}, 1000)
         },
-        
+        change(data){
+            this.images=data.images;
+            this.technique=data.technique;
+            this.region=data.region;
+            this.plante=data.plante;
+        },
+        changeData(){
+            var id_plante =parseInt(this.$route.params.id);
+            var langage = this.getLangage
+            var start = 0
+            Plantes.getOne(langage,id_plante)
+            .then((res)=>{
+                 this.change(res.data)
+            })
+            .catch(()=>{})
+        },
+        changeDataFooter(){
+            var langage = this.getLangage
+            var nbr_list = 3
+            var start = 0
+            Techniques.getAll(langage,nbr_list,start)
+            .then((res)=>{
+               this.AllTechnique2 = res.data
+            })
+            .catch(()=>{})
+        },
+        changeLangue(){
+            if(this.getLangage == 'mg'){
+                this.setLangage(this.fr)
+            }else{
+                this.setLangage(this.mg)
+            }
+            
+            this.changeDataFooter()
+            this.changeData()
+      }
    }
 }
 </script>
@@ -431,15 +482,27 @@ span{
     top:0;
     left: 0; 
 }
+
 .detail{
     position:absolute;
     padding: 10px;
-    top:20vh;
+    top:35vh;
     left: 3vh;
 }
+
 .title{
     color:rgb(209, 209, 209)!important;
     font-style: italic
+}
+#container3{
+    background-color: rgb(41, 41, 41);
+    width: 95%;
+    margin-right: 18px!important;
+    text-align: center
+}
+#container3 p{
+    margin-top: 10px;
+    font-size: 16px;
 }
 @media only screen and (min-width: 1200px) {
 }
@@ -454,6 +517,14 @@ span{
         height: 190vh;
     
     }
+    #container3{
+        background-color: rgb(41, 41, 41);
+        width: 100%;
+        margin-right: 0vh!important;
+        border-right: 2px solid rgb(209, 209, 209);
+        text-align: center
+    }
+
 }
 @media only screen and (max-width: 479px) {
     .bg-color{
@@ -461,6 +532,12 @@ span{
         background-color: rgb(41, 41, 41);
         height: 190vh;
     
+    }
+    #container3{
+        background-color: rgb(41, 41, 41);
+        width: 81%;
+        margin-right: 12vh!important;
+        text-align: center
     }
 }
 </style>

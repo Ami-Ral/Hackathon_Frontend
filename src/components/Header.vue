@@ -35,8 +35,8 @@
                     <div v-else>Malagasy</div>
                     <span class="arrow_carrot-down"></span>
                     <ul class="pt-2">
-                        <li class="d-flex px-2 pt-1" @click="changeLangue()" v-if="getLangage=='fr'? true :false"><img :src="src2" alt=""  width="30px" height="30px"/><a  class="mg ">Malagasy </a></li>
-                        <li class="d-flex px-2 pt-1" @click="changeLangue()" v-else><img :src="src1" alt="" width="30px" height="30px"/><a  class="mg ">Français</a></li>
+                        <li class="d-flex px-2 pt-1" @click="set()" v-if="getLangage=='fr'? true :false"><img :src="src2" alt=""  width="30px" height="30px"/><a  class="mg ">Malagasy </a></li>
+                        <li class="d-flex px-2 pt-1" @click="set()" v-else><img :src="src1" alt="" width="30px" height="30px"/><a  class="mg ">Français</a></li>
                     </ul>
                 </div>
             </ul>
@@ -141,6 +141,10 @@ import { setTimeout } from 'timers';
       fontWeight5:{
           type:String,
           default:()=>''
+      },
+      set:{
+          type:Function,
+          default:()=>{}
       }
     },
     components: {
@@ -155,14 +159,11 @@ import { setTimeout } from 'timers';
           imageFr:require('../assets/images/français.png'),
           src1:require('../assets/images/français.png'),
           src2:require('../assets/images/malagasy.png'),
-          fr:'fr',
-          mg:'mg',
           nbr_list:5
       }
    },
    
   methods: {
-     ...mapActions('Langage',['setLangage']),
       ...mapActions('Technique',['getAllTechnique']),
       getAll(){
         var langage = this.getLangage
@@ -170,20 +171,7 @@ import { setTimeout } from 'timers';
         let techniques = this.getAllTechnique({langage,nbr_list})
         return techniques
     },
-     changeLangue(){
-         var setLan
-         if(this.getLangage == 'mg'){
-            setLan = this.setLangage(this.fr)
-         }else{
-            setLan = this.setLangage(this.mg)
-         }
-         var vm = this
-         setTimeout(function(){
-             vm.getAll()
-         },300)
-         
-         return setLan
-     }
+    
     }
   }
 </script>
@@ -194,7 +182,7 @@ import { setTimeout } from 'timers';
 
 }
 .navbar{
-    height: 55px !important;
+    height: 55px
 }
 .navbar-nav.navbar-center li a{
     text-transform: uppercase;
@@ -226,8 +214,8 @@ import { setTimeout } from 'timers';
     font-weight: bold
 }
 .navcollaspse{
-    height: 80px !important;
     padding-top: 10px;
+    flex-direction: column !important
 
 }
 /* langue**/
@@ -329,7 +317,6 @@ import { setTimeout } from 'timers';
 .navcollaspse{
     position: absolute;
     width: 100%;
-    height: 100px;
     left: 0px;
     background-color: rgb(37, 141, 84);
     top:60px;
@@ -337,13 +324,13 @@ import { setTimeout } from 'timers';
 .navbar-nav2{
     list-style: none;
     display: flex;
-    flex-direction: row
+     align-items: center;
+    flex-direction: column !important
 }
 .navbar-nav3{
     list-style: none;
-    align-items: center;
+    text-align: center;
     display: flex;
-    padding-left: 29%;
     flex-direction: row
 }
 .navbar-nav3 i{

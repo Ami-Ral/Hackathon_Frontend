@@ -3,10 +3,10 @@
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="scrollId3">
-                    <Header :bgcolor="bgcolor" :active2="active2" :fontWeight2="fontWeight2"/>
+                    <Header :bgcolor="bgcolor" :active2="active2" :fontWeight2="fontWeight2" :set="changeLangue"/>
                 </header>
                 <BarRecherche/>
-                <List :items="AllTechnique2" :nameList="nameList" :NameRoute="NameRoute"/>
+                <List :items="AllTechnique1" :nameList="nameList" :NameRoute="NameRoute" :showPlus="showPlus" :afficherPlus="afficherPlus"/>
                 <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
             </div>
         </transition>
@@ -18,6 +18,8 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
+
+import Techniques from '../service/Techniques'
 
 import Header from "../components/Header"
 import Footer from "../components/Footer"
@@ -46,8 +48,12 @@ export default {
         overlay:true,
         timeout: null,
         AllTechnique2:[],
-        nbr_list:5,
+        AllTechnique1:[],
+        nbr_list:8,
         NameRoute:1,
+        showPlus:true,
+        fr:'fr',
+        mg:'mg',
       }
    },
     computed: {
@@ -59,6 +65,9 @@ export default {
       this.setTimeout(() => {
           this.overlay = false
           this.initialValue(this.AllTechnique)
+          if(this.AllTechnique==undefined){
+              this.afficherPlus()
+          }
       })
       
     },
@@ -71,6 +80,7 @@ export default {
     },
     methods: {
          ...mapActions('Technique',['getAllTechnique']),
+         ...mapActions('Langage',['setLangage']),
         handleResize(){
             this.scrolly=window.scrollY
             if(this.scrolly>110){
@@ -94,12 +104,49 @@ export default {
         },
         getAll(){
             var langage = this.getLangage
-            var nbr_list = this.nbr_list-2
+            var nbr_list = this.nbr_list
             let techniques = this.getAllTechnique({langage,nbr_list})
             return techniques
         },
+        afficherPlus(){
+            var langage = this.getLangage
+            var nbr_list = this.nbr_list 
+            var start = this.AllTechnique1.length
+            Techniques.getAll(langage,nbr_list,start)
+            .then((res)=>{
+                this.AllTechnique1 = this.AllTechnique1.concat(res.data)
+                console.log(res.data)
+                if(res.data.length<8){
+                    this.showPlus = false
+                }
+            })
+            .catch(()=>{
+                this.showPlus = false
+            })
+        },
         initialValue(table){
-           this.AllTechnique2 = table
+            this.AllTechnique1 = table
+            for(let i =0; i<=2;i++){
+                this.AllTechnique2[i] = table[i]
+            }
+        },
+        changeData(){
+            var langage = this.getLangage
+            var nbr_list = this.nbr_list 
+            var start = 0
+            Techniques.getAll(langage,nbr_list,start)
+            .then((res)=>{
+               this.initialValue(res.data)
+            })
+            .catch(()=>{})
+        },
+        changeLangue(){
+            if(this.getLangage == 'mg'){
+            this.setLangage(this.fr)
+            }else{
+            this.setLangage(this.mg)
+            }
+            this.changeData()
         }
     }
 }

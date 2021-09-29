@@ -4,7 +4,7 @@
     <transition name="fade2">
     <div class="" v-if="!overlay">
       <header  id="scrollId">
-        <Header :bgcolor="bgcolor" :active1="active1" :fontWeight1="fontWeight1"/>
+        <Header :bgcolor="bgcolor" :active1="active1" :fontWeight1="fontWeight1" :set="changeLangue"/>
       </header>
       <div class="" id="container">
         <div class="container" id="recherche">
@@ -142,7 +142,7 @@
         </div>
         <div class="row row-cols-lg-3 row-cols-1 row-cols-md-1 row-cols-sm-1 ml-lg-6  justify-content-lg-center lg-content justify-content-center">
           <div class="col col-lg-3 col-sm-12 col-md-12 col-12 mr-4" v-for="(item,index) in AllTechnique2" :key="index">
-            <router-link :to="{name:'DetailTechnique',params:{id:parse(item.id_technique)}}" class="card Bgimage zoom responsiveimage" style="width: 16rem;height:20rem;text-decoration:none;color:white" :style="backgroundStyles(item.couverture)">
+            <router-link :to="{name:'DetailTechnique',params:{id:parse(item.id_technique)}}" class="card Bgimage zoom responsiveimage" style="width: 16rem;height:20rem;text-decoration:none;color:white" :style="backgroundStyles( baseUrl + item.couverture.split('public')[1])">
               <div class="card-body mt">
                  <h4 class="card-title" v-if="item.nom_fr==undefined || item.nom_fr=='null' ? false:true"><router-link :to="{name:'DetailTechnique',params:{id:parse(item.id_technique)}}" style="text-decoration:none;color:white">{{item.nom_fr}}</router-link></h4>
                  <h4 class="card-title" v-else><router-link   :to="{name:'DetailTechnique',params:{id:parse(item.id_technique)}}" style="text-decoration:none;color:white" >{{item.nom_mg}}</router-link></h4>
@@ -210,8 +210,8 @@
   import Contact from "../components/Contact"
   import Footer from "../components/Footer"
   import AOS from 'aos'
-  import Admin from '../service/Admin'
-
+  import Techniques from '../service/Techniques'
+  import baseUrl from '../service/baseUrl.js'
   export default {
     name: 'Home',
     components: {
@@ -233,14 +233,16 @@
         showsearch:true,
         overlay:true,
         timeout: null,
-        nbr_list:5,
+        nbr_list:3,
+        baseUrl:baseUrl,
         AllTechnique2:[],
-        OptionLangue:langue
+        OptionLangue:langue,
+        fr:'fr',
+        mg:'mg',
       }
    },
     computed: {
       ...mapGetters('Technique',['AllTechnique']),
-      ...mapGetters('Langage',['getLangage']),
       ...mapGetters('Langage',['getLangage']),
     },
     created(){
@@ -248,6 +250,9 @@
       this.setTimeout(() => {
           this.overlay = false
           this.initialValue(this.AllTechnique)
+          if(this.AllTechnique==undefined){
+              this.afficherPlus()
+          }
       })
     },
     mounted() {
@@ -261,6 +266,7 @@
     
   methods: {
     ...mapActions('Technique',['getAllTechnique']),
+    ...mapActions('Langage',['setLangage']),
     backgroundStyles(image) {
 				return {
 					'background-image': `linear-gradient(to bottom,rgba(44, 44, 44, 0.3),rgb(44, 44, 44, 0.3)),url(${image})`,
@@ -309,14 +315,26 @@
       return techniques
     },
     initialValue(table){
-      if(table){
-        for(let i=0;i<=2;i++){
-          this.AllTechnique2[i]=table[i]
-          if(table[i]==undefined) break
-        }
-      }
-      
-    }
+       this.AllTechnique2 = table
+    },
+    afficherPlus(){
+            var langage = this.getLangage
+            var nbr_list = this.nbr_list 
+            var start = 0
+            Techniques.getAll(langage,nbr_list,start)
+            .then((res)=>{
+                this.AllTechnique2 = res.data
+            })
+            .catch(()=>{})
+    },
+    changeLangue(){
+         if(this.getLangage == 'mg'){
+           this.setLangage(this.fr)
+         }else{
+           this.setLangage(this.mg)
+         }
+        this.afficherPlus()
+     }
   }
 }
 </script>
