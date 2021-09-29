@@ -25,6 +25,9 @@
                 <li class="nav-item">
                     <router-link class="nav-link"  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">{{OptionLangue[getLangage].plante}}</router-link>
                 </li>
+                <li class="nav-item">
+                    <router-link class="nav-link"  :style="{color:active4,fontWeight:fontWeight4}"  to="/documentation">{{OptionLangue[getLangage].documentation}}</router-link>
+                </li>
                 
             </ul>
             <ul class="navbar-nav me-auto d-flex langue">

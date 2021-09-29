@@ -15,6 +15,7 @@ import AddRegion from '../views/AddRegion.vue'
 import AddTechnique from '../views/AddTechnique.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
+import Documentation from '../views/Documentation'
 
 
 Vue.use(VueRouter)
@@ -100,6 +101,12 @@ const routes = [
         props: true ,
         component: Signup,
     },
+    {
+        path: '/documentation',
+        name: 'Documentation',
+        component: Documentation,
+    },
+
 ]
 
 
