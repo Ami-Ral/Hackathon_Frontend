@@ -26,6 +26,7 @@ import List from "../components/List"
 import BarRecherche from "../components/BarRecherche"
 import Plantes from '../service/Plantes'
 import { setTimeout } from 'timers';
+import Langue from '../service/Multilangue'
 
 export default {
     name:'Plantes',
@@ -33,12 +34,12 @@ export default {
        Header,
        Footer,
        List,
-       BarRecherche
+       BarRecherche ,
     },
      data:function() {
       return{
         bgcolor :'rgb(37, 141, 84)',
-        nameList:'Listes des plantes',
+        nameList:Langue[this.getLangage].list_plante,
         active4:'white!important',
         fontWeight4:'bolder',
         scrollId:"#scrollId3",
