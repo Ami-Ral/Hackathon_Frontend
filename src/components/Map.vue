@@ -1,9 +1,9 @@
 <template>
     <div class="mg-map" @mousemove="hoverDoc">
         <div id="desc">Test</div>
-        <svg baseprofile="tiny" fill="#7c7c7c" height="100%" width="100%" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" version="1.2" viewBox="0 0 1000 1985" xmlns="http://www.w3.org/2000/svg">
-            <path class="component" v-for="path in paths" v-bind:d="path.path" v-bind:id="path.id" v-bind:name="path.nom"
-                 @mouseover="e => overMap(e, path.nom)" @mouseleave="leaveMap" v-on:click="test">
+        <svg id="svg_map" baseprofile="tiny" fill="#7c7c7c" height="100%" width="100%" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" version="1.2" :viewBox="viewBox" xmlns="http://www.w3.org/2000/svg">
+            <path class="component" v-for="path in paths" v-bind:d="path.path" v-bind:id="path.id_region" v-bind:name="path.nom"
+                 @mouseover="e => overMap(e, path.nom)" @mouseleave="leaveMap" v-on:click="e => showDetail(e, path.id_region)">
                 <title>{{ path.nom }}</title>
 		    </path>
             <circle cx="918.1" cy="338.2" id="0">
@@ -25,6 +25,7 @@ export default {
         return{
             paths:[],
             onMap : false,
+            viewBox : "0 0 1000 1985"
         }
     },
     beforeMount(){
@@ -35,8 +36,8 @@ export default {
         })
     },
     methods:{
-        test(){
-            alert("clicked");
+        showDetail(e, id){
+            this.$router.push("region/"+id);
         },
         hoverDoc : function(e){
             const desc = document.getElementById("desc");
@@ -60,7 +61,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .mg-map{
 	margin: 5rem 0 0 0;
     width : 100%;
