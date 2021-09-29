@@ -42,7 +42,7 @@ var langue = ({
         technique : "Teknika",
         Region : "Faritra",
         climat : "Toe-tany",
-        carte : "Sary",
+        carte : "Sary", 
         plante : "Zava-maniry",
         titre1 : "Fambolena ho an'ny rehetra",
         titre2 : "Vokatra sy Teknika",
