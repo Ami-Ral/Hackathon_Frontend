@@ -18,6 +18,7 @@ import AddTechnique from '../views/AddTechnique.vue'
 import ResultatRecherche from '../views/ResultatRecherche.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
+import Documentation from '../views/Documentation'
 
 
 Vue.use(VueRouter)
@@ -115,6 +116,12 @@ const routes = [
         props: true ,
         component: Signup,
     },
+    {
+        path: '/documentation',
+        name: 'Documentation',
+        component: Documentation,
+    },
+
 ]
 
 
