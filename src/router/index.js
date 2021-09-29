@@ -16,6 +16,9 @@ import AddPlante from '../views/AddPlante.vue'
 import AddRegion from '../views/AddRegion.vue'
 import AddTechnique from '../views/AddTechnique.vue'
 import ResultatRecherche from '../views/ResultatRecherche.vue'
+import Login from '../views/Login.vue'
+import Signup from '../views/Signup.vue'
+
 
 Vue.use(VueRouter)
 
@@ -100,7 +103,18 @@ const routes = [
         props: true ,
         component: ResultatRecherche,
     },
-    
+    {
+        path: '/user/login',
+        name: 'Login',
+        props: true ,
+        component: Login,
+    },
+    {
+        path: '/user/signup',
+        name: 'Signup',
+        props: true ,
+        component: Signup,
+    },
 ]
 
 
