@@ -1,4 +1,5 @@
 <template>
+<form action="" @submit.prevent="HandleSearch">
     <div class="recherche">
             <div class="container-fluid">
                 <div class="row row-cols-lg-4 row-cols-4 row-cols-md-4 row-cols-sm-4">
@@ -10,10 +11,10 @@
                     </div>
                     <div class="col-lg-1 col-sm-3 col-md-2 col mt-lg-2 mt-sm-2  mt-md-2 pt-lg-0 pt-sm-0  pt-md-0 responseSelect responsive2 pt-2">
                         <select class="form-select form-select-md mb-3" v-model="typeSearch" aria-label=".form-select-lg example">
-                            <option value="tout">{{OptionLangue[getLangage].tout}}</option>
-                            <option value="technique">{{OptionLangue[getLangage].technique}}</option>
-                            <option value="region">{{OptionLangue[getLangage].Region}}</option>
-                            <option value="plante">{{OptionLangue[getLangage].plante}}</option>
+                            <option value=0>{{OptionLangue[getLangage].tout}}</option> <!-- tout:0,1:technique,region:2,plante:3 -->
+                            <option value=1>{{OptionLangue[getLangage].technique}}</option>
+                            <option value=2>{{OptionLangue[getLangage].Region}}</option>
+                            <option value=3>{{OptionLangue[getLangage].plante}}</option>
                         </select>
                     </div>
                     <div class="col col-lg-1 col-sm-2 col-md-2 mt-lg-2 mt-sm-2 mt-md-2  pt-lg-0 pt-sm-0  pt-md-0 responsive2 pt-2">
@@ -22,6 +23,8 @@
                 </div>
             </div>
         </div>
+</form>
+    
 </template>
 <script>
 import langue from '../service/Multilangue.js'
@@ -35,8 +38,22 @@ export default {
     data:function(){
         return{
             searchValue:'',
-            typeSearch:'tout',
+            typeSearch:0,
             OptionLangue:langue
+        }
+    },
+    methods:{
+        HandleSearch(){
+            if(searchValue){
+                var vm = this
+                this.$router.push({
+                    name:'ResultatRecherche',
+                    params: {
+                        type:vm.typeSearch,
+                        value:vm.searchValue
+                    }
+                })
+            }
         }
     }
 }

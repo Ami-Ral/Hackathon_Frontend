@@ -11,13 +11,18 @@ class Plantes {
         return https.post('/plante/add',plante);
     }
     
-    getOne(langage,id) {
+    getOne(langage,id_plante) {
 
-        return https.get(`/plante/getDetails/${langage}/${id}`)
+        return https.get(`/plante/getDetails/${langage}/${id_plante}`)
     }
-    getAll(langage,nbr_list) {
-
-        return https.get(`/plante/list/${langage}/${nbr_list}`)
+    getAll(langage,nbr_list,start1) {
+        var start
+        if(start1 ==undefined || start1 == null){
+            start = 0
+        }else{
+            start = start1
+        }
+        return https.get(`/plante/list/${langage}/${nbr_list}/${start}`)
     }
    delete(id) {
 

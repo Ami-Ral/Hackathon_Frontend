@@ -17,7 +17,7 @@ const getters = {
     AllPlante:state=>{
         return state.all.items
     },
-    getOnePlante:state=>{
+    getOne:state=>{
         return state.OnePlante
     },
 }
@@ -36,11 +36,11 @@ const actions = {
             })
     },
 
-    getOnePlante({ commit },{langage,id}) {
+    getOnePlante({ commit },{langage,id_plante}) {
 
         commit('getOnePlanteLoading');
 
-        Plantes.getOne(langage,id)
+        Plantes.getOne(langage,id_plante)
             .then((res)=>{
                 commit('getOnePlanteSuccess', res.data)
                
@@ -53,7 +53,7 @@ const actions = {
         Plantes.getAll(langage,nbr_list)
             .then((res)=>{
                 commit('getAllPlanteSuccess',res.data)
-                console.log(res.data)
+
             })
             .catch((error) => commit('getAllPlanteFailure',error))
     },

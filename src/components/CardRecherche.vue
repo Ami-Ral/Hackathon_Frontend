@@ -32,7 +32,7 @@
 import baseUrl from '../service/baseUrl.js'
 
 export default {
-    name:"Card",
+    name:"CardRecherche",
     props:{
         donnee:{
             type:Object,

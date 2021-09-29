@@ -54,7 +54,6 @@ const actions = {
         Techniques.getAll(langage,nbr_list)
             .then((res)=>{
                 commit('getAllTechniqueSuccess', res.data)
-                console.log(getters.AllTechnique(state))
             })
             .catch(() => commit('getAllTechniqueFailure'))
     },
@@ -81,10 +80,6 @@ const actions = {
             })
             .catch(() => commit('UpdateTechniqueFailure'))
     },
-
-    
-    
-
 };
 
 const mutations = {

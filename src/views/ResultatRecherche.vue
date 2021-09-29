@@ -3,15 +3,16 @@
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="scrollId3">
-                    <Header :bgcolor="bgcolor" :active2="active2" :fontWeight2="fontWeight2" :set="changeLangue"/>
+                    <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4"/>
                 </header>
                 <BarRecherche/>
-                <List :items="AllTechnique1" :nameList="nameList" :NameRoute="NameRoute" :showPlus="showPlus" :afficherPlus="afficherPlus"/>
+                <List :items="All" :nameList="nameList" :NameRoute="NameRoute"/>
                 <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
             </div>
         </transition>
         <div class="d-flex justify-content-center overlay"  v-if="overlay">
             <div class="spinner-border text-success" role="status">
+                
             </div>
         </div>
     </div>
@@ -19,16 +20,14 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
-import Techniques from '../service/Techniques'
-
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import List from "../components/List"
 import BarRecherche from "../components/BarRecherche"
-
+import baseUrl from "../service/baseUrl.js"
 
 export default {
-    name:'Technique',
+    name:'ResultatRecherche',
      components: {
        Header,
        Footer,
@@ -38,45 +37,65 @@ export default {
      data:function() {
       return{
         bgcolor :'rgb(37, 141, 84)',
-        nameList:'Listes des techniques',
-        active2:'white!important',
-        fontWeight2:'bolder',
+        nameList:'Listes des plantes',
+        active4:'white!important',
+        fontWeight4:'bolder',
         scrollId:"#scrollId3",
         scrolly: 0,
         showup:false,
         rechercheId:'#scrollId3',
         overlay:true,
         timeout: null,
+        All:[],
         AllTechnique2:[],
-        AllTechnique1:[],
         nbr_list:8,
-        NameRoute:1,
-        showPlus:true,
-        fr:'fr',
-        mg:'mg',
+        nbr_list2:5,
+        NameRoute:3,
+        baseUrl :baseUrl
       }
    },
     computed: {
+      ...mapGetters('Plante',['AllPlante']),
       ...mapGetters('Technique',['AllTechnique']),
       ...mapGetters('Langage',['getLangage'])
     },
     created(){
-      this.getAll()
+      var type= this.$route.params.type;
+      var value = this.$route.params.value;
+      var vm = this;
+      var route ;
+      const axios = require('axios')
+      switch (type) {
+          case 0:
+              route = '/div/search/'
+              break;
+         case 1:
+              route = '/technique/search/'
+            break;
+        case 2:
+              route = '/region/search/'
+              break;
+        case 3:
+              route = '/climat/search/'
+              break;
+          default:
+              break;
+      }
+      var params={
+            query:value
+        }
+      axios.get(baseUrl + route + this.getLangage,{params})
+      .then((res)=>{
+          vm.All = res.data
+          console.log(res.data)
+      })
+      .catch((error)=>console.log(error))
+      
+      this.getAll2()
       this.setTimeout(() => {
           this.overlay = false
           this.initialValue(this.AllTechnique)
-          if(this.AllTechnique==undefined){
-                var langage = this.getLangage
-                var nbr_list = this.nbr_list 
-                var start = 0
-                Techniques.getAll(langage,nbr_list,start)
-                .then((res)=>{
-                    this.AllTechnique1 = res.data
-                })
-                .catch(()=>{})
-          }
       })
-      
     },
     mounted() {
       window.addEventListener('scroll', this.handleResize);
@@ -86,8 +105,8 @@ export default {
       window.removeEventListener('scroll', this.handleResize);
     },
     methods: {
-         ...mapActions('Technique',['getAllTechnique']),
-         ...mapActions('Langage',['setLangage']),
+        ...mapActions('Plante',['getAllPlante']),
+        ...mapActions('Technique',['getAllTechnique']),
         handleResize(){
             this.scrolly=window.scrollY
             if(this.scrolly>110){
@@ -109,53 +128,15 @@ export default {
 				callback()
 			}, 1000)
         },
-        getAll(){
+        getAll2(){
             var langage = this.getLangage
-            var nbr_list = this.nbr_list
+            var nbr_list = this.nbr_list2-2
             let techniques = this.getAllTechnique({langage,nbr_list})
             return techniques
         },
-        afficherPlus(){
-            var langage = this.getLangage
-            var nbr_list = this.nbr_list 
-            var start = this.AllTechnique1.length
-            Techniques.getAll(langage,nbr_list,start)
-            .then((res)=>{
-                this.AllTechnique1 = this.AllTechnique1.concat(res.data)
-                console.log(res.data)
-                if(res.data.length<8){
-                    this.showPlus = false
-                }
-            })
-            .catch(()=>{
-                this.showPlus = false
-            })
-        },
         initialValue(table){
-            this.AllTechnique1 = table
-            for(let i =0; i<=2;i++){
-                this.AllTechnique2[i] = table[i]
-            }
+           this.AllTechnique2 = table
         },
-        changeData(){
-            var langage = this.getLangage
-            var nbr_list = this.nbr_list 
-            var start = 0
-            Techniques.getAll(langage,nbr_list,start)
-            .then((res)=>{
-               this.initialValue(res.data)
-            })
-            .catch(()=>{})
-        },
-        changeLangue(){
-            if(this.getLangage == 'mg'){
-            this.setLangage(this.fr)
-            }else{
-            this.setLangage(this.mg)
-            }
-            this.showPlus = true
-            this.changeData()
-        }
     }
 }
 </script>
