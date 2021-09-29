@@ -3,10 +3,10 @@
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="scrollId3">
-                    <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4"/>
+                    <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4" :set="changeLangue"/>
                 </header>
                 <BarRecherche/>
-                <List :items="AllPlante2" :nameList="nameList" :NameRoute="NameRoute"/>
+                <List :items="AllPlante2" :nameList="nameList" :NameRoute="NameRoute" :showPlus="showPlus" :afficherPlus="afficherPlus"/>
                 <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
             </div>
         </transition>
@@ -24,7 +24,8 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import List from "../components/List"
 import BarRecherche from "../components/BarRecherche"
-
+import Plantes from '../service/Plantes'
+import { setTimeout } from 'timers';
 
 export default {
     name:'Plantes',
@@ -51,6 +52,9 @@ export default {
         nbr_list:8,
         nbr_list2:5,
         NameRoute:3,
+        showPlus:true,
+        fr:'fr',
+        mg:'mg',
       }
    },
     computed: {
@@ -64,9 +68,18 @@ export default {
       this.getAll()
       this.setTimeout(() => {
           this.overlay = false
-         
           this.initialValue2(this.AllTechnique)
            this.initialValue(this.AllPlante)
+           if(this.AllPlante == undefined){
+              var langage = this.getLangage
+              var nbr_list = this.nbr_list 
+              var start = 0
+              Plantes.getAll(langage,nbr_list,start)
+                .then((res)=>{
+                    this.AllPlante2 = res.data
+                })
+                .catch(()=>{})
+          }
       })
     },
     mounted() {
@@ -79,6 +92,7 @@ export default {
     methods: {
         ...mapActions('Plante',['getAllPlante']),
         ...mapActions('Technique',['getAllTechnique']),
+        ...mapActions('Langage',['setLangage']),
         handleResize(){
             this.scrolly=window.scrollY
             if(this.scrolly>110){
@@ -117,6 +131,43 @@ export default {
         },
         initialValue(table){
            this.AllPlante2 = table
+        },
+        afficherPlus(){
+            var langage = this.getLangage
+            var nbr_list = this.nbr_list 
+            var start = this.AllPlante2.length
+            Plantes.getAll(langage,nbr_list,start)
+                .then((res)=>{
+                    setTimeout(()=>{
+                        this.AllPlante2 = this.AllPlante2.concat(res.data)
+                        console.log(res.data)
+                        if(res.data.length<8){
+                            this.showPlus = false
+                        }
+                    },300)
+                })
+                .catch(()=>{
+                    this.showPlus = false
+                })
+        },
+        changeData(){
+            var langage = this.getLangage
+            var nbr_list = this.nbr_list 
+            var start = 0
+            Plantes.getAll(langage,nbr_list,start)
+            .then((res)=>{
+                this.AllPlante2 = res.data
+            })
+            .catch(()=>{})
+        },
+        changeLangue(){
+            if(this.getLangage == 'mg'){
+            this.setLangage(this.fr)
+            }else{
+            this.setLangage(this.mg)
+            }
+            this.showPlus = true
+            this.changeData()
         }
     }
 }

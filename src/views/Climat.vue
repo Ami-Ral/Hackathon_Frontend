@@ -3,10 +3,10 @@
         <transition name="fade">
             <div v-if="!overlay">
                <header id="scrollId3">
-                    <Header :bgcolor="bgcolor" :active5="active5" :fontWeight5="fontWeight5"/>
+                    <Header :bgcolor="bgcolor" :active5="active5" :fontWeight5="fontWeight5" :set="changeLangue"/>
                 </header>
                 <BarRecherche/>
-                <div class="listclimat pb-4 pb-2">
+                <div class="listclimat pb-4 pb-2" v-if="AllClimat ==undefined?false:true">
                     <div class="container-fluid px-3 pt-2 mb-4">
                         <div class="row align-items-center pt-5 px-4 mb-4">
                             <div class="col col-lg-12">
@@ -19,13 +19,14 @@
                                 <img src="https://img.freepik.com/vecteurs-libre/feuilles-vertes-fond-clair_23-2147721708.jpg?size=338&ext=jpg" width="100%" height="300px" alt="">
                             </div>
                             <div class="col-12 col-lg-8 col-sm-12 col-md-6 col-12 mt-4 mt-lg-0 mt-md-0 mt-sm-4" >
-                                <div style="height:100% " :style="backgroundStyles('https://img.freepik.com/photos-gratuite/pluie-exterieur-fenetres-villa_1321-908.jpg?size=626&ext=jpg')">
+                                <div style="height:100% " :style="backgroundStyles(AllClimat1[0].image)">
                                     <div class="detail1 px-4">
-                                        <h2>Pluvieux</h2>
+                                        <h2 v-if="AllClimat1[0].nom_fr != undefined ? true:false">{{AllClimat1[0].nom_fr}}</h2>
+                                        <h2 v-else>{{AllClimat1[0].nom_mg}}</h2>
                                         <u>
-                                            <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
-                                            <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
-                                            <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                            <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> {{AllClimat1[0].vent}}</p></li>
+                                            <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> {{AllClimat1[0].precipitation}}</p></li>
+                                            <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> {{AllClimat1[0].temperature}}</p></li>
                                         </u>
                                     </div>
                                 </div>
@@ -34,13 +35,14 @@
                         </div>
                          <div class="row row-cols-lg-1 row-cols-1 row-cols-md-2 row-cols-sm-1 mt-3">
                             <div class="col-12 col-lg-6 col-sm-12 col-md-6 col-12 mt-2 mt-lg-0 mt-md-0 mt-sm-1 imagesoleie" >
-                                <div style="height:100%" class="imagesoleie" :style="backgroundStyles('https://img.freepik.com/photos-gratuite/pluie-exterieur-fenetres-villa_1321-908.jpg?size=626&ext=jpg')">
+                                <div style="height:100%" class="imagesoleie" :style="backgroundStyles(AllClimat1[1].image)">
                                     <div class="detail2 px-4">
-                                        <h2>Ensoleillé</h2>
+                                        <h2 v-if="AllClimat1[1].nom_fr != undefined ? true:false">{{AllClimat1[1].nom_fr}}</h2>
+                                        <h2 v-else>{{AllClimat1[1].nom_mg}}</h2>
                                         <u>
-                                            <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
-                                            <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
-                                            <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                            <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> {{AllClimat1[1].vent}}</p></li>
+                                            <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1">  {{AllClimat1[1].precipitation}}</p></li>
+                                            <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1">  {{AllClimat1[1].temperature}}</p></li>
                                         </u>
                                     </div>
                                 </div>
@@ -48,13 +50,14 @@
                             <div class="col-12 col-lg-6 col-sm-12 col-md-6 col-12">
                                 <div class="row row-cols-lg-1  row-cols-1 row-cols-md-1 row-cols-sm-1">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-12 mt-3 mt-lg-0 mt-md-0 mt-sm-3">
-                                        <div style="height:100%" :style="backgroundStyles('https://img.freepik.com/photos-gratuite/pluie-exterieur-fenetres-villa_1321-908.jpg?size=626&ext=jpg')">
+                                        <div style="height:100%" :style="backgroundStyles(AllClimat1[2].image)">
                                             <div class="detail3 px-4">
-                                                <h2>Brumeux</h2>
+                                                <h2 v-if="AllClimat1[2].nom_fr != undefined ? true:false">{{AllClimat1[2].nom_fr}}</h2>
+                                                <h2 v-else>{{AllClimat1[2].nom_mg}}</h2>
                                                 <u>
-                                                    <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
-                                                    <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
-                                                    <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> {{AllClimat1[2].vent}}</p></li>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> {{AllClimat1[2].precipitation}}</p></li>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> {{AllClimat1[2].temperature}}</p></li>
                                                 </u>
                                             </div>
                                         </div>
@@ -62,13 +65,14 @@
                                 </div>
                                 <div class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-3 mt-lg-4">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
-                                        <div  style="height:200px" :style="backgroundStyles('https://img.freepik.com/photos-gratuite/pluie-exterieur-fenetres-villa_1321-908.jpg?size=626&ext=jpg')">
+                                        <div  style="height:200px" :style="backgroundStyles(AllClimat1[3].image)">
                                             <div class="detail3 px-4">
-                                                <h2>Venteux</h2>
+                                                <h2 v-if="AllClimat1[3].nom_fr != undefined ? true:false">{{AllClimat1[3].nom_fr}}</h2>
+                                                <h2 v-else>{{AllClimat1[3].nom_mg}}</h2>
                                                 <u>
-                                                    <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
-                                                    <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
-                                                    <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> {{AllClimat1[3].vent}}</p></li>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> {{AllClimat1[3].precipitation}}</p></li>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> {{AllClimat1[3].temperature}}</p></li>
                                                 </u>
                                             </div>
                                         </div>
@@ -88,11 +92,11 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
+import Climats from '../service/Climats'
 import Header from "../components/Header"
 import BarRecherche from "../components/BarRecherche"
 import Footer from "../components/Footer"
-
+import Techniques from '../service/Techniques'
 
 export default {
     name:'Climat',
@@ -102,21 +106,35 @@ export default {
       BarRecherche
     },
     computed: {
+       ...mapGetters('Langage',['getLangage']), 
       ...mapGetters('Climat',['AllClimat']),
       ...mapGetters('Technique',['AllTechnique']),
-      ...mapGetters('Langage',['getLangage'])
+      
     },
     created(){
        this.getAll1()
-       setTimeout(() => {
-           this.getAll2()
-       },200)
+       this.getAll2()
       this.setTimeout(() => {
           this.overlay = false
-          this.initialValue1(this.AllClimat)
+
           this.initialValue2(this.AllTechnique)
+          this.initialValue1(this.AllClimat)
+           if(this.AllTechnique == undefined){
+              this.changeDataFooter()
+           }
+          if(this.AllClimat == undefined){
+                var langage = this.getLangage
+                var nbr_list = this.nbr_list2 
+                var start = 0
+                Climats.getAll(langage,nbr_list,start)
+                .then((res)=>{
+                    this.AllClimat1 = res.data
+                })
+                .catch(()=>{})
+          }
+          
       })
-      console.log(this.AllClimat);
+      console.log(this.AllClimat1);
     },
     mounted() {
       window.addEventListener('scroll', this.handleResize);
@@ -138,13 +156,17 @@ export default {
         showup:false,
         AllTechnique2:[],
         AllClimat1:[],
-        nbr_list2:5,
+        nbr_list2:8,
         rechercheId:'#scrollId3',
+        
+        fr:'fr',
+        mg:'mg',
       }
    },
    methods:{
         ...mapActions('Technique',['getAllTechnique']),
         ...mapActions('Climat',['getAllClimat']),
+        ...mapActions('Langage',['setLangage']),
         handleResize(){
             this.scrolly=window.scrollY
             if(this.scrolly>110){
@@ -154,26 +176,21 @@ export default {
             }
         },
         clearTimeout() {
-			if (this.timeout) {
-				clearTimeout(this.timeout)
-				this.timeout = null
+			if (this.timeout) { 
+                    clearTimeout(this.timeout)
+                    this.timeout = null
 				}
-			},
+		},
 		setTimeout(callback) {
 			this.clearTimeout()
 			this.timeout = setTimeout(() => {
 				this.clearTimeout()
 				callback()
 			}, 1000)
-        },  getAll2(){
-            var langage = this.getLangage
-            var nbr_list = this.nbr_list2
-            let techniques = this.getAllTechnique({langage,nbr_list})
-            return techniques
-        },
+        }, 
         getAll2(){
             var langage = this.getLangage
-            var nbr_list = this.nbr_list2-2
+            var nbr_list = 3
             let techniques = this.getAllTechnique({langage,nbr_list})
             return techniques
         },
@@ -197,6 +214,36 @@ export default {
                     'width': `100%`,
 				}
       },
+       changeData(){
+            var langage = this.getLangage
+            var nbr_list = this.nbr_list2 
+            var start = 0
+            Climats.getAll(langage,nbr_list,start)
+            .then((res)=>{
+                 this.AllClimat1 = res.data
+            })
+            .catch(()=>{})
+        },
+        changeDataFooter(){
+            var langage = this.getLangage
+            var nbr_list = 3
+            var start = 0
+            Techniques.getAll(langage,nbr_list,start)
+            .then((res)=>{
+               this.AllTechnique2 = res.data
+            })
+            .catch(()=>{})
+        },
+        changeLangue(){
+            if(this.getLangage == 'mg'){
+                this.setLangage(this.fr)
+            }else{
+                this.setLangage(this.mg)
+            }
+            this.showPlus = true
+            this.changeDataFooter()
+            this.changeData()
+      }
    }
 }
 </script>
