@@ -13,7 +13,7 @@
                         <select class="form-select form-select-md mb-3" v-model="typeSearch" aria-label=".form-select-lg example">
                             <option value=0>{{OptionLangue[getLangage].tout}}</option> <!-- tout:0,1:technique,region:2,plante:3 -->
                             <option value=1>{{OptionLangue[getLangage].technique}}</option>
-                            <option value=2>{{OptionLangue[getLangage].Region}}</option>
+                            <option value=2>{{OptionLangue[getLangage].region}}</option>
                             <option value=3>{{OptionLangue[getLangage].plante}}</option>
                         </select>
                     </div>
