@@ -57,6 +57,7 @@ const actions = {
         Climats.getAll(langage,nbr_list)
             .then((res)=>{
                 commit('getAllClimatSuccess',res.data)
+                console.log(res.data)
             })
             .catch((error) => commit('getAllClimatFailure',error))
     },
@@ -129,9 +130,9 @@ const mutations = {
         state.all = { loading: true };
     },
 
-    getAllClimatSuccess(state, plante) {
+    getAllClimatSuccess(state, climat) {
 
-        state.all.items = plante ;
+        state.all.items = climat ;
     },
 
 

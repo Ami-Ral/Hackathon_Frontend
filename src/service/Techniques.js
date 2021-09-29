@@ -15,9 +15,14 @@ class Techniques {
 
         return https.get(`/technique/getDetails/${langage}/${id}`)
     }
-    getAll(langage,nbr_list) {
-
-        return https.get(`/technique/list/${langage}/${nbr_list}`)
+    getAll(langage,nbr_list,start1) {
+        var start
+        if(start1 ==undefined || start1 == null){
+            start = 0
+        }else{
+            start = start1
+        }
+        return https.get(`/technique/list/${langage}/${nbr_list}/${start}`)
     }
     delete(id) {
 

@@ -8,11 +8,14 @@ import Plantes from '../views/Plantes.vue'
 import Climat from '../views/Climat.vue'
 import DetailTechnique from '../views/DetailTechnique.vue'
 import DetailPlante from '../views/DetailPlante.vue'
+import DetailRegion from '../views/DetailRegion.vue'
+
 import Admin from '../views/Admin.vue'
 import AddClimat from '../views/AddClimat.vue'
 import AddPlante from '../views/AddPlante.vue'
 import AddRegion from '../views/AddRegion.vue'
 import AddTechnique from '../views/AddTechnique.vue'
+import ResultatRecherche from '../views/ResultatRecherche.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Documentation from '../views/Documentation'
@@ -59,6 +62,12 @@ const routes = [
         component: DetailPlante,
     },
     {
+        path: '/region/:id',
+        name: 'DetailRegion',
+        props: true ,
+        component: DetailRegion,
+    },
+    {
         path: '/admin/home',
         name: 'Admin',
         props: true ,
@@ -88,6 +97,12 @@ const routes = [
         name: 'AddTechnique',
         props: true ,
         component: AddTechnique,
+    },
+    {
+        path: '/recherche/:type/:value',
+        name: 'ResultatRecherche',
+        props: true ,
+        component: ResultatRecherche,
     },
     {
         path: '/user/login',
