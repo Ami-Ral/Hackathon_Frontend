@@ -3,7 +3,7 @@
             <div class="container-fluid px-3">
                 <div class="row align-items-center pt-5 px-4 mb-4">
                     <div class="col col-lg-12">
-                        <h3>{{nameList}}</h3>
+                        <h3>Resultats de recherche</h3>
                         <span class="under-title"></span>
                     </div>
                 </div>
