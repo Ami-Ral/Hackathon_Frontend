@@ -43,6 +43,7 @@ var langue = ({
         list_region : "Listes des régions :",
         liste_climat : "Listes des climats :",
         description_region : "Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur porro libero voluptate itaque similique totam quidem numquam quibusdam doloribus sit, mollitia dolorem, modi. Modi ut molestiae ipsum, adipisci aut quis!",
+        about_us:"Français"
     },
     mg:{
         accueil : "Fandraisana" ,
@@ -86,7 +87,8 @@ var langue = ({
         list_plante : "Lisitr'ireo zava-maniry :",
         list_region : "Lisitr'ireo faritra :",
         liste_climat : "Lisitr'ireo toe-tany :",
-        description_region : "Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur porro libero voluptate itaque similique totam quidem numquam quibusdam doloribus sit, mollitia dolorem, modi. Modi ut molestiae ipsum, adipisci aut quis!"  
+        description_region : "Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur porro libero voluptate itaque similique totam quidem numquam quibusdam doloribus sit, mollitia dolorem, modi. Modi ut molestiae ipsum, adipisci aut quis!" ,
+        about_us:"Malagasy"
     }
 })
 export default langue
