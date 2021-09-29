@@ -123,7 +123,14 @@ export default {
               this.changeDataFooter()
            }
           if(this.AllClimat == undefined){
-              this.changeData()
+                var langage = this.getLangage
+                var nbr_list = this.nbr_list2 
+                var start = 0
+                Climats.getAll(langage,nbr_list,start)
+                .then((res)=>{
+                    this.AllClimat1 = res.data
+                })
+                .catch(()=>{})
           }
           
       })
@@ -173,7 +180,7 @@ export default {
                     clearTimeout(this.timeout)
                     this.timeout = null
 				}
-			},
+		},
 		setTimeout(callback) {
 			this.clearTimeout()
 			this.timeout = setTimeout(() => {
@@ -233,7 +240,7 @@ export default {
             }else{
                 this.setLangage(this.mg)
             }
-            
+            this.showPlus = true
             this.changeDataFooter()
             this.changeData()
       }

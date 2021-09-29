@@ -66,7 +66,14 @@ export default {
           this.overlay = false
           this.initialValue(this.AllTechnique)
           if(this.AllTechnique==undefined){
-              this.afficherPlus()
+                var langage = this.getLangage
+                var nbr_list = this.nbr_list 
+                var start = 0
+                Techniques.getAll(langage,nbr_list,start)
+                .then((res)=>{
+                    this.AllTechnique1 = res.data
+                })
+                .catch(()=>{})
           }
       })
       
@@ -146,6 +153,7 @@ export default {
             }else{
             this.setLangage(this.mg)
             }
+            this.showPlus = true
             this.changeData()
         }
     }

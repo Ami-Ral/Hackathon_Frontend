@@ -70,8 +70,15 @@ export default {
           this.overlay = false
           this.initialValue2(this.AllTechnique)
            this.initialValue(this.AllPlante)
-           if(this.AllPlante==undefined){
-              this.afficherPlus()
+           if(this.AllPlante == undefined){
+              var langage = this.getLangage
+              var nbr_list = this.nbr_list 
+              var start = 0
+              Plantes.getAll(langage,nbr_list,start)
+                .then((res)=>{
+                    this.AllPlante2 = res.data
+                })
+                .catch(()=>{})
           }
       })
     },
@@ -159,6 +166,7 @@ export default {
             }else{
             this.setLangage(this.mg)
             }
+            this.showPlus = true
             this.changeData()
         }
     }

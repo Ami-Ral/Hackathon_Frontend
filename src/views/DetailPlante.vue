@@ -153,7 +153,7 @@
                                         <router-link    :to="{name:'DetailTechnique',params:{id:parseInt(image2.id_technique)}}" class="card ml-4 border-none" v-for="(image2,index) in technique" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
                                             <img :src="baseUrl + image2.couverture.split('public')[1]" class="card-img-top" alt="...">
                                             <div class="card-body">
-                                                <p class="card-text pb-4" style="font-size:12px" v-if="image2.nom_fr != undefined ? true :false">{{image2.nom_fr}}</p>
+                                                <p class="card-text pb-0" style="font-size:12px" v-if="image2.nom_fr != undefined ? true :false">{{image2.nom_fr}}</p>
                                                 <p class="card-text" v-else>{{image2.nom_mg}}</p>
                                             </div>
                                         </router-link>
@@ -330,6 +330,7 @@ export default {
       this.setTimeout(() => {
           this.overlay = false
            this.change(this.getOne)
+           console.log(this.getOne)
            this.initialValue2(this.AllTechnique)
           if(this.getOne == undefined){
               Plantes.getOne(langage,id_plante)
