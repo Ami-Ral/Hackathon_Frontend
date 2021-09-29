@@ -117,7 +117,7 @@ export default {
     },
     methods:{
         showDetail(id){
-            this.$router.push("region/"+id);
+            this.$router.push("region/"+ id);
         },
         changeZoom(){
             this.update_path = true;
