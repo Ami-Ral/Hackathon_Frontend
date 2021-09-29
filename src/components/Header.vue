@@ -8,7 +8,7 @@
         <button class="navbar-toggler bg-white botton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse align-items-center px-">
+        <div class="collapse navbar-collapse align-items-center px-0">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-center navbar-nav-scroll " style="bs-scroll-height: 100px;">
                 <li class="nav-item px-0">
                     <router-link class="nav-link" :style="{color:active1,fontWeight:fontWeight1}" aria-current="page" to="/">{{OptionLangue[getLangage].accueil}}</router-link>
@@ -26,7 +26,7 @@
                     <router-link class="nav-link"  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">{{OptionLangue[getLangage].plante}}</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link"  :style="{color:active4,fontWeight:fontWeight4}"  to="/documentation">{{OptionLangue[getLangage].documentation}}</router-link>
+                    <router-link class="nav-link"  :style="{color:activ6,fontWeight:fontWeight6}"  to="/documentation">{{OptionLangue[getLangage].doc}}</router-link>
                 </li>
                 
             </ul>
@@ -125,6 +125,10 @@ import { setTimeout } from 'timers';
           type:String,
           default:()=>'rgb(206, 195, 195)'
       },
+      active6:{
+          type:String,
+          default:()=>'rgb(206, 195, 195)'
+      },
       fontWeight1:{
           type:String,
           default:()=>''
@@ -142,6 +146,10 @@ import { setTimeout } from 'timers';
           default:()=>''
       },
       fontWeight5:{
+          type:String,
+          default:()=>''
+      },
+      fontWeight6:{
           type:String,
           default:()=>''
       },
@@ -301,7 +309,7 @@ import { setTimeout } from 'timers';
 
     .navbar-nav.navbar-center {
         position: absolute;
-        left: 50%;
+        left: 45%;
         transform: translatex(-50%);
     }
     .navbar-nav.navbar-center li {
