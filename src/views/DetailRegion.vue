@@ -32,8 +32,8 @@ export default {
       return{
         bgcolor :'rgb(37, 141, 84)',
         nameList:'Boheny',
-        active4:'white!important',
-        fontWeight4:'bolder',
+        active:'white!important',
+        fontWeight3:'bolder',
         scrollId:"#scrollId3",
         scrolly: 0,
         showup:false,
