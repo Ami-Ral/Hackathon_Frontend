@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div  v-if="AllTechnique2 != undefined ? true : false">
     <transition name="fade2">
     <div class="" v-if="!overlay">
       <header  id="scrollId">
@@ -140,7 +140,7 @@
             <p> {{OptionLangue[getLangage].description_technique}}</p>
           </div>
         </div>
-        <div v-if="AllTechnique2 != undefined ? true : false" class="row row-cols-lg-3 row-cols-1 row-cols-md-1 row-cols-sm-1 ml-lg-6  justify-content-lg-center lg-content justify-content-center">
+        <div class="row row-cols-lg-3 row-cols-1 row-cols-md-1 row-cols-sm-1 ml-lg-6  justify-content-lg-center lg-content justify-content-center">
           <div class="col col-lg-3 col-sm-12 col-md-12 col-12 mr-4" v-for="(item,index) in AllTechnique2" :key="index">
             <router-link :to="{name:'DetailTechnique',params:{id:parse(item.id_technique)}}" class="card Bgimage zoom responsiveimage" style="width: 16rem;height:20rem;text-decoration:none;color:white" :style="backgroundStyles(item.couverture)">
               <div class="card-body mt">
@@ -192,7 +192,7 @@
       </div>
       </div>
       <Contact/>
-      <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique"/>
+      <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
     </div>
     </transition>
     <div class="d-flex justify-content-center overlay"  v-if="overlay">

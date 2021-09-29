@@ -2,7 +2,7 @@
 <div class="card" v-if="donnee != undefined ? true : false">
 
     <router-link  style="text-decoration:none;color:white" v-if="NameRoute == 1 ? true:false" class="card2" :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}">
-        <img :src="donnee.couverture" alt="" class="card-image">
+        <img :src="baseUrl + donnee.couverture.split('public')[1]" alt="" class="card-image">
         <div class="under-image"></div>
         <div class="detail" v-if="donnee.nom_fr == undefined || donnee.nom_fr=='null' ? false:true">
             <h4><router-link :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
@@ -14,22 +14,9 @@
         </div>
     </router-link>
 
-    <router-link style="text-decoration:none;color:white" v-else-if="NameRoute == 2" class="card2" :to="{name:'DetailClimat',params:{id:parse(donnee.id_climat)}}">
-        <img :src="donnee.couverture" alt="" class="card-image">
-        <div class="under-image"></div>
-        <div class="detail" v-if="donnee.nom_fr==undefined || donnee.nom_fr=='null' ? false:true">
-            <h4><router-link :to="{name:'DetailClimat',params:{id:parse(donnee.id_climat)}}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
-            <h6>{{donnee.info_fr}}</h6>
-        </div>
-        <div class="detail" v-else>
-            <h4><router-link :to="{name:'DetailClimat',params:{id:parse(donnee.id_climat)}}" style="text-decoration:none;color:white">{{donnee.nom_mg}}</router-link></h4>
-            <h6>{{donnee.info_mg}}</h6>
-        </div>
-    </router-link>
-
     <router-link style="text-decoration:none;color:white" v-else-if="NameRoute == 3" class="card2" :to="{name:'DetailPlante',params:{id:parse(donnee.id_plante)}}">
-        <img :src="donnee.path_image" alt="" class="card-image">
-        <div class="under-image"></div>
+        <img :src="baseUrl + donnee.path_image.split('public')[1]" alt="" class="card-image">
+        <div class="under-image"></div> 
         <div class="detail" v-if="donnee.nom_fr==undefined || donnee.nom_fr=='null' ? false:true">
             <h4><router-link :to="{name:'DetailPlante',params:{id:parse(donnee.id_plante)}}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
             <h6>{{donnee.nom_scientifique}}</h6>
@@ -42,17 +29,26 @@
 </div>
 </template>
 <script>
+import baseUrl from '../service/baseUrl.js'
+
 export default {
     name:"Card",
     props:{
         donnee:{
             type:Object,
-            default:()=>{}
+            default:()=>{} 
         },
         NameRoute:{
             type:Number,
             default:()=>1
         },
+    },
+    created(){
+    },
+     data:function() {
+      return{
+          baseUrl:baseUrl,
+      }
     },
     methods:{
         parse(url){

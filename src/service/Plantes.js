@@ -11,9 +11,9 @@ class Plantes {
         return https.post('/plante/add',plante);
     }
     
-    getOne(langage,id) {
+    getOne(langage,id_plante) {
 
-        return https.get(`/plante/getDetails/${langage}/${id}`)
+        return https.get(`/plante/getDetails/${langage}/${id_plante}`)
     }
     getAll(langage,nbr_list) {
 

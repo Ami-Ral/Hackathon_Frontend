@@ -94,6 +94,7 @@
 <script>
 import langue from '../service/Multilangue.js'
 import { mapGetters,mapActions} from 'vuex'
+import { setTimeout } from 'timers';
   export default {
     name: 'Header',
     props:{
@@ -155,12 +156,20 @@ import { mapGetters,mapActions} from 'vuex'
           src1:require('../assets/images/français.png'),
           src2:require('../assets/images/malagasy.png'),
           fr:'fr',
-          mg:'mg'
+          mg:'mg',
+          nbr_list:5
       }
    },
    
   methods: {
      ...mapActions('Langage',['setLangage']),
+      ...mapActions('Technique',['getAllTechnique']),
+      getAll(){
+        var langage = this.getLangage
+        var nbr_list = this.nbr_list
+        let techniques = this.getAllTechnique({langage,nbr_list})
+        return techniques
+    },
      changeLangue(){
          var setLan
          if(this.getLangage == 'mg'){
@@ -168,7 +177,11 @@ import { mapGetters,mapActions} from 'vuex'
          }else{
             setLan = this.setLangage(this.mg)
          }
-         console.log(this.getLangage)
+         var vm = this
+         setTimeout(function(){
+             vm.getAll()
+         },300)
+         
          return setLan
      }
     }

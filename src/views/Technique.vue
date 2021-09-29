@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div >
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="scrollId3">
@@ -12,7 +12,6 @@
         </transition>
         <div class="d-flex justify-content-center overlay"  v-if="overlay">
             <div class="spinner-border text-success" role="status">
-                
             </div>
         </div>
     </div>
@@ -61,6 +60,7 @@ export default {
           this.overlay = false
           this.initialValue(this.AllTechnique)
       })
+      
     },
     mounted() {
       window.addEventListener('scroll', this.handleResize);
@@ -94,7 +94,7 @@ export default {
         },
         getAll(){
             var langage = this.getLangage
-            var nbr_list = this.nbr_list
+            var nbr_list = this.nbr_list-2
             let techniques = this.getAllTechnique({langage,nbr_list})
             return techniques
         },

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div >
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="scrollId3">
@@ -48,7 +48,7 @@ export default {
         timeout: null,
         AllPlante2:[],
         AllTechnique2:[],
-        nbr_list:5,
+        nbr_list:8,
         nbr_list2:5,
         NameRoute:3,
       }
@@ -59,12 +59,14 @@ export default {
       ...mapGetters('Langage',['getLangage'])
     },
     created(){
-      this.getAll()
+      
       this.getAll2()
+      this.getAll()
       this.setTimeout(() => {
           this.overlay = false
-          this.initialValue(this.AllPlante)
+         
           this.initialValue2(this.AllTechnique)
+           this.initialValue(this.AllPlante)
       })
     },
     mounted() {
@@ -106,7 +108,7 @@ export default {
         },
         getAll2(){
             var langage = this.getLangage
-            var nbr_list = this.nbr_list2
+            var nbr_list = this.nbr_list2-2
             let techniques = this.getAllTechnique({langage,nbr_list})
             return techniques
         },

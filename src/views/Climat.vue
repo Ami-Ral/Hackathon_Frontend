@@ -2,30 +2,128 @@
     <div>
         <transition name="fade">
             <div v-if="!overlay">
-               <header id="header-default"  >
+               <header id="scrollId3">
                     <Header :bgcolor="bgcolor" :active5="active5" :fontWeight5="fontWeight5"/>
                 </header>
+                <BarRecherche/>
+                <div class="listclimat pb-4 pb-2">
+                    <div class="container-fluid px-3 pt-2 mb-4">
+                        <div class="row align-items-center pt-5 px-4 mb-4">
+                            <div class="col col-lg-12">
+                                <h3>Climat</h3>
+                                <span class="under-title"></span>
+                            </div>
+                        </div>
+                        <div class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1">
+                            <div class="col-3 col-lg-4 col-sm-12 col-md-6 col-12 ">
+                                <img src="https://img.freepik.com/vecteurs-libre/feuilles-vertes-fond-clair_23-2147721708.jpg?size=338&ext=jpg" width="100%" height="300px" alt="">
+                            </div>
+                            <div class="col-12 col-lg-8 col-sm-12 col-md-6 col-12 mt-4 mt-lg-0 mt-md-0 mt-sm-4" >
+                                <div style="height:100% " :style="backgroundStyles('https://img.freepik.com/photos-gratuite/pluie-exterieur-fenetres-villa_1321-908.jpg?size=626&ext=jpg')">
+                                    <div class="detail1 px-4">
+                                        <h2>Pluvieux</h2>
+                                        <u>
+                                            <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                            <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                            <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                        </u>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                         <div class="row row-cols-lg-1 row-cols-1 row-cols-md-2 row-cols-sm-1 mt-3">
+                            <div class="col-12 col-lg-6 col-sm-12 col-md-6 col-12 mt-2 mt-lg-0 mt-md-0 mt-sm-1 imagesoleie" >
+                                <div style="height:100%" class="imagesoleie" :style="backgroundStyles('https://img.freepik.com/photos-gratuite/pluie-exterieur-fenetres-villa_1321-908.jpg?size=626&ext=jpg')">
+                                    <div class="detail2 px-4">
+                                        <h2>Ensoleillé</h2>
+                                        <u>
+                                            <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                            <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                            <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                        </u>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-sm-12 col-md-6 col-12">
+                                <div class="row row-cols-lg-1  row-cols-1 row-cols-md-1 row-cols-sm-1">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-12 mt-3 mt-lg-0 mt-md-0 mt-sm-3">
+                                        <div style="height:100%" :style="backgroundStyles('https://img.freepik.com/photos-gratuite/pluie-exterieur-fenetres-villa_1321-908.jpg?size=626&ext=jpg')">
+                                            <div class="detail3 px-4">
+                                                <h2>Brumeux</h2>
+                                                <u>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                                </u>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-3 mt-lg-4">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
+                                        <div  style="height:200px" :style="backgroundStyles('https://img.freepik.com/photos-gratuite/pluie-exterieur-fenetres-villa_1321-908.jpg?size=626&ext=jpg')">
+                                            <div class="detail3 px-4">
+                                                <h2>Venteux</h2>
+                                                <u>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/wind.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/drop.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                                    <li class="d-flex"><img src="../assets/images/Icones/sun.png" alt="" srcset="" width="20px" height="20px"><p class="mx-1"> 25 km/h</p></li>
+                                                </u>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
             </div>
         </transition>
         <div class="d-flex justify-content-center overlay"  v-if="overlay">
-            <div class="spinner-border text-success" role="status">
-                
-            </div>
+            <div class="spinner-border text-success" role="status"></div>
         </div>
     </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 import Header from "../components/Header"
+import BarRecherche from "../components/BarRecherche"
+import Footer from "../components/Footer"
+
 
 export default {
     name:'Climat',
      components: {
-      Header
+      Header,
+      Footer,
+      BarRecherche
+    },
+    computed: {
+      ...mapGetters('Climat',['AllClimat']),
+      ...mapGetters('Technique',['AllTechnique']),
+      ...mapGetters('Langage',['getLangage'])
     },
     created(){
+       this.getAll1()
+       setTimeout(() => {
+           this.getAll2()
+       },200)
       this.setTimeout(() => {
           this.overlay = false
+          this.initialValue1(this.AllClimat)
+          this.initialValue2(this.AllTechnique)
       })
+      console.log(this.AllClimat);
+    },
+    mounted() {
+      window.addEventListener('scroll', this.handleResize);
+      this.handleResize()
+    },
+    destroyed() {
+      window.removeEventListener('scroll', this.handleResize);
     },
     data:function() {
       return{
@@ -35,9 +133,26 @@ export default {
         overlay:true,
         timeout: null,
         NameRoute:1,
+        scrollId:"#scrollId3",
+        scrolly: 0,
+        showup:false,
+        AllTechnique2:[],
+        AllClimat1:[],
+        nbr_list2:5,
+        rechercheId:'#scrollId3',
       }
    },
    methods:{
+        ...mapActions('Technique',['getAllTechnique']),
+        ...mapActions('Climat',['getAllClimat']),
+        handleResize(){
+            this.scrolly=window.scrollY
+            if(this.scrolly>110){
+                this.showup = true
+            }else{
+                this.showup = false
+            }
+        },
         clearTimeout() {
 			if (this.timeout) {
 				clearTimeout(this.timeout)
@@ -50,16 +165,120 @@ export default {
 				this.clearTimeout()
 				callback()
 			}, 1000)
+        },  getAll2(){
+            var langage = this.getLangage
+            var nbr_list = this.nbr_list2
+            let techniques = this.getAllTechnique({langage,nbr_list})
+            return techniques
         },
+        getAll2(){
+            var langage = this.getLangage
+            var nbr_list = this.nbr_list2-2
+            let techniques = this.getAllTechnique({langage,nbr_list})
+            return techniques
+        },
+        getAll1(){
+            var langage = this.getLangage
+            var nbr_list = 4
+            let climat = this.getAllClimat({langage,nbr_list})
+            return climat
+        },
+        initialValue2(table){
+           this.AllTechnique2 = table
+        },
+        initialValue1(table){
+           this.AllClimat1 = table
+        },
+        backgroundStyles(image) {
+				return {
+                    'background-image': `linear-gradient(to bottom,rgba(0, 0, 0, 0.2),rgb(0, 0, 0, 1)),url(${image})`,
+                    'background-repeat': `no-repeat`,
+                    'background-size': `100%`,
+                    'width': `100%`,
+				}
+      },
    }
 }
 </script>
 <style scoped>
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 2s
+  transition: opacity 2s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+.listclimat{
+  width: 100%;
+  background: rgb(15, 15, 17) top center;
+  background-size: cover;
+  position: relative;
+  padding: 0;
+}
+h3{
+    color: whitesmoke
+}
+
+.under-title{
+    display: block;
+    width: 12vh;
+    height: 2px;
+    background-color: whitesmoke
+}
+.detail1{
+    padding-top: 20vh
+}
+.detail2{
+    padding-top: 40vh
+}
+.detail3{
+    padding-top: 7vh
+}
+h2{
+    font-weight: bold
+}
+u{
+    list-style: none;
+}
+li{
+    color: rgb(199, 199, 199)
+}
+@media only screen and (min-width: 1200px) {
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .detail2{
+         padding-top: 40vh
+    }
+    .imagesoleie{
+        height: 435px;
+        background-size: 160% !important
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .detail2{
+         padding-top: 40vh
+    }
+    .imagesoleie{
+        height: 425px;
+        background-size: 160% !important
+    }
+}
+@media only screen and (max-width: 767px) {
+     .detail2{
+         padding-top: 35vh
+    }
+    .imagesoleie{
+        height: 400px;
+        background-size: 150% !important
+    }
+}
+@media only screen and (max-width: 479px) {
+    .detail2{
+         padding-top: 35vh
+    }
+     .imagesoleie{
+        height: 400px;
+        background-size: 160% !important
+    }
 }
 </style>
 
