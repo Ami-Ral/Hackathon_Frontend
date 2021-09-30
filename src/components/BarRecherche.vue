@@ -1,5 +1,5 @@
 <template>
-<form action="" @submit.prevent="HandleSearch">
+<form action="" @submit.prevent="HandleSearch2">
     <div class="recherche">
             <div class="container-fluid">
                 <div class="row row-cols-lg-4 row-cols-4 row-cols-md-4 row-cols-sm-4">
@@ -32,6 +32,9 @@ import { mapGetters} from 'vuex'
 
 export default {
     name:'BarRecherche',
+    props:{
+      
+    },
     computed: {
       ...mapGetters('Langage',['getLangage'])
     },
@@ -43,18 +46,37 @@ export default {
         }
     },
     methods:{
-        HandleSearch(){
-            if(searchValue){
+        HandleSearch2(){
+            if(this.searchValue){
                 var vm = this
-                this.$router.push({
-                    name:'ResultatRecherche',
-                    params: {
-                        type:vm.typeSearch,
-                        value:vm.searchValue
+                var name = this.$route.name
+                var type = this.$route.params.type
+                var value = this.$route.params.value
+                if(name =='ResultatRecherche'){
+                    if(parseInt(this.typeSearch) == parseInt(type) && value == this.searchValue){
+                        return null  
+                    }else{
+                        this.$router.push({
+                            name:'ResultatRecherche',
+                            params: {
+                                type:vm.typeSearch,
+                                value:vm.searchValue
+                            }
+                        })
                     }
-                })
+                }else{
+                    this.$router.push({
+                        name:'ResultatRecherche',
+                        params: {
+                            type:vm.typeSearch,
+                            value:vm.searchValue
+                        }
+                    })
+                }
+                
             }
         }
+
     }
 }
 </script>

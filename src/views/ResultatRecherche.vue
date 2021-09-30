@@ -5,8 +5,8 @@
                 <header id="scrollId3">
                     <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4"/>
                 </header>
-                <BarRecherche/>
-                <List :items="All" :nameList="nameList" :NameRoute="NameRoute"/>
+                <BarRecherche :HandleSearch="HandleSearch"/>
+                <ListRecherche :items="All"/>
                 <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
             </div>
         </transition>
@@ -22,7 +22,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 import Header from "../components/Header"
 import Footer from "../components/Footer"
-import List from "../components/List"
+import ListRecherche from "../components/ListRecherche"
 import BarRecherche from "../components/BarRecherche"
 import baseUrl from "../service/baseUrl.js"
 
@@ -31,13 +31,18 @@ export default {
      components: {
        Header,
        Footer,
-       List,
+       ListRecherche,
        BarRecherche
+    },
+    watch:{
+      $route() {
+        this.repeat()
+      }
     },
      data:function() {
       return{
         bgcolor :'rgb(37, 141, 84)',
-        nameList:'Listes des plantes',
+        nameList:'Listes des resultats',
         active4:'white!important',
         fontWeight4:'bolder',
         scrollId:"#scrollId3",
@@ -46,7 +51,7 @@ export default {
         rechercheId:'#scrollId3',
         overlay:true,
         timeout: null,
-        All:[],
+        All:{},
         AllTechnique2:[],
         nbr_list:8,
         nbr_list2:5,
@@ -60,37 +65,8 @@ export default {
       ...mapGetters('Langage',['getLangage'])
     },
     created(){
-      var type= this.$route.params.type;
-      var value = this.$route.params.value;
-      var vm = this;
-      var route ;
-      const axios = require('axios')
-      switch (type) {
-          case 0:
-              route = '/div/search/'
-              break;
-         case 1:
-              route = '/technique/search/'
-            break;
-        case 2:
-              route = '/region/search/'
-              break;
-        case 3:
-              route = '/climat/search/'
-              break;
-          default:
-              break;
-      }
-      var params={
-            query:value
-        }
-      axios.get(baseUrl + route + this.getLangage,{params})
-      .then((res)=>{
-          vm.All = res.data
-          console.log(res.data)
-      })
-      .catch((error)=>console.log(error))
       
+      this.repeat()
       this.getAll2()
       this.setTimeout(() => {
           this.overlay = false
@@ -107,6 +83,40 @@ export default {
     methods: {
         ...mapActions('Plante',['getAllPlante']),
         ...mapActions('Technique',['getAllTechnique']),
+        repeat(){
+          var type=parseInt(this.$route.params.type);
+            var value = this.$route.params.value;
+            var vm = this;
+            var route ;
+            const axios = require('axios')
+            switch (type) {
+                case 0:
+                    route = '/div/search/'
+                    break;
+              case 1:
+                    route = '/technique/search/'
+                  break;
+              case 2:
+                    route = '/region/search/'
+                    break;
+              case 3:
+                    route = '/plante/search/'
+                    break;
+                default:
+                    break;
+            }
+            var params={
+                  query:value
+              }
+            var url = this.baseUrl + route + this.getLangage
+            console.log(url)
+            axios.get(url,{params})
+            .then((res)=>{
+                vm.All = res.data
+                console.log(res.data)
+            })
+            .catch((error)=>console.log(error))
+        },
         handleResize(){
             this.scrolly=window.scrollY
             if(this.scrolly>110){
@@ -137,6 +147,7 @@ export default {
         initialValue(table){
            this.AllTechnique2 = table
         },
+        
     }
 }
 </script>

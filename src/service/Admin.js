@@ -6,12 +6,12 @@ class Admin {
 // admin : object contenant l'inforamtion de l'admin
 
     login(admin) {
-        return http.post('/auth/login',admin);
+        return http.post('/user/login',admin);
     }
     
     register(admin) {
 
-        return http.post('/auth/signup',admin)
+        return http.post('/user/signup',admin)
 
     }
     test(){

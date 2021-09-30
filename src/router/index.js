@@ -19,9 +19,12 @@ import ResultatRecherche from '../views/ResultatRecherche.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Documentation from '../views/Documentation'
+import NotFound from '../views/NotFound'
 
+import { store } from '../store';
 
 Vue.use(VueRouter)
+
 
 const routes = [
     {
@@ -72,31 +75,105 @@ const routes = [
         name: 'Admin',
         props: true ,
         component: Admin,
+        beforeEnter(to, from, next){ 
+            if (store.getters["admins/statusConnexion"]==true) {
+                next()
+            } else {
+                var adresseActuelle = window.location;
+                if(adresseActuelle.pathname == "/user/login"){
+                    return next()
+                }else{
+                    next({
+                        name: "Admin" 
+                    });
+                }
+                
+            }
+        }
     },
     {
         path: '/admin/add/climat',
         name: 'AddClimat',
         props: true ,
         component: AddClimat,
+        beforeEnter(to, from, next){ 
+            if (store.getters["admins/statusConnexion"]) {
+                next()
+            } else {
+                var adresseActuelle = window.location;
+                if(adresseActuelle.pathname == "/user/login"){
+                    return next()
+                }else{
+                    next({
+                        name: "Admin" 
+                    });
+                }
+                
+            }
+        }
     },
     {
         path: '/admin/add/plante',
         name: 'AddPlante',
         props: true ,
         component: AddPlante,
+        beforeEnter(to, from, next){ 
+            if (store.getters["admins/statusConnexion"]) {
+                next()
+            } else {
+                var adresseActuelle = window.location;
+                if(adresseActuelle.pathname == "/user/login"){
+                    return next()
+                }else{
+                    next({
+                        name: "Admin" 
+                    });
+                }
+                
+            }
+        }
     },
     {
         path: '/admin/add/region',
         name: 'AddRegion',
         props: true ,
         component: AddRegion,
-        
+        beforeEnter(to, from, next){ 
+            if (store.getters["admins/statusConnexion"]) {
+                next()
+            } else {
+                var adresseActuelle = window.location;
+                if(adresseActuelle.pathname == "/user/login"){
+                    return next()
+                }else{
+                    next({
+                        name: "Admin" 
+                    });
+                }
+                
+            }
+        }
     },
     {
         path: '/admin/add/technique',
         name: 'AddTechnique',
         props: true ,
         component: AddTechnique,
+        beforeEnter(to, from, next){ 
+            if (store.getters["admins/statusConnexion"]) {
+                next()
+            } else {
+                var adresseActuelle = window.location;
+                if(adresseActuelle.pathname == "/user/login"){
+                    return next()
+                }else{
+                    next({
+                        name: "Admin" 
+                    });
+                }
+                
+            }
+        }
     },
     {
         path: '/recherche/:type/:value',
@@ -121,6 +198,8 @@ const routes = [
         name: 'Documentation',
         component: Documentation,
     },
+    { path: '/404', name: 'NotFound',component: NotFound },  
+    { path: '*', redirect: '/404' },  
 
 ]
 

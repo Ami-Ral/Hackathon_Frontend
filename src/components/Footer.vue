@@ -20,7 +20,7 @@
                   <div class="col-12 px-0 col-sm-6 col-md-3 col-lg-3 text-justify">
                     <p class="px-3">{{OptionLangue[getLangage].liens}}</p>
                     <ul>
-                      <li><a href="#">{{OptionLangue[getLangage].a_propos}}</a></li>
+                      <li><router-link to="/user/login" style="text-decoration:none">{{OptionLangue[getLangage].a_propos}}</router-link></li>
                       <li><a :href="rechercheId">{{OptionLangue[getLangage].rechercher}}</a></li>
                     </ul>
                   </div>

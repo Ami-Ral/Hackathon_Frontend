@@ -26,7 +26,7 @@
                     <router-link class="nav-link"  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">{{OptionLangue[getLangage].plante}}</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link"  :style="{color:activ6,fontWeight:fontWeight6}"  to="/documentation">{{OptionLangue[getLangage].doc}}</router-link>
+                    <router-link class="nav-link"  :style="{color:active6,fontWeight:fontWeight6}"  to="/documentation">{{OptionLangue[getLangage].doc}}</router-link>
                 </li>
                 
             </ul>
@@ -100,7 +100,7 @@
 <script>
 import langue from '../service/Multilangue.js'
 import { mapGetters,mapActions} from 'vuex'
-import { setTimeout } from 'timers';
+
   export default {
     name: 'Header',
     props:{

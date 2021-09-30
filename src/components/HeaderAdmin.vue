@@ -48,9 +48,9 @@
                                   <em style="color:white;font-weigth:bold"><i class="fa fa-user"></i> Admin</em>
                                 </a>
                                 <ul class="dropdown-menu shadow bg-dark" style="width:40px!important" aria-labelledby="navbarDropdown">
-                                   <li>
+                                   <li @click="logout()">
                                       <div class="mx-3" >
-                                          <i class="fas fa-sign-out-alt" style="font-size:18px"> Deconnexion</i>
+                                          <i class="fas fa-sign-out-alt" style="font-size:18px" > Deconnexion</i>
                                       </div>
                                     </li>
                                 </ul>
@@ -60,9 +60,13 @@
                     </nav>
                   </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: "HeaderAdmin",
-  props: {}
+  props: {},
+  methods:{
+    ...mapActions('admins',['logout']),
+  }
 };
 </script>
 
