@@ -118,6 +118,7 @@
 
 <script>
 import langue from '../service/Multilangue.js'
+import { toDataUrl } from '../helper/images.js'
 import { mapGetters,mapActions} from 'vuex'
 
   export default {
@@ -192,6 +193,14 @@ import { mapGetters,mapActions} from 'vuex'
     },
     computed: {
       ...mapGetters('Langage',['getLangage'])
+    },
+    mounted(){
+        const images = document.querySelectorAll("img");
+        for(let i = 0; i < images.length; i++){
+            toDataUrl(images[i].getAttribute("src"), function(res){
+                images[i].setAttribute("src", res);
+            })
+        }
     },
     data:function() {
       return{

@@ -2,7 +2,7 @@
     <div class="card" v-if="donnee != undefined ? true : false">
 
         <router-link  style="text-decoration:none;color:white"  class="card2" :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}">
-            <img :src="baseUrl + donnee.couverture.split('public')[1]" alt="" class="card-image">
+            <img :src="donnee.couverture" alt="" class="card-image">
             <div class="under-image"></div>
             <div class="detail" v-if="donnee.nom_fr == undefined || donnee.nom_fr=='null' ? false:true">
                 <h4><router-link :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
