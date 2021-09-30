@@ -127,7 +127,7 @@ export default {
 			this.timeout = setTimeout(() => {
 				this.clearTimeout()
 				callback()
-			}, 300)
+			}, 200)
         },
         getOfflineData(){
             const appData = this.$offlineStorage.get('plante-page');
@@ -154,10 +154,16 @@ export default {
             return techniques
         },
         initialValue2(table){
-           this.AllTechnique2 = table
+            if(table != undefined){
+                 this.AllTechnique2 = table
+            }
+          
         },
         initialValue(table){
-           this.AllPlante2 = table
+            if(table != undefined){
+                this.AllPlante2 = table
+            }
+          
         },
         afficherPlus(){
             var langage = this.getLangage

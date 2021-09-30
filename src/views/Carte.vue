@@ -79,7 +79,7 @@ export default {
 			this.timeout = setTimeout(() => {
 				this.clearTimeout()
 				callback()
-			}, 300)
+			}, 30)
         },
         changeLangue(){
             if(this.getLangage == 'mg'){

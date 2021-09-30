@@ -113,9 +113,8 @@ export default {
             axios.get(url,{params})
             .then((res)=>{
                 vm.All = res.data
-                console.log(res.data)
             })
-            .catch((error)=>console.log(error))
+            .catch((error)=>{})
         },
         handleResize(){
             this.scrolly=window.scrollY
@@ -145,7 +144,10 @@ export default {
             return techniques
         },
         initialValue(table){
-           this.AllTechnique2 = table
+            if(table != undefined){
+                 this.AllTechnique2 = table
+            }
+          
         },
         
     }

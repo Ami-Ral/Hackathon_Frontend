@@ -124,7 +124,7 @@ export default {
 			this.timeout = setTimeout(() => {
 				this.clearTimeout()
 				callback()
-			}, 300)
+			}, 30)
         },
         getOfflineData(){
             const appData = this.$offlineStorage.get('technique-page');
