@@ -127,7 +127,7 @@ export default {
 			this.timeout = setTimeout(() => {
 				this.clearTimeout()
 				callback()
-			}, 1000)
+			}, 300)
         },
         getOfflineData(){
             const appData = this.$offlineStorage.get('plante-page');

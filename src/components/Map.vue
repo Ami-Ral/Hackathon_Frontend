@@ -3,7 +3,7 @@
         <div id="desc">Test</div>
         <svg id="svg_map" baseprofile="tiny" fill="#7c7c7c" height="100%" width="100%" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" version="1.2" :viewBox="viewBox" xmlns="http://www.w3.org/2000/svg">
             <path class="component" v-for="path in paths" v-bind:d="path.path" v-bind:id="path.id_region" v-bind:name="path.nom"
-                 @mouseover="e => overMap(e, path.nom)" @mouseleave="leaveMap" v-on:click="e => showDetail(e, path.id_region)">
+                 @mouseover="e => overMap(e, path.nom)" @mouseleave="leaveMap" v-on:click="e => showDetail(e, path.id_region)" :key="path.id_region">
                 <title>{{ path.nom }}</title>
 		    </path>
             <circle cx="918.1" cy="338.2" id="0">

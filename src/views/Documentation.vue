@@ -14,7 +14,7 @@
                                 <div class="u-layout-row">
                                   <div class="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-30 u-layout-cell-1">
                                     <div class="u-container-layout u-valign-top u-container-layout-1">
-                                      <img class="u-image u-image-default u-image-1" src="../assets/images/pexels-photo-2120114.jpeg" alt="" data-image-width="720" data-image-height="1080">
+                                      <img class="u-image u-image-default u-image-1" src="../assets/images/capture_accueil.png" alt="" data-image-width="720" data-image-height="1080">
                                     </div>
                                   </div>
                                   <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
@@ -49,7 +49,7 @@
                                 <div class="u-layout-row">
                                   <div class="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-30 u-layout-cell-1">
                                     <div class="u-container-layout u-valign-top u-container-layout-1">
-                                      <img class="u-image u-image-default u-image-1" src="../assets/images/pexels-photo-2120114.jpeg" alt="" data-image-width="720" data-image-height="1080">
+                                      <img class="u-image u-image-default u-image-1" src="../assets/images/capture_technique.png" alt="" data-image-width="720" data-image-height="1080">
                                     </div>
                                   </div>
                                   <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
@@ -84,7 +84,7 @@
                                 <div class="u-layout-row">
                                   <div class="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-30 u-layout-cell-1">
                                     <div class="u-container-layout u-valign-top u-container-layout-1">
-                                      <img class="u-image u-image-default u-image-1" src="../assets/images/pexels-photo-2120114.jpeg" alt="" data-image-width="720" data-image-height="1080">
+                                      <img class="u-image u-image-default u-image-1" src="../assets/images/capture_carte1.png" alt="" data-image-width="720" data-image-height="1080">
                                     </div>
                                   </div>
                                   <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
@@ -119,7 +119,7 @@
                                 <div class="u-layout-row">
                                   <div class="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-30 u-layout-cell-1">
                                     <div class="u-container-layout u-valign-top u-container-layout-1">
-                                      <img class="u-image u-image-default u-image-1" src="../assets/images/pexels-photo-2120114.jpeg" alt="" data-image-width="720" data-image-height="1080">
+                                      <img class="u-image u-image-default u-image-1" src="../assets/images/capture_plante.png" alt="" data-image-width="720" data-image-height="1080">
                                     </div>
                                   </div>
                                   <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
@@ -154,7 +154,7 @@
                                 <div class="u-layout-row">
                                   <div class="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-30 u-layout-cell-1">
                                     <div class="u-container-layout u-valign-top u-container-layout-1">
-                                      <img class="u-image u-image-default u-image-1" src="../assets/images/pexels-photo-2120114.jpeg" alt="" data-image-width="720" data-image-height="1080">
+                                      <img class="u-image u-image-default u-image-1" src="../assets/images/capture_vulgarisateur.png" alt="" data-image-width="720" data-image-height="1080">
                                     </div>
                                   </div>
                                   <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
@@ -250,7 +250,7 @@ export default {
           this.timeout = setTimeout(() => {
             this.clearTimeout()
             callback()
-          }, 1000)
+          }, 300)
         },
         handleResize(){
             this.scrolly=window.scrollY
