@@ -64,23 +64,38 @@ export default {
       this.getAll()
       this.setTimeout(() => {
           this.overlay = false
-          this.initialValue(this.AllTechnique)
-          if(this.AllTechnique==undefined){
-                var langage = this.getLangage
-                var nbr_list = this.nbr_list 
-                var start = 0
-                Techniques.getAll(langage,nbr_list,start)
-                .then((res)=>{
-                    this.AllTechnique1 = res.data
-                })
-                .catch(()=>{})
-          }
+            if(this.isOnline){
+              this.initialValue(this.AllTechnique)
+              if(this.AllTechnique==undefined){
+                    var langage = this.getLangage
+                    var nbr_list = this.nbr_list 
+                    var start = 0
+                    Techniques.getAll(langage,nbr_list,start)
+                    .then((res)=>{
+                        this.AllTechnique1 = res.data
+                    })
+                    .catch(()=>{})
+              }
+            }
       })
       
     },
     mounted() {
-      window.addEventListener('scroll', this.handleResize);
-      this.handleResize()
+        window.addEventListener('scroll', this.handleResize);
+        this.handleResize();
+        const self = this;
+        this.$on('offline', () => {
+            self.getOfflineData();
+        })
+
+        if(this.isOffline){
+            self.getOfflineData();
+        }
+    },
+    updated(){
+        if (this.isOnline) {
+            this.setOfflineData();
+        }
     },
     destroyed() {
       window.removeEventListener('scroll', this.handleResize);
@@ -109,6 +124,18 @@ export default {
 				callback()
 			}, 1000)
         },
+        getOfflineData(){
+            const appData = this.$offlineStorage.get('technique-page');
+            this.AllTechnique2 = appData.AllTechnique2;
+            this.AllTechnique1 = appData.AllTechnique1;
+        },
+        setOfflineData(){
+            const self = this;
+            this.$offlineStorage.set('technique-page', {
+                AllTechnique2 : self.AllTechnique2,
+                AllTechnique1 : self.AllTechnique1,
+            });
+        },
         getAll(){
             var langage = this.getLangage
             var nbr_list = this.nbr_list
@@ -122,7 +149,6 @@ export default {
             Techniques.getAll(langage,nbr_list,start)
             .then((res)=>{
                 this.AllTechnique1 = this.AllTechnique1.concat(res.data)
-                console.log(res.data)
                 if(res.data.length<8){
                     this.showPlus = false
                 }
@@ -133,8 +159,9 @@ export default {
         },
         initialValue(table){
             this.AllTechnique1 = table
-            for(let i =0; i<=2;i++){
-                this.AllTechnique2[i] = table[i]
+            const l = table.length > 3 ? 3 : table.length
+            for(let i =0; i < l;i++){
+                this.AllTechnique2.push(table[i]);
             }
         },
         changeData(){

@@ -38,6 +38,7 @@
     "vue-cookies": "^1.7.4",
     "vue-jquery": "^1.0.6",
     "vue-loader": "^15.9.8",
+    "vue-offline": "^2.0.8",
     "vue-route": "^1.5.1",
     "vue-router": "^3.2.0",
     "vue-slick-carousel": "^1.0.6",
@@ -47,6 +48,7 @@
     "vuex-modules": "^0.2.0"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.6",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "^3.1.1",
     "@vue/cli-plugin-router": "~4.5.0",
