@@ -20,6 +20,8 @@
 import { mapGetters, mapActions } from 'vuex'
 
 import Techniques from '../service/Techniques'
+import baseUrl from '../service/baseUrl.js'
+import { toDataUrl } from '../helper/images.js'
 
 import Header from "../components/Header"
 import Footer from "../components/Footer"
@@ -129,12 +131,24 @@ export default {
             this.AllTechnique2 = appData.AllTechnique2;
             this.AllTechnique1 = appData.AllTechnique1;
         },
-        setOfflineData(){
+        async setOfflineData(){
             const self = this;
-            this.$offlineStorage.set('technique-page', {
-                AllTechnique2 : self.AllTechnique2,
-                AllTechnique1 : self.AllTechnique1,
-            });
+            let datas = [];
+            if(this.AllTechnique1){
+                for(let i = 0; i < this.AllTechnique1.length; i++){
+                    let d = self.AllTechnique1[i];
+                    toDataUrl(baseUrl + d.couverture.replace("public", ""), function(res) {
+                        d.couverture = res;
+                        datas.push(d);
+                        if(i == self.AllTechnique1.length - 1){
+                            self.$offlineStorage.set('technique-page', {
+                                AllTechnique2 : self.AllTechnique2,
+                                AllTechnique1 : datas,
+                            });
+                        }
+                    });
+                }
+            }
         },
         getAll(){
             var langage = this.getLangage
@@ -143,12 +157,28 @@ export default {
             return techniques
         },
         afficherPlus(){
+            const self = this;
             var langage = this.getLangage
             var nbr_list = this.nbr_list 
             var start = this.AllTechnique1.length
             Techniques.getAll(langage,nbr_list,start)
             .then((res)=>{
                 this.AllTechnique1 = this.AllTechnique1.concat(res.data)
+                for(let i = 0; i < res.data.length; i++){
+                    const appData = this.$offlineStorage.get('technique-page');
+                    let datas = appData.AllTechnique1;
+                    let d = res.data[i];
+                    toDataUrl(baseUrl + d.couverture.replace("public", ""), function(result) {
+                        d.couverture = result;
+                        datas.push(d);
+                        if(i == res.data.length - 1){
+                            self.$offlineStorage.set('technique-page', {
+                                AllTechnique2 : appData.AllTechnique2,
+                                AllTechnique1 : datas,
+                            });
+                        }
+                    });
+                }
                 if(res.data.length<8){
                     this.showPlus = false
                 }
@@ -158,12 +188,12 @@ export default {
             })
         },
         initialValue(table){
-            if(table != undefined){
-                this.AllTechnique1 = table
-                const l = table.length > 3 ? 3 : table.length
-                for(let i =0; i < l;i++){
-                    this.AllTechnique2.push(table[i]);
-                }
+
+            this.AllTechnique1 = table
+            const l = table ? table.length > 3 ? 3 : table.length : 0;
+            for(let i =0; i < l;i++){
+                this.AllTechnique2.push(table[i]);
+
             }
            
         },

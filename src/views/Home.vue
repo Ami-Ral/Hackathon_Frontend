@@ -253,16 +253,31 @@
       this.getAll()
       this.setTimeout(() => {
           this.overlay = false
-          this.initialValue(this.AllTechnique)
-          if(this.AllTechnique==undefined){
-              this.afficherPlus()
+          if(this.isOnline){
+            this.initialValue(this.AllTechnique)
+            if(this.AllTechnique==undefined){
+                this.afficherPlus()
+            }
           }
       })
+    },
+    updated(){
+        if (this.isOnline) {
+            this.setOfflineData();
+        }
     },
     mounted() {
       AOS.init()
       window.addEventListener('scroll', this.handleResize);
-      this.handleResize()
+      this.handleResize();
+        const self = this;
+        this.$on('offline', () => {
+            self.getOfflineData();
+        })
+
+        if(this.isOffline){
+            self.getOfflineData();
+        }
     },
     destroyed() {
       window.removeEventListener('scroll', this.handleResize);
@@ -276,6 +291,16 @@
 					'background-image': `linear-gradient(to bottom,rgba(44, 44, 44, 0.3),rgb(44, 44, 44, 0.3)),url(${image})`,
 				}
       },
+        getOfflineData(){
+            const appData = this.$offlineStorage.get('home-page');
+            this.AllTechnique2 = appData.AllTechnique2;
+        },
+        setOfflineData(){
+            const self = this;
+            this.$offlineStorage.set('home-page', {
+                AllTechnique2 : self.AllTechnique2,
+            });
+        },
     handleResize(){
       this.scrolly=window.scrollY
       if(this.scrolly>510){

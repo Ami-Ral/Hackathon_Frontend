@@ -5,7 +5,7 @@
             <header id="scrollId3"  >
                 <Header :bgcolor="bgcolor" :active2="active2" :fontWeight2="fontWeight2" :set="changeLangue"/>
               </header>
-            <div id="main-container">
+            <div id="main-container" v-if="datas">
                 <div class="container pt-4">
                   <div class="d-flex top-text-aci">
                     <span>Agriculture</span>
@@ -251,10 +251,23 @@ export default {
         
         this.getData();
     },
+    updated(){
+        if (this.isOnline) {
+            this.setOfflineData();
+        }
+    },
     
      mounted() {
       window.addEventListener('scroll', this.handleResize);
-      this.handleResize()
+      this.handleResize();
+        const self = this;
+        this.$on('offline', () => {
+            self.getOfflineData();
+        })
+
+        if(this.isOffline){
+            self.getOfflineData();
+        }
     },
     destroyed() {
       window.removeEventListener('scroll', this.handleResize);
@@ -296,7 +309,6 @@ export default {
             
                     response.json().then(function(data) {
                         self.datas = data;
-                        console.log(data)
                     });
                 }
             )
@@ -325,6 +337,19 @@ export default {
                 console.error('Fetch Error :-S', err);
             });
         },
+        getOfflineData(){
+            const appData = this.$offlineStorage.get('detail-technique-page');
+            this.datasTechnique = appData.datasTechnique;
+            this.datas = appData.datas;
+        },
+        setOfflineData(){
+            const self = this;
+            this.$offlineStorage.set('detail-technique-page', {
+                datasTechnique : self.datasTechnique,
+                datas : self.datas,
+            });
+        },
+
         changeLangue(){
             if(this.getLangage == 'mg'){
                 this.setLangage(this.fr)
