@@ -19,7 +19,7 @@ var langue = ({
         onglet4 : "système de production",
         onglet4_description : "Une forte interaction entre agriculture, climat et technique pour parvenir à un but.",
         connaissance : "Avant-propos",
-        mada : "Madagascar",
+        mada : "Madagascar",        
         description_connaissance :"Depuis quelques décennies, le changement climatique s’aggrave et présente des effets néfastes. Cela reflète sur les phénomènes météorologiques, l’épuisement des ressources naturelles et sur l’agriculture. Cette dernière menace le monde à l’égard de la pression démographique élevée. Environ 0,5 % de terres arables à Madagascar sont disparues chaque année. Ce contexte incite la curiosité des jeunes développeurs et élève ingénieur agronome promoteurs de développement, à chercher des alternatives pour pouvoir éradiquer la destruction de la nature.",
         description_technique : "Les techniques agricoles intelligentes face au climat peuvent augmenter la productivité agricole et les revenus, rendre les communautés rurales plus résilientes au changement climatique et si possible, atténuer le changement climatique.",
         gallerie : 'GALLERIE',
@@ -62,7 +62,12 @@ var langue = ({
         titre_5_bloc :"UN BONUS" ,
         sous_titre_5_bloc :" Comment devenir un 'Vulgarisateur' ?" ,
         description_5_bloc :"Comme les données " ,
-        finalisation_5_bloc :"" ,
+        climat_rel :" Climats adaptés:",
+        region_rel :" Régions adaptés : :" ,
+        plante_rel :"PLantes adaptés :",
+        type_sol :" Type du sol",
+        struct_sol :"Structure du sol",
+        text_sol :"Texture du sol",
     },
     mg:{
         accueil : "Fandraisana" ,
@@ -126,7 +131,13 @@ var langue = ({
         titre_5_bloc :"Pejy TOE-TANY" ,
         sous_titre_5_bloc :"" ,
         description_5_bloc :"Ao amin'ny pejy TOE-TANY diaahitana ireo karazana toe-tany misy eto Madagasikara sy ireo momba azy tsirairay avy" ,
-        climats_reltatifs :" Toe-tany mety"
+        climat_rel : "Toe-tany mety :",
+        region_rel : "Faritra mety :" ,
+        plante_rel : "Zava-maniry mety",
+        tech_rel :"Teknika mety" ,
+        type_sol :" Karazana tany",
+        struct_sol :" Firafitry ny tany",
+        text_sol :"Volavolan-tany ",
     }
 })
 export default langue

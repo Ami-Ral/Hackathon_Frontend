@@ -14,7 +14,7 @@
                     <div class="madagascar-content">
                       <h1>Madagascar</h1>
                       <p class="madagascar-desc">
-                          Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur porro libero voluptate itaque similique totam quidem numquam quibusdam doloribus sit, mollitia dolorem, modi. Modi ut molestiae ipsum, adipisci aut quis!
+                          
                       </p>
 
                       <SearchForm />
@@ -31,21 +31,28 @@
     </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import Header from "../components/Header"
 import Map from "../components/Map"
 import SearchForm from "../components/SearchForm"
+import langue from '../service/Multilangue.js'
 
+///{{OptionLangue[getLangage].titre_5_bloc}}
 export default {
-    name:'Plantes',
+    name:'Carte',
      components: {
       Header,
       Map,
       SearchForm
     },
+    computed: {
+       ...mapGetters('Langage',['getLangage']), 
+    },
     created(){
       this.setTimeout(() => {
           this.overlay = false
       })
+      
     },
     data:function() {
       return{
@@ -54,6 +61,7 @@ export default {
         fontWeight3:'bolder',
         overlay:true,
         timeout: null,
+        OptionLangue:langue,
       }
    },
     methods:{
