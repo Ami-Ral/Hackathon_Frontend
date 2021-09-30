@@ -19,9 +19,9 @@
                                   </div>
                                   <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
                                     <div class="u-container-layout u-container-layout-2">
-                                      <h2 class="u-custom-font u-font-raleway u-text u-text-default u-text-1">{{OptionLangue[getLangage].about_us}}</h2>
-                                      <h6 class="u-text u-text-2">Sample Headline</h6>
-                                      <p class="u-align-justify u-custom-font u-font-montserrat u-text u-text-3"> Article evident arrived express highest men did boy. Mistress sensible entirely am so. Quick can manor smart money hopes worth too. Comfort produce husband boy her had hearing. Law others theirs passed but wishes. You day real less till dear read. Considered use dispatched melancholy sympathize discretion led. Oh feel if up to till like.</p>
+                                      <h2 class="u-custom-font u-font-raleway u-text u-text-default u-text-1">{{OptionLangue[getLangage].titre_1_bloc}}</h2>
+                                      <h6 class="u-text u-text-2">{{OptionLangue[getLangage].sous_titre_1_bloc}}</h6>
+                                      <p class="u-align-justify u-custom-font u-font-montserrat u-text u-text-3">{{OptionLangue[getLangage].description_1_bloc}}</p>
                                     </div>
                                   </div>
                                 </div>
@@ -30,7 +30,7 @@
                                 <div class="u-layout-row">
                                   <div class="u-align-justify u-container-style u-custom-color-1 u-layout-cell u-size-60 u-layout-cell-3">
                                     <div class="u-container-layout u-valign-middle u-container-layout-3">
-                                      <p class="u-custom-font u-font-montserrat u-text u-text-4"> He an thing rapid these after going drawn or. Timed she his law the spoil round defer. In surprise concerns informed betrayed he learning is ye. Ignorant formerly so ye blessing. He as spoke avoid given downs money on we. Of properly carriage shutters ye as wandered up repeated moreover.</p>
+                                      <p class="u-custom-font u-font-montserrat u-text u-text-4">{{OptionLangue[getLangage].finalisation_1_bloc}}</p>
                                     </div>
                                   </div>
                                 </div>
@@ -40,7 +40,7 @@
                         </div>
                       </div>
                     </section>
-                    <section class="u-clearfix u-grey-5 u-section-2" id="carousel_3b5d">
+                    <section class="u-clearfix u-grey-5 u-section-1" id="carousel_7b2b">
                       <div class="u-clearfix u-sheet u-sheet-1">
                         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
                           <div class="u-layout">
@@ -54,9 +54,9 @@
                                   </div>
                                   <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
                                     <div class="u-container-layout u-container-layout-2">
-                                      <h2 class="u-custom-font u-font-raleway u-text u-text-default u-text-1">About Us</h2>
-                                      <h6 class="u-text u-text-2">Sample Headline</h6>
-                                      <p class="u-align-justify u-custom-font u-font-montserrat u-text u-text-3"> Article evident arrived express highest men did boy. Mistress sensible entirely am so. Quick can manor smart money hopes worth too. Comfort produce husband boy her had hearing. Law others theirs passed but wishes. You day real less till dear read. Considered use dispatched melancholy sympathize discretion led. Oh feel if up to till like.</p>
+                                      <h2 class="u-custom-font u-font-raleway u-text u-text-default u-text-1">{{OptionLangue[getLangage].titre_2_bloc}}</h2>
+                                      <h6 class="u-text u-text-2">{{OptionLangue[getLangage].sous_titre_2_bloc}}</h6>
+                                      <p class="u-align-justify u-custom-font u-font-montserrat u-text u-text-3">{{OptionLangue[getLangage].description_2_bloc}}</p>
                                     </div>
                                   </div>
                                 </div>
@@ -65,7 +65,112 @@
                                 <div class="u-layout-row">
                                   <div class="u-align-justify u-container-style u-custom-color-1 u-layout-cell u-size-60 u-layout-cell-3">
                                     <div class="u-container-layout u-valign-middle u-container-layout-3">
-                                      <p class="u-custom-font u-font-montserrat u-text u-text-4"> He an thing rapid these after going drawn or. Timed she his law the spoil round defer. In surprise concerns informed betrayed he learning is ye. Ignorant formerly so ye blessing. He as spoke avoid given downs money on we. Of properly carriage shutters ye as wandered up repeated moreover.</p>
+                                      <p class="u-custom-font u-font-montserrat u-text u-text-4">{{OptionLangue[getLangage].finalisation_2_bloc}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <section class="u-clearfix u-grey-5 u-section-1" id="carousel_7b2b">
+                      <div class="u-clearfix u-sheet u-sheet-1">
+                        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+                          <div class="u-layout">
+                            <div class="u-layout-col">
+                              <div class="u-size-30">
+                                <div class="u-layout-row">
+                                  <div class="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-30 u-layout-cell-1">
+                                    <div class="u-container-layout u-valign-top u-container-layout-1">
+                                      <img class="u-image u-image-default u-image-1" src="../assets/images/pexels-photo-2120114.jpeg" alt="" data-image-width="720" data-image-height="1080">
+                                    </div>
+                                  </div>
+                                  <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
+                                    <div class="u-container-layout u-container-layout-2">
+                                      <h2 class="u-custom-font u-font-raleway u-text u-text-default u-text-1">{{OptionLangue[getLangage].titre_3_bloc}}</h2>
+                                      <h6 class="u-text u-text-2">{{OptionLangue[getLangage].sous_titre_3_bloc}}</h6>
+                                      <p class="u-align-justify u-custom-font u-font-montserrat u-text u-text-3">{{OptionLangue[getLangage].description_3_bloc}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="u-size-30">
+                                <div class="u-layout-row">
+                                  <div class="u-align-justify u-container-style u-custom-color-1 u-layout-cell u-size-60 u-layout-cell-3">
+                                    <div class="u-container-layout u-valign-middle u-container-layout-3">
+                                      <p class="u-custom-font u-font-montserrat u-text u-text-4">{{OptionLangue[getLangage].finalisation_3_bloc}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <section class="u-clearfix u-grey-5 u-section-1" id="carousel_7b2b">
+                      <div class="u-clearfix u-sheet u-sheet-1">
+                        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+                          <div class="u-layout">
+                            <div class="u-layout-col">
+                              <div class="u-size-30">
+                                <div class="u-layout-row">
+                                  <div class="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-30 u-layout-cell-1">
+                                    <div class="u-container-layout u-valign-top u-container-layout-1">
+                                      <img class="u-image u-image-default u-image-1" src="../assets/images/pexels-photo-2120114.jpeg" alt="" data-image-width="720" data-image-height="1080">
+                                    </div>
+                                  </div>
+                                  <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
+                                    <div class="u-container-layout u-container-layout-2">
+                                      <h2 class="u-custom-font u-font-raleway u-text u-text-default u-text-1">{{OptionLangue[getLangage].titre_4_bloc}}</h2>
+                                      <h6 class="u-text u-text-2">{{OptionLangue[getLangage].sous_titre_4_bloc}}</h6>
+                                      <p class="u-align-justify u-custom-font u-font-montserrat u-text u-text-3">{{OptionLangue[getLangage].description_4_bloc}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="u-size-30">
+                                <div class="u-layout-row">
+                                  <div class="u-align-justify u-container-style u-custom-color-1 u-layout-cell u-size-60 u-layout-cell-3">
+                                    <div class="u-container-layout u-valign-middle u-container-layout-3">
+                                      <p class="u-custom-font u-font-montserrat u-text u-text-4">{{OptionLangue[getLangage].finalisation_4_bloc}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <section class="u-clearfix u-grey-5 u-section-1" id="carousel_7b2b">
+                      <div class="u-clearfix u-sheet u-sheet-1">
+                        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+                          <div class="u-layout">
+                            <div class="u-layout-col">
+                              <div class="u-size-30">
+                                <div class="u-layout-row">
+                                  <div class="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-30 u-layout-cell-1">
+                                    <div class="u-container-layout u-valign-top u-container-layout-1">
+                                      <img class="u-image u-image-default u-image-1" src="../assets/images/pexels-photo-2120114.jpeg" alt="" data-image-width="720" data-image-height="1080">
+                                    </div>
+                                  </div>
+                                  <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
+                                    <div class="u-container-layout u-container-layout-2">
+                                      <h2 class="u-custom-font u-font-raleway u-text u-text-default u-text-1">{{OptionLangue[getLangage].titre_5_bloc}}</h2>
+                                      <h6 class="u-text u-text-2">{{OptionLangue[getLangage].sous_titre_5_bloc}}</h6>
+                                      <p class="u-align-justify u-custom-font u-font-montserrat u-text u-text-3">{{OptionLangue[getLangage].description_5_bloc}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="u-size-30">
+                                <div class="u-layout-row">
+                                  <div class="u-align-justify u-container-style u-custom-color-1 u-layout-cell u-size-60 u-layout-cell-3">
+                                    <div class="u-container-layout u-valign-middle u-container-layout-3">
+                                      <p class="u-custom-font u-font-montserrat u-text u-text-4">{{OptionLangue[getLangage].finalisation_5_bloc}}</p>
                                     </div>
                                   </div>
                                 </div>

@@ -4,7 +4,7 @@
             <div class="mg-map" :style="bg_style">
                 <div class="row" style="height: 100%;">
                     <div class="col-md-5" style="height: 100%; position: relative;">
-                        <div id="desccc">
+                        <div id="desccc" v-if="details">
                             <div class="desccc-item">
                                 <img src="../assets/images/shovel.png" alt="Tanimboly" />
                                 <div>
@@ -57,24 +57,60 @@
                 </div>
             </div>
         </div>
-        <div style="position: relative; z-index: 2;">
-            <VueSlickCarousel v-if="techniques.length">
-                <router-link :to="{name:'DetailTechnique',params:{id:parseInt(tech.id_technique)}}" class="card ml-4 border-none" v-for="(tech,index) in techniques" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
-                    <img :src="baseUrl + tech.couverture.split('public')[1]" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text pb-0" style="font-size:12px" v-if="tech.nom_fr != undefined ? true :false">{{tech.nom_fr}}</p>
-                        <p class="card-text" v-else>{{tech.nom_mg}}</p>
+        <div style="position: relative; z-index: 2; padding: 1rem; background-color: #222;">
+            <div class="relations-list">
+                <h4 class="mt-4">
+                    <b style="text-transform:uppercase">Techniques relatives</b>
+                </h4>
+                <VueSlickCarousel v-if="techniques.length" v-bind="setting3" style="padding: 1rem;">
+
+                    <router-link :to="{name:'DetailTechnique',params:{id:parseInt(tech.id_technique)}}" class="card ml-4 border-none" v-for="(tech,index) in techniques" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
+                        <img :src="baseUrl + tech.couverture.split('public')[1]" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text pb-0" style="font-size:12px" v-if="tech.nom_fr != undefined ? true :false">{{tech.nom_fr}}</p>
+                            <p class="card-text" v-else>{{tech.nom_mg}}</p>
+                        </div>
+                    </router-link>
+                </VueSlickCarousel>
+            </div>
+            <div class="relations-list">
+                <h4 class="mt-4">
+                    <b style="text-transform:uppercase">Plantes relatives</b>
+                </h4>
+                <VueSlickCarousel v-if="techniques.length" v-bind="setting3" style="padding: 1rem;">
+
+                    <router-link :to="{name:'DetailTechnique',params:{id:parseInt(tech.id_technique)}}" class="card ml-4 border-none" v-for="(tech,index) in techniques" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
+                        <img :src="baseUrl + tech.couverture.split('public')[1]" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text pb-0" style="font-size:12px" v-if="tech.nom_fr != undefined ? true :false">{{tech.nom_fr}}</p>
+                            <p class="card-text" v-else>{{tech.nom_mg}}</p>
+                        </div>
+                    </router-link>
+                </VueSlickCarousel>
+            </div>
+            <div class="relations-list">
+                <h4 class="mt-4">
+                    <b style="text-transform:uppercase">Climats relatifs</b>
+                </h4>
+                <VueSlickCarousel v-if="climat.length" v-bind="setting3" style="padding: 1rem;">
+
+                    <div class="card ml-4 border-none" v-for="(tech,index) in climat" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
+                        <img :src="tech.image" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text pb-0" style="font-size:12px" v-if="tech.nom_fr != undefined ? true :false">{{tech.nom_fr}}</p>
+                            <p class="card-text" v-else>{{tech.nom_mg}}</p>
+                        </div>
                     </div>
-                </router-link>
-            </VueSlickCarousel>
-            <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
+                </VueSlickCarousel>
+            </div>
         </div>
     </div>
 </template>
 <script>
 import langue from '../service/Multilangue.js'
+import baseUrl from '../service/baseUrl.js'
 import MapService from '../service/Map.js'
-import Footer from "../components/Footer"
+import Footer from "./Footer"
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
@@ -83,11 +119,49 @@ import { mapGetters} from 'vuex'
 export default {
     name:'List',
     data:function() {
+
         return{
             techniques : [],
             plantes : [],
             climat : [],
+            baseUrl:baseUrl,
             details: null,
+            setting3:{
+                dots: false,
+                focusOnSelect: true,
+                infinite: true,
+                speed: 1000,
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                touchThreshold: 5,
+                arrows: false,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 64,
+                            slidesToScroll: 4,
+                            infinite: true,
+                            dots: true
+                        }
+                        },
+                        {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 3,
+                                slidesToScroll: 2,
+                                initialSlide: 2
+                            }
+                        },
+                        {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            },
             bg_style: "background-image: linear-gradient(to right, #00000070, #111), url(https://www.journaldutrek.com/images/madagascar/paysage-mada-foret-isalo.jpg)",
             viewBox : "0 0 1000 1985",
             update_path : false
@@ -117,7 +191,7 @@ export default {
     },
     methods:{
         showDetail(id){
-            this.$router.push("region/"+id);
+            this.$router.push("region/"+ id);
         },
         changeZoom(){
             this.update_path = true;
@@ -156,6 +230,23 @@ export default {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+}
+
+h4{
+    color: #fffc;
+}
+
+.card-body{
+     background: rgb(15, 15, 17) top center;
+}
+.card{
+    color: white;
+    padding-left: 1rem;
+    background: rgb(41, 41, 41) top center;
+}
+
+.card:hover{
+    color: white;
 }
 
 .map-site{
