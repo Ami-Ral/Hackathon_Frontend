@@ -276,14 +276,6 @@ export default {
     },
     methods:{
         ...mapActions('Langage',['setLangage']),
-                changeLangue(){
-            if(this.getLangage == 'mg'){
-                this.setLangage(this.fr);
-            }else{
-                this.setLangage(this.mg)
-            }
-
-        },
         clearTimeout() {
           if (this.timeout) {
             clearTimeout(this.timeout)

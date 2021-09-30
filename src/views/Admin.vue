@@ -10,7 +10,7 @@
                       <HeaderAdmin/>
                    </div>
                    <div class="body ">
-                       <h1 class="red">En cours de developpement!!</h1>
+                       <h1 class="red"><i class="fas fa-exclamation-triangle"></i>En cours de developpement<i class="fas fa-exclamation-triangle"></i></h1>
                    </div>
                </div>
            </div>

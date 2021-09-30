@@ -14,7 +14,7 @@
                                 <router-link  to="/" class="nav-link" aria-current="page" href="#">Accueil</router-link>
                               </li>
                               <li class="nav-item">
-                                <router-link  to="/" class="nav-link active" href="#">Tableau de board</router-link>
+                                <router-link  to="/admin/home" class="nav-link active" href="#">Tableau de board</router-link>
                               </li>
                               <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,10 +32,10 @@
                                   Listes
                                 </a>
                                 <ul class="dropdown-menu shadow bg-dark" aria-labelledby="navbarDropdown">
-                                  <li><router-link class="dropdown-item" to="/" href="#"><i class="fas fa-cogs"></i> Technique</router-link></li>
-                                  <li><router-link class="dropdown-item" to="/" href="#"><i class="fas fa-cloud-sun-rain"></i> Climat</router-link></li>
-                                  <li><router-link class="dropdown-item" to="/" href="#"><i class="fas fa-tree"></i> Plante</router-link></li>
-                                  <li><router-link class="dropdown-item" to="/" href="#"><i class="fas fa-globe-africa"></i> Region</router-link></li>
+                                  <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-cogs"></i> Technique</router-link></li>
+                                      <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-cloud-sun-rain"></i> Climat</router-link></li>
+                                      <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-tree"></i> Plante</router-link></li>
+                                      <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-globe-africa"></i> Region</router-link></li>
                                 </ul>
                               </li>
                             </ul>
