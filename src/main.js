@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import VueAxios from 'vue-axios'
 
-
+import VueOffline from 'vue-offline'
 
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
@@ -22,6 +22,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 Vue.use(AOS)
+Vue.use(VueOffline)
 
 Vue.config.productionTip =  true
 

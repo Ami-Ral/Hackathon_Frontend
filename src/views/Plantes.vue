@@ -68,26 +68,41 @@ export default {
       this.getAll()
       this.setTimeout(() => {
           this.overlay = false
-          this.initialValue2(this.AllTechnique)
-           this.initialValue(this.AllPlante)
-           if(this.AllPlante == undefined){
-              var langage = this.getLangage
-              var nbr_list = this.nbr_list 
-              var start = 0
-              Plantes.getAll(langage,nbr_list,start)
-                .then((res)=>{
-                    this.AllPlante2 = res.data
-                })
-                .catch(()=>{})
+          if(this.isOnline){
+              this.initialValue2(this.AllTechnique)
+               this.initialValue(this.AllPlante)
+               if(this.AllPlante == undefined){
+                  var langage = this.getLangage
+                  var nbr_list = this.nbr_list 
+                  var start = 0
+                  Plantes.getAll(langage,nbr_list,start)
+                    .then((res)=>{
+                        this.AllPlante2 = res.data
+                    })
+                    .catch(()=>{})
+              }
           }
       })
     },
     mounted() {
       window.addEventListener('scroll', this.handleResize);
-      this.handleResize()
+      this.handleResize();
+        const self = this;
+        this.$on('offline', () => {
+            self.getOfflineData();
+        })
+
+        if(this.isOffline){
+            self.getOfflineData();
+        }
     },
     destroyed() {
       window.removeEventListener('scroll', this.handleResize);
+    },
+    updated(){
+        if (this.isOnline) {
+            this.setOfflineData();
+        }
     },
     methods: {
         ...mapActions('Plante',['getAllPlante']),
@@ -113,6 +128,18 @@ export default {
 				this.clearTimeout()
 				callback()
 			}, 1000)
+        },
+        getOfflineData(){
+            const appData = this.$offlineStorage.get('technique-page');
+            this.AllTechnique2 = appData.AllTechnique2;
+            this.AllPlante2 = appData.AllPlante2;
+        },
+        setOfflineData(){
+            const self = this;
+            this.$offlineStorage.set('technique-page', {
+                AllTechnique2 : self.AllTechnique2,
+                AllPlante2 : self.AllPlante2,
+            });
         },
         getAll(){
             var langage = this.getLangage
