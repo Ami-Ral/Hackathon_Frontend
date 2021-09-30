@@ -25,8 +25,8 @@ import Footer from "../components/Footer"
 import List from "../components/List"
 import BarRecherche from "../components/BarRecherche"
 import Plantes from '../service/Plantes'
-import { setTimeout } from 'timers';
 import Techniques from '../service/Techniques'
+import { setTimeout } from 'timers';
 
 export default {
     name:'Plantes',
@@ -79,6 +79,12 @@ export default {
                   Plantes.getAll(langage,nbr_list,start)
                     .then((res)=>{
                         this.AllPlante2 = res.data
+                    })
+                    .catch(()=>{})
+
+                    Techniques.getAll(langage,3,0)
+                    .then((res)=>{
+                       this.AllTechnique2 = res.data
                     })
                     .catch(()=>{})
               }
@@ -199,6 +205,12 @@ export default {
             Plantes.getAll(langage,nbr_list,start)
             .then((res)=>{
                 this.AllPlante2 = res.data
+            })
+            .catch(()=>{});
+
+            Techniques.getAll(langage,3,0)
+            .then((res)=>{
+               this.AllTechnique2 = res.data
             })
             .catch(()=>{})
         },

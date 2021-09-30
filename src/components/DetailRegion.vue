@@ -75,15 +75,15 @@
             </div>
             <div class="relations-list">
                 <h4 class="mt-4">
-                    <b style="text-transform:uppercase">{{OptionLangue[getLangage].climat_rel}}</b>
+                    <b style="text-transform:uppercase">{{OptionLangue[getLangage].plante_rel}}</b>
                 </h4>
-                <VueSlickCarousel v-if="techniques.length" v-bind="setting3" style="padding: 1rem;">
+                <VueSlickCarousel v-if="plantes.length" v-bind="setting3" style="padding: 1rem;">
 
-                    <router-link :to="{name:'DetailTechnique',params:{id:parseInt(tech.id_technique)}}" class="card ml-4 border-none" v-for="(tech,index) in techniques" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
-                        <img :src="baseUrl + tech.couverture.split('public')[1]" class="card-img-top" alt="...">
+                    <router-link :to="{name:'DetailTechnique',params:{id:parseInt(plante.id_technique)}}" class="card ml-4 border-none" v-for="(plante,index) in plantes" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
+                        <img :src="baseUrl + plante.image.replace('public','')" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="card-text pb-0" style="font-size:12px" v-if="tech.nom_fr != undefined ? true :false">{{tech.nom_fr}}</p>
-                            <p class="card-text" v-else>{{tech.nom_mg}}</p>
+                            <p class="card-text pb-0" style="font-size:12px" v-if="plante.nom_fr != undefined ? true :false">{{plante.nom_fr}}</p>
+                            <p class="card-text" v-else>{{plante.nom_mg}}</p>
                         </div>
                     </router-link>
                 </VueSlickCarousel>
@@ -95,7 +95,7 @@
                 <VueSlickCarousel v-if="climat.length" v-bind="setting3" style="padding: 1rem;">
 
                     <div class="card ml-4 border-none" v-for="(tech,index) in climat" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
-                        <img :src="tech.image" class="card-img-top" alt="...">
+                        <img :src="baseUrl + tech.image.replace('public','')" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="card-text pb-0" style="font-size:12px" v-if="tech.nom_fr != undefined ? true :false">{{tech.nom_fr}}</p>
                             <p class="card-text" v-else>{{tech.nom_mg}}</p>
@@ -194,6 +194,7 @@ export default {
         if (this.isOnline) {
             this.setOfflineData();
         }
+        console.log("plantes ", this.plantes);
     },
     beforeMount(){
         const self = this;

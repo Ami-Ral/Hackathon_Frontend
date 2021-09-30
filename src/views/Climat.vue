@@ -6,7 +6,7 @@
                     <Header :bgcolor="bgcolor" :active5="active5" :fontWeight5="fontWeight5" :set="changeLangue"/>
                 </header>
                 <BarRecherche/>
-                <div class="listclimat pb-4 pb-2">
+                <div class="listclimat pb-4 pb-2" v-if="AllClimat1.length > 3">
                     <div class="container-fluid px-3 pt-2 mb-4">
                         <div class="row align-items-center pt-5 px-4 mb-4">
                             <div class="col col-lg-12">
@@ -19,7 +19,7 @@
                                 <img src="https://img.freepik.com/vecteurs-libre/feuilles-vertes-fond-clair_23-2147721708.jpg?size=338&ext=jpg" width="100%" height="300px" alt="">
                             </div>
                             <div class="col-12 col-lg-8 col-sm-12 col-md-6 col-12 mt-4 mt-lg-0 mt-md-0 mt-sm-4" >
-                                <div style="height:100% " :style="backgroundStyles(AllClimat1[0].image)">
+                                <div class="bbbdd" style="height:100% " :style="backgroundStyles(baseUrl + AllClimat1[0].image.replace('public', ''))">
                                     <div class="detail1 px-4">
                                         <h2 v-if="AllClimat1[0].nom_fr != undefined ? true:false">{{AllClimat1[0].nom_fr}}</h2>
                                         <h2 v-else>{{AllClimat1[0].nom_mg}}</h2>
@@ -35,7 +35,7 @@
                         </div>
                          <div class="row row-cols-lg-1 row-cols-1 row-cols-md-2 row-cols-sm-1 mt-3">
                             <div class="col-12 col-lg-6 col-sm-12 col-md-6 col-12 mt-2 mt-lg-0 mt-md-0 mt-sm-1 imagesoleie" >
-                                <div style="height:100%" class="imagesoleie" :style="backgroundStyles(AllClimat1[1].image)">
+                                <div style="height:100%" class="imagesoleie bbbdd" :style="backgroundStyles(baseUrl + AllClimat1[1].image.replace('public', ''))">
                                     <div class="detail2 px-4">
                                         <h2 v-if="AllClimat1[1].nom_fr != undefined ? true:false">{{AllClimat1[1].nom_fr}}</h2>
                                         <h2 v-else>{{AllClimat1[1].nom_mg}}</h2>
@@ -50,7 +50,7 @@
                             <div class="col-12 col-lg-6 col-sm-12 col-md-6 col-12">
                                 <div class="row row-cols-lg-1  row-cols-1 row-cols-md-1 row-cols-sm-1">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-12 mt-3 mt-lg-0 mt-md-0 mt-sm-3">
-                                        <div style="height:100%" :style="backgroundStyles(AllClimat1[2].image)">
+                                        <div class="bbbdd" style="height:100%" :style="backgroundStyles(baseUrl + AllClimat1[2].image.replace('public', ''))">
                                             <div class="detail3 px-4">
                                                 <h2 v-if="AllClimat1[2].nom_fr != undefined ? true:false">{{AllClimat1[2].nom_fr}}</h2>
                                                 <h2 v-else>{{AllClimat1[2].nom_mg}}</h2>
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-3 mt-lg-4">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
-                                        <div  style="height:200px" :style="backgroundStyles(AllClimat1[3].image)">
+                                        <div class="bbbdd" style="height:200px" :style="backgroundStyles(baseUrl + AllClimat1[3].image.replace('public', ''))">
                                             <div class="detail3 px-4">
                                                 <h2 v-if="AllClimat1[3].nom_fr != undefined ? true:false">{{AllClimat1[3].nom_fr}}</h2>
                                                 <h2 v-else>{{AllClimat1[3].nom_mg}}</h2>
@@ -94,9 +94,11 @@
 import { mapGetters, mapActions } from 'vuex'
 import Climats from '../service/Climats'
 import Header from "../components/Header"
+import baseUrl from '../service/baseUrl.js'
 import BarRecherche from "../components/BarRecherche"
 import Footer from "../components/Footer"
 import Techniques from '../service/Techniques'
+import { toDataUrl } from '../helper/images.js'
 
 export default {
     name:'Climat',
@@ -162,6 +164,7 @@ export default {
         scrollId:"#scrollId3",
         scrolly: 0,
         showup:false,
+        baseUrl: baseUrl,
         AllTechnique2:[],
         AllClimat1:[],
         nbr_list2:8,
@@ -208,6 +211,7 @@ export default {
         },
         setOfflineData(){
             const self = this;
+            let datas = [];
             this.$offlineStorage.set('climat-page', {
                 AllTechnique2 : self.AllTechnique2,
                 AllClimat1 : self.AllClimat1,
@@ -293,6 +297,10 @@ export default {
 }
 h3{
     color: whitesmoke
+}
+
+.bbbdd{
+    background-size: cover !important;
 }
 
 .under-title{

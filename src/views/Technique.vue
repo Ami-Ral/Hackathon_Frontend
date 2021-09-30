@@ -67,6 +67,7 @@ export default {
       this.setTimeout(() => {
           this.overlay = false
             if(this.isOnline){
+                this.changeData();
               this.initialValue(this.AllTechnique)
               if(this.AllTechnique==undefined){
                     var langage = this.getLangage
@@ -190,6 +191,7 @@ export default {
         initialValue(table){
 
             this.AllTechnique1 = table
+            this.AllTechnique2 = [];
             const l = table ? table.length > 3 ? 3 : table.length : 0;
             for(let i =0; i < l;i++){
                 this.AllTechnique2.push(table[i]);
