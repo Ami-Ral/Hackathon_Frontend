@@ -100,7 +100,7 @@
                       </div>
                       <div class="col-lg-8 col-md-12">
                         <VueSlickCarousel    v-bind="settings">
-                          <div class="p-2" v-for="plante in datas.plantes" :key="plante.id_plante">
+                          <router-link :to="{name:'DetailPlante',params:{id:plante.id_plante}}" class="p-2" v-for="plante in datas.plantes" :key="plante.id_plante">
                             <div class="card" style="border-radius: 0; border: none;">
                               <img :src="baseUrl + plante.path.replace('public/', '')" class="card-img-top" :alt="plante.nom_fr">
                               <div class="card-body">
@@ -109,7 +109,7 @@
                                 <small class="text-muted" style="text-transform: uppercase;">{{ plante.nom_scientifique }}</small>
                               </div>
                             </div>
-                          </div>
+                          </router-link>
                         </VueSlickCarousel>
                       </div>
                     </div>
@@ -120,7 +120,7 @@
                       </div>
                       <div class="col-lg-8 col-md-12">
                         <VueSlickCarousel    v-bind="settings">
-                          <div class="p-2" v-for="climat in datas.climats" :key="climat.id_climat">
+                          <router-link  to="/climat" class="p-2" v-for="climat in datas.climats" :key="climat.id_climat">
                             <div  v-if="climat.nom_fr==undefined ? false:true"  class="card" style="border-radius: 0; border: none;">
                               <img :src="climat.image" class="card-img-top" :alt="climat.nom_fr">
                               <div class="card-body">
@@ -133,7 +133,7 @@
                                 <h6 class="card-title">{{ climat.nom_mg }}</h6>
                               </div>
                             </div>
-                          </div>
+                          </router-link>
                         </VueSlickCarousel>
                       </div>
                     </div>
@@ -144,14 +144,14 @@
                       </div>
                       <div class="col-lg-8 col-md-12">
                         <VueSlickCarousel    v-bind="settings">
-                          <div class="p-2" v-for="region in datas.regions" :key="region.id_region">
+                          <router-link :to="{name:'DetailRegion',params:{id:region.id_region}}" class="p-2" v-for="region in datas.regions" :key="region.id_region">
                             <div class="card" style="border-radius: 0; border: none;">
                               <img :src="baseUrl + region.couverture.replace('public/', '')" class="card-img-top" :alt="region.nom">
                               <div class="card-body">
                                 <h6 class="card-title">{{ region.nom }}</h6>
                               </div>
                             </div>
-                          </div>
+                          </router-link>
                         </VueSlickCarousel>
                       </div>
                     </div>
