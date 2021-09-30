@@ -15,16 +15,18 @@
               <transition name="fade">
                 <div  class="container  min-vh-80 py-4" style="position:absolute" v-if="!showsearch">
                     <div class="row pl-2">
-                        <div class="col-md-5 mx-auto" style="width:300px">
-                            <div class="input-group">
-                                <input class="form-control border-end-0 border rounded-pill" type="search" :placeholder="OptionLangue[getLangage].rechercher + '...'" value="" id="example-search-input">
-                                <span class="input-group-append" style="margin-left:-42px">
-                                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
+                        <form action="" @submit.prevent="HandleSearch">
+                          <div class="col-md-5 mx-auto" style="width:300px">
+                              <div class="input-group">
+                                  <input class="form-control border-end-0 border rounded-pill" type="search" :placeholder="OptionLangue[getLangage].rechercher + '...'" value="" v-model="searchValue" id="example-search-input">
+                                  <span class="input-group-append" style="margin-left:-42px">
+                                      <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="submit">
+                                          <i class="fa fa-search"></i>
+                                      </button>
+                                  </span>
+                              </div>
+                          </div>
+                        </form>
                     </div>
                 </div>
               </transition>
@@ -47,10 +49,10 @@
                     </div>
                     <div>
                       <h6 class="mt-2">
-                        Outils
+                       {{OptionLangue[getLangage].onglet1}}
                       </h6>
                       <p>
-                        Des outils innovantes et de dernières génération
+                        {{OptionLangue[getLangage].onglet1_description}}
                       </p>
                     </div>
                   </div>
@@ -62,10 +64,10 @@
                     </div>
                     <div>
                       <h6 class="mt-2">
-                        Technologie
+                        {{OptionLangue[getLangage].onglet2}}
                       </h6>
                       <p>
-                        La tech qui s'introduit dans l'univers de l'agriculture
+                        {{OptionLangue[getLangage].onglet2_description}}
                       </p>
                     </div>
                   </div>
@@ -79,10 +81,10 @@
                     </div>
                     <div>
                       <h6 class="mt-2">
-                        Techniques
+                        {{OptionLangue[getLangage].onglet3}}
                       </h6>
                       <p>
-                        Des techniques agricoles intelligentes face au climat
+                        {{OptionLangue[getLangage].onglet3_description}}
                       </p>
                     </div>
                   </div>
@@ -94,10 +96,10 @@
                     </div>
                     <div>
                       <h6 class="mt-2">
-                        Rendement
+                        {{OptionLangue[getLangage].onglet4}}
                       </h6>
                       <p>
-                        Des activités plus rentables
+                        {{OptionLangue[getLangage].onglet4_description}}
                       </p>
                     </div>
                   </div>
@@ -239,6 +241,8 @@
         OptionLangue:langue,
         fr:'fr',
         mg:'mg',
+        searchValue:'',
+        typeSearch:0,
       }
    },
     computed: {
@@ -334,7 +338,19 @@
            this.setLangage(this.mg)
          }
         this.afficherPlus()
-     }
+     },
+     HandleSearch(){
+            if(this.searchValue){
+                var vm = this
+                this.$router.push({
+                    name:'ResultatRecherche',
+                    params: {
+                        type:vm.typeSearch,
+                        value:vm.searchValue
+                    }
+                })
+            }
+        }
   }
 }
 </script>

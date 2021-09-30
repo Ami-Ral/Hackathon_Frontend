@@ -1,6 +1,6 @@
 <template>
     <div class="contact  pb-5  pt-md-3">
-        <div class="container">
+        <div class="container" id="contact">
           <form action="" @submit.prevent="handleEmail()">
             <div class="row row-cols-lg-1  justify-content-lg-center">
               <div class="col col-lg-10 text-justify my-lg-10 pl-4">

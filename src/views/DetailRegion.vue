@@ -21,6 +21,7 @@ import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 import { mapGetters, mapActions } from 'vuex'
+import langue from '../service/Multilangue.js'
 
 export default {
     name:'DetailRegion',
@@ -45,6 +46,7 @@ export default {
         nbr_list:5,
         nbr_list2:5,
         NameRoute:3,
+        OptionLangue:langue,
       }
    },
     computed: {
