@@ -90,7 +90,7 @@
             </div>
             <div class="relations-list">
                 <h4 class="mt-4">
-                    <b style="text-transform:uppercase">Climats relatifs</b>
+                    <b style="text-transform:uppercase">{{OptionLangue[getLangage].finalisation_5_bloc}}</b>
                 </h4>
                 <VueSlickCarousel v-if="climat.length" v-bind="setting3" style="padding: 1rem;">
 
@@ -125,6 +125,7 @@ export default {
             plantes : [],
             climat : [],
             baseUrl:baseUrl,
+            OptionLangue:langue,
             details: null,
             setting3:{
                 dots: false,

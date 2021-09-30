@@ -126,7 +126,7 @@ var langue = ({
         titre_5_bloc :"Pejy TOE-TANY" ,
         sous_titre_5_bloc :"" ,
         description_5_bloc :"Ao amin'ny pejy TOE-TANY diaahitana ireo karazana toe-tany misy eto Madagasikara sy ireo momba azy tsirairay avy" ,
-        finalisation_5_bloc :"" ,
+        climats_reltatifs :" Toe-tany mety"
     }
 })
 export default langue
