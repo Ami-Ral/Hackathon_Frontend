@@ -79,7 +79,8 @@ var langue = ({
         ordre:'Ordre',
         espece:'Espèce',
         embranchement:'Embranchement',
-        famille:'Famille'
+        famille:'Famille',
+        login :"Se connecter",
     },
     mg:{
         lumiere:'Hazavana',
@@ -162,6 +163,7 @@ var langue = ({
         type_sol :" Karazana tany",
         struct_sol :" Firafitry ny tany",
         text_sol :"Volavolan-tany ",
+        login :"Hiditra",
     }
 })
 export default langue

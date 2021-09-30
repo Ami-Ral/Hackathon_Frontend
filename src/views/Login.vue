@@ -2,8 +2,8 @@
     <div>
         <transition name="fade">
             <div v-if="!overlay">
-                <header id="header-default"  >
-                    <Header :bgcolor="bgcolor" :active2="active6" :fontWeight2="fontWeight6"/>  
+                <header id="header-default" >
+                    <Header :bgcolor="bgcolor" :active7="active7" :fontWeight7="fontWeight7" :set="changeLangue"/>  
                 </header>
               <section class="ftco-section">
               <div class="container">
@@ -25,7 +25,7 @@
                         <div class="login-wrap p-4 p-lg-5">
                           <div class="d-flex">
                             <div class="w-100">
-                              <h3 class="mb-4">Se connecter</h3>
+                              <h3 class="mb-4">{{OptionLangue[getLangage].login}}</h3>
                               <p class="text-center" style="color:red">{{statusError}}</p>
                             </div>
                           </div>
@@ -60,7 +60,9 @@
 </template>
 <script>
 import Header from "../components/Header"
+import langue from '../service/Multilangue.js'
 import { mapGetters, mapActions } from 'vuex'
+
 
 export default {
     name:'DetailTechnique',
@@ -69,6 +71,7 @@ export default {
     },
      computed: {
       ...mapGetters('admins',['statusError']),
+       ...mapGetters('Langage',['getLangage']), 
     },
     created(){
       this.setTimeout(() => {
@@ -78,18 +81,21 @@ export default {
     data:function() {
       return{
         bgcolor :'rgb(37, 141, 84)',
-         active6:'white!important',
-        fontWeight6:'bolder',
+         active7:'white!important',
+        fontWeight7:'bolder!important',
         overlay:true,
         timeout: null,
         user:{
           email:'',
           password:''
-        }
+        },
+        OptionLangue:langue,
+        fr:'fr',
+        mg:'mg',
       }
    },
     methods:{
-      
+       ...mapActions('Langage',['setLangage']),
       ...mapActions('admins',['login']),
         clearTimeout() {
         if (this.timeout) {
@@ -108,6 +114,13 @@ export default {
         var user = this.user
         console.log(user)
         this.login(user)
+      },
+      changeLangue(){
+            if(this.getLangage == 'mg'){
+                this.setLangage(this.fr)
+            }else{
+                this.setLangage(this.mg)
+            }
       }
    }
 }
