@@ -49,10 +49,10 @@
                     </div>
                     <div>
                       <h6 class="mt-2">
-                        Outils
+                       {{OptionLangue[getLangage].onglet1}}
                       </h6>
                       <p>
-                        Des outils innovantes et de dernières génération
+                        {{OptionLangue[getLangage].onglet1_description}}
                       </p>
                     </div>
                   </div>
@@ -64,10 +64,10 @@
                     </div>
                     <div>
                       <h6 class="mt-2">
-                        Technologie
+                        {{OptionLangue[getLangage].onglet2}}
                       </h6>
                       <p>
-                        La tech qui s'introduit dans l'univers de l'agriculture
+                        {{OptionLangue[getLangage].onglet2_description}}
                       </p>
                     </div>
                   </div>
@@ -81,10 +81,10 @@
                     </div>
                     <div>
                       <h6 class="mt-2">
-                        Techniques
+                        {{OptionLangue[getLangage].onglet3}}
                       </h6>
                       <p>
-                        Des techniques agricoles intelligentes face au climat
+                        {{OptionLangue[getLangage].onglet3_description}}
                       </p>
                     </div>
                   </div>
@@ -96,10 +96,10 @@
                     </div>
                     <div>
                       <h6 class="mt-2">
-                        Rendement
+                        {{OptionLangue[getLangage].onglet4}}
                       </h6>
                       <p>
-                        Des activités plus rentables
+                        {{OptionLangue[getLangage].onglet4_description}}
                       </p>
                     </div>
                   </div>
