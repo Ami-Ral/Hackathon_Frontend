@@ -60,6 +60,19 @@
             </ul>
         </div>
         <div class="collapse navcollaspse pr-4" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto d-flex langue2">
+                <div class="header__top__right__language">
+                    <img :src="src1" v-if="getLangage=='fr'? true :false" alt="" width="30px" height="30px"/>
+                    <img :src="src2" v-else alt="" width="30px" height="30px"/>
+                    <div v-if="getLangage=='fr'? true :false">Français</div>
+                    <div v-else>Malagasy</div>
+                    <span class="arrow_carrot-down"></span>
+                    <ul class="pt-2">
+                        <li class="d-flex px-2 pt-1" @click="set()" v-if="getLangage=='fr'? true :false"><img :src="src2" alt=""  width="30px" height="30px"/><a  class="mg ">Malagasy </a></li>
+                        <li class="d-flex px-2 pt-1" @click="set()" v-else><img :src="src1" alt="" width="30px" height="30px"/><a  class="mg ">Français</a></li>
+                    </ul>
+                </div>
+            </ul>
             <ul class="navbar-nav2 px-0" >
                 <li class="nav-item">
                      <router-link class="nav-link" :style="{color:active1,fontWeight:fontWeight1}" aria-current="page" to="/">{{OptionLangue[getLangage].accueil}}</router-link>
@@ -484,6 +497,11 @@ import { mapGetters,mapActions} from 'vuex'
     }
     .navbar-nav2{
         margin-left: -30px!important
+    }
+    .langue2{
+        position: absolute;
+        left:52%;
+        top: -6vh
     }
 }
 </style>
