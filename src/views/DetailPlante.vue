@@ -168,7 +168,7 @@
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
                                      <VueSlickCarousel    v-bind="setting3">
                                         <router-link  :to="{name:'DetailRegion',params:{id:image3.id_region}}" class="card ml-4 border-none" v-for="(image3,index) in region" :key="index" style="margin-right:10px;width:40px;height:20px !important;text-decoration:none">
-                                            <img :src="baseUrl + image3.couverture" class="card-img-top" alt="...">
+                                            <img :src="baseUrl + image3.couverture.split('public')[1]" class="card-img-top" alt="...">
                                             <div class="card-body">
                                                 <p class="card-text" v-if="image3.nom != undefined ? true :false">{{image3.nom}}</p>
                                                 <p class="card-text" v-else>{{image3.nom_mg}}</p>
@@ -393,7 +393,6 @@ export default {
         changeData(){
             var id_plante =parseInt(this.$route.params.id);
             var langage = this.getLangage
-            var start = 0
             Plantes.getOne(langage,id_plante)
             .then((res)=>{
                  this.change(res.data)
@@ -424,6 +423,9 @@ export default {
 }
 </script>
 <style scoped>
+.card-img-top{
+	height: 150px;
+}
 .fade-enter-active, .fade-leave-active {
   transition: opacity 2s
 }
