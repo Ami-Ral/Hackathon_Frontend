@@ -174,6 +174,23 @@ export default {
     computed: {
       ...mapGetters('Langage',['getLangage'])
     },
+    mounted () {
+        const self = this;
+        this.$on('offline', () => {
+            self.getOfflineData();
+        })
+
+        if(this.isOffline){
+            self.getOfflineData();
+        }
+
+    },
+    updated(){
+        if(!this.update_path) this.changeZoom();
+        if (this.isOnline) {
+            this.setOfflineData();
+        }
+    },
     beforeMount(){
         const self = this;
         let tmp = window.location.pathname.split('/');
@@ -186,12 +203,25 @@ export default {
             self.techniques = res.data.techniques;
         })
     },
-    updated(){
-        if(!this.update_path) this.changeZoom();
-    },
     methods:{
         showDetail(id){
             this.$router.push("region/"+ id);
+        },
+        getOfflineData(){
+            const appData = this.$offlineStorage.get('detail-map-page');
+            this.techniques = appData.techniques,
+            this.plantes = appData.plantes,
+            this.climat = appData.climat,
+            this.details = appData.details;
+        },
+        setOfflineData(){
+            const self = this;
+            this.$offlineStorage.set('detail-map-page', {
+                techniques : self.techniques,
+                plantes : self.plantes,
+                climat : self.climat,
+                details : self.details,
+            });
         },
         changeZoom(){
             this.update_path = true;
