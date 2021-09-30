@@ -6,7 +6,7 @@
                     <Header :bgcolor="bgcolor" :active5="active5" :fontWeight5="fontWeight5" :set="changeLangue"/>
                 </header>
                 <BarRecherche/>
-                <div class="listclimat pb-4 pb-2" v-if="AllClimat ==undefined?false:true">
+                <div class="listclimat pb-4 pb-2">
                     <div class="container-fluid px-3 pt-2 mb-4">
                         <div class="row align-items-center pt-5 px-4 mb-4">
                             <div class="col col-lg-12">
