@@ -6,7 +6,7 @@
                     <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4" :set="changeLangue"/>
                 </header>
                 <BarRecherche/>
-                <div class="body pb-1" v-if="getOne != undefined && getOne != 'null'?true:false">
+                <div class="body pb-1">
                     <div class="container-fluid mx-0 px-0 pb-1">
                     <div class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-0">
                         <div class="col-lg-12 col-sm-12 col-md-12 col-12 mt-4" >
@@ -414,7 +414,7 @@ export default {
 			this.timeout = setTimeout(() => {
 				this.clearTimeout()
 				callback()
-			}, 1000)
+			}, 300)
         },
         change(data){
             this.images=data.images;

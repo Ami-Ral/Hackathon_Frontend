@@ -122,7 +122,7 @@ export default {
 			this.timeout = setTimeout(() => {
 				this.clearTimeout()
 				callback()
-			}, 1000)
+			}, 300)
         },
         getOfflineData(){
             const appData = this.$offlineStorage.get('technique-page');
@@ -158,11 +158,14 @@ export default {
             })
         },
         initialValue(table){
-            this.AllTechnique1 = table
-            const l = table.length > 3 ? 3 : table.length
-            for(let i =0; i < l;i++){
-                this.AllTechnique2.push(table[i]);
+            if(table != undefined){
+                this.AllTechnique1 = table
+                const l = table.length > 3 ? 3 : table.length
+                for(let i =0; i < l;i++){
+                    this.AllTechnique2.push(table[i]);
+                }
             }
+           
         },
         changeData(){
             var langage = this.getLangage

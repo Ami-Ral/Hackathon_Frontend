@@ -280,7 +280,7 @@ export default {
           this.timeout = setTimeout(() => {
             this.clearTimeout()
             callback()
-          }, 1000)
+          }, 300)
         },
          getData(){
             const self = this;

@@ -1,6 +1,6 @@
 
 <template>
-  <div  v-if="AllTechnique2 != undefined ? true : false">
+  <div>
     <transition name="fade2">
     <div class="" v-if="!overlay">
       <header  id="scrollId">
@@ -310,7 +310,7 @@
 				this.timeout = setTimeout(() => {
 				this.clearTimeout()
 				callback()
-				}, 1000)
+				}, 300)
     },
     getAll(){
       var langage = this.getLangage

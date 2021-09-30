@@ -108,7 +108,7 @@ export default {
         this.timeout = setTimeout(() => {
           this.clearTimeout()
           callback()
-        }, 1000)
+        }, 300)
       },
       handleLogin(){
         var user = this.user
