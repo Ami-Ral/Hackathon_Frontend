@@ -51,7 +51,7 @@ var langue = ({
         sous_titre_2_bloc :"" ,
         description_2_bloc :"Dans cette page, il y aura la liste de toutes les techniques qu'on a sur notre base de données, bien sûr, vous pourriez aussi proposer d'autres en créant un compte vulgarisateur. Vous n'avez pas cliqué sur un des techniques en savoir un peu plus comme les étapes, les matériels, et aussi des liens externes pour vous donner plus d'information sur la technique en particulier." ,
         finalisation_2_bloc :"Pour vous faciliter la navigation sur le site, vous pourriez directement taper sur la barrer des tâches." ,
-        Titre_3_bloc :"Page Carte." ,
+        titre_3_bloc :"Page 'CARTE'" ,
         sous_titre_3_bloc :"" ,
         description_3_bloc :"Sur cette page, il y aura une carte de Madagascar avec ses 22 régions sur lesquelles on pourra aussi cliquer, qui nous redirigera directement sur les détails de la région comme le type, la structure du sol, le climat qu'il y a, les plantes qui s'adapteront parfaitement dans ce genre terrains, mais surtout les techniques à savoir pour nos cultivateurs." ,
         finalisation_3_bloc :"" ,
@@ -125,7 +125,7 @@ var langue = ({
         finalisation_5_bloc :"" ,
         titre_5_bloc :"Pejy TOE-TANY" ,
         sous_titre_5_bloc :"" ,
-        description_5_bloc :"Ao amin'ny pejy TOE-TANY diaahitana ireo karazana toe-tany misy eto Madagasikara sy ireo momba azy tsirairay avy" ,
+        description_5_bloc :"Ao amin'ny pejy TOE-TANY dia ahitana ireo karazana toe-tany misy eto Madagasikara sy ireo momba azy tsirairay avy" ,
         climats_reltatifs :" Toe-tany mety"
     }
 })
