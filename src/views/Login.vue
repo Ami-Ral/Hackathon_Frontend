@@ -2,8 +2,8 @@
     <div>
         <transition name="fade">
             <div v-if="!overlay">
-                <header id="header-default"  >
-                    <Header :bgcolor="bgcolor" :active2="active6" :fontWeight2="fontWeight6"/>  
+                <header id="header-default" >
+                    <Header :bgcolor="bgcolor" :active7="active7" :fontWeight7="fontWeight7"/>  
                 </header>
               <section class="ftco-section">
               <div class="container">
@@ -78,8 +78,8 @@ export default {
     data:function() {
       return{
         bgcolor :'rgb(37, 141, 84)',
-         active6:'white!important',
-        fontWeight6:'bolder',
+         active7:'white!important',
+        fontWeight7:'bolder!important',
         overlay:true,
         timeout: null,
         user:{

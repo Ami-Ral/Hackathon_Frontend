@@ -28,6 +28,9 @@
                 <li class="nav-item">
                     <router-link class="nav-link"  :style="{color:active6,fontWeight:fontWeight6}"  to="/documentation">{{OptionLangue[getLangage].doc}}</router-link>
                 </li>
+                <li class="nav-item mr-5">
+                    <router-link class="nav-link "  :style="{color:active7,fontWeight:fontWeight7}"  to="/user/login">{{OptionLangue[getLangage].login}}</router-link>
+                </li>
                 
             </ul>
             <ul class="navbar-nav me-auto d-flex langue">
@@ -75,6 +78,9 @@
                 </li>
                 <li class="nav-item mr-5">
                     <router-link class="nav-link "  :style="{color:active4,fontWeight:fontWeight4}"  to="/documentation">{{OptionLangue[getLangage].doc}}</router-link>
+                </li>
+                <li class="nav-item mr-5">
+                    <router-link class="nav-link "  :style="{color:active7,fontWeight:fontWeight7}"  to="/user/login">{{OptionLangue[getLangage].login}}</router-link>
                 </li>
             </ul>
             <ul class="navbar-nav3">
@@ -132,6 +138,10 @@ import { mapGetters,mapActions} from 'vuex'
           type:String,
           default:()=>'rgb(206, 195, 195)'
       },
+      active7:{
+          type:String,
+          default:()=>'rgb(206, 195, 195)'
+      },
       fontWeight1:{
           type:String,
           default:()=>''
@@ -153,6 +163,10 @@ import { mapGetters,mapActions} from 'vuex'
           default:()=>''
       },
       fontWeight6:{
+          type:String,
+          default:()=>''
+      },
+      fontWeight7:{
           type:String,
           default:()=>''
       },
@@ -312,7 +326,7 @@ import { mapGetters,mapActions} from 'vuex'
 
     .navbar-nav.navbar-center {
         position: absolute;
-        left: 45%;
+        left: 42%;
         transform: translatex(-50%);
     }
     .navbar-nav.navbar-center li {

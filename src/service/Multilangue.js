@@ -68,6 +68,7 @@ var langue = ({
         type_sol :" Type du sol",
         struct_sol :"Structure du sol",
         text_sol :"Texture du sol",
+        login :"Se connecter",
     },
     mg:{
         accueil : "Fandraisana" ,
@@ -138,6 +139,7 @@ var langue = ({
         type_sol :" Karazana tany",
         struct_sol :" Firafitry ny tany",
         text_sol :"Volavolan-tany ",
+        login :"Hiditra",
     }
 })
 export default langue
