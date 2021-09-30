@@ -3,7 +3,7 @@
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="scrollId3">
-                    <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4"/>
+                    <Header :bgcolor="bgcolor" :active4="active4" :fontWeight4="fontWeight4" :set="changeLangue"/>
                 </header>
                 <BarRecherche :HandleSearch="HandleSearch"/>
                 <ListRecherche :items="All"/>
@@ -56,7 +56,9 @@ export default {
         nbr_list:8,
         nbr_list2:5,
         NameRoute:3,
-        baseUrl :baseUrl
+        baseUrl :baseUrl,
+        fr:'fr',
+        mg:'mg',
       }
    },
     computed: {
@@ -82,6 +84,7 @@ export default {
     },
     methods: {
         ...mapActions('Plante',['getAllPlante']),
+        ...mapActions('Langage',['setLangage']),
         ...mapActions('Technique',['getAllTechnique']),
         repeat(){
           var type=parseInt(this.$route.params.type);
@@ -149,6 +152,14 @@ export default {
             }
           
         },
+        changeLangue(){
+         if(this.getLangage == 'mg'){
+           this.setLangage(this.fr)
+         }else{
+           this.setLangage(this.mg)
+         }
+        this.repeat()
+     },
         
     }
 }
