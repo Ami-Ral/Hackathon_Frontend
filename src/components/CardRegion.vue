@@ -1,16 +1,16 @@
 <template>
     <div class="card" v-if="donnee != undefined ? true : false">
 
-        <router-link  style="text-decoration:none;color:white"  class="card2" :to="{name:'Climat'}">
-            <img :src="donnee.image" alt="" class="card-image">
+        <router-link  style="text-decoration:none;color:white"  class="card2" :to="{name:'DetailRegion',params:{id:donnee.id_region}}">
+            <img :src="baseUrl + donnee.couverture.split('public')[1] " alt="" class="card-image">
             <div class="under-image"></div>
-            <div class="detail" v-if="donnee.nom_fr == undefined || donnee.nom_fr=='null' ? false:true">
-                <h4><router-link :to="{name:'Climat'}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
-                <h6>{{donnee.temperature}}</h6>
+            <div class="detail" v-if="donnee.type_sol_fr == undefined || donnee.type_sol_fr=='null' ? false:true">
+                <h4><router-link :to="{name:'DetailRegion',params:{id:donnee.id_region}}" style="text-decoration:none;color:white">{{donnee.nom}}</router-link></h4>
+                <h6>{{donnee.type_sol_fr}}</h6>
             </div>
             <div class="detail" v-else>
-                <h4><router-link :to="{name:'Climat'}" style="text-decoration:none;color:white">{{donnee.nom_mg}}</router-link></h4>
-                <h6>{{donnee.temperature}}</h6>
+                <h4><router-link :to="{name:'DetailRegion',params:{id:donnee.id_region}}" style="text-decoration:none;color:white">{{donnee.nom}}</router-link></h4>
+                <h6>{{donnee.type_sol_mg}}</h6>
             </div>
         </router-link>
     </div>
@@ -19,16 +19,12 @@
 import baseUrl from '../service/baseUrl.js'
 
 export default {
-    name:"CardTechnique",
+    name:"CardRegion",
     props:{
         donnee:{
             type:Object,
             default:()=>{} 
-        },
-        NameRoute:{
-            type:Number,
-            default:()=>1
-        },
+        }
     },
     created(){
     },

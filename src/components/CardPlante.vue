@@ -1,34 +1,30 @@
 <template>
     <div class="card" v-if="donnee != undefined ? true : false">
 
-        <router-link  style="text-decoration:none;color:white"  class="card2" :to="{name:'Climat'}">
-            <img :src="donnee.image" alt="" class="card-image">
-            <div class="under-image"></div>
-            <div class="detail" v-if="donnee.nom_fr == undefined || donnee.nom_fr=='null' ? false:true">
-                <h4><router-link :to="{name:'Climat'}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
-                <h6>{{donnee.temperature}}</h6>
-            </div>
-            <div class="detail" v-else>
-                <h4><router-link :to="{name:'Climat'}" style="text-decoration:none;color:white">{{donnee.nom_mg}}</router-link></h4>
-                <h6>{{donnee.temperature}}</h6>
-            </div>
-        </router-link>
+        <router-link style="text-decoration:none;color:white"  class="card2" :to="{name:'DetailPlante',params:{id:parse(donnee.id_plante)}}">
+        <img :src="baseUrl + donnee.path_image.split('public')[1]" alt="" class="card-image">
+        <div class="under-image"></div> 
+        <div class="detail" v-if="donnee.nom_fr==undefined || donnee.nom_fr=='null' ? false:true">
+            <h4><router-link :to="{name:'DetailPlante',params:{id:parse(donnee.id_plante)}}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
+            <h6>{{donnee.nom_scientifique}}</h6>
+        </div>
+        <div class="detail" v-else>
+            <h4><router-link :to="{name:'DetailPlante',params:{id:parse(donnee.id_plante)}}" style="text-decoration:none;color:white">{{donnee.nom_mg}}</router-link></h4>
+            <h6>{{donnee.nom_scientifique}}</h6>
+        </div>
+    </router-link>
     </div>
 </template>
 <script>
 import baseUrl from '../service/baseUrl.js'
 
 export default {
-    name:"CardClimat",
+    name:"CardPlante",
     props:{
         donnee:{
             type:Object,
             default:()=>{} 
-        },
-        NameRoute:{
-            type:Number,
-            default:()=>1
-        },
+        }
     },
     created(){
     },
