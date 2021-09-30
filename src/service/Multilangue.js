@@ -81,6 +81,7 @@ var langue = ({
         embranchement:'Embranchement',
         famille:'Famille',
         login:'Se connecter',
+        agriculture_tec:"Fambolena",
     },
     mg:{
         lumiere:'Hazavana',
@@ -164,6 +165,7 @@ var langue = ({
         struct_sol :" Firafitry ny tany",
         text_sol :"Volavolan-tany ",
         login:'Hiditra',
+        agriculture_tec:"Agriculture",
     }
 })
 export default langue

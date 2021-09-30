@@ -11,7 +11,6 @@
    </form>
 </template>
 <script>
-import langue from '../service/Multilangue.js'
 import MapService from '../service/Map.js'
 
 export default {

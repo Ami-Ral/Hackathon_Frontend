@@ -8,7 +8,7 @@
             <div id="main-container" v-if="datas">
                 <div class="container pt-4">
                   <div class="d-flex top-text-aci">
-                    <span>Agriculture</span>
+                    <span>{{ }}</span>
                     <span>Climato</span>
                     <span>Intelligente</span>
                     <span style="margin-left: auto" v-if="datas.techique[0].info_fr == undefined? false :true">{{ datas.techique[0].info_fr }}</span>
@@ -122,7 +122,7 @@
                         <VueSlickCarousel    v-bind="settings">
                           <router-link  to="/climat" class="p-2" v-for="climat in datas.climats" :key="climat.id_climat">
                             <div  v-if="climat.nom_fr==undefined ? false:true"  class="card" style="border-radius: 0; border: none;">
-                              <img :src="climat.image" class="card-img-top" :alt="climat.nom_fr">
+                              <img :src="baseUrl + climat.image.replace('public/', '')" class="card-img-top" :alt="climat.nom_fr">
                               <div class="card-body">
                                 <h6 class="card-title">{{ climat.nom_fr }}</h6>
                               </div>
