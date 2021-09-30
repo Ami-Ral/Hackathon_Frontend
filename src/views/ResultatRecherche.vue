@@ -136,7 +136,7 @@ export default {
 			this.timeout = setTimeout(() => {
 				this.clearTimeout()
 				callback()
-			}, 1000)
+			}, 300)
         },
         getAll2(){
             var langage = this.getLangage

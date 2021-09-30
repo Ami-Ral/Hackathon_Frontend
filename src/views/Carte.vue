@@ -3,7 +3,7 @@
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="header-default"  >
-                    <Header :bgcolor="bgcolor" :active3="active3" :fontWeight3="fontWeight3"/>
+                    <Header :bgcolor="bgcolor" :active3="active3" :fontWeight3="fontWeight3" :set="changeLangue"/>
                 </header>
                 <div class="content-fluid">
                     <div class="map-container">
@@ -12,12 +12,12 @@
                   <div class="right-part">
                     <img src="https://lesvolsdalexi.s3.ca-central-1.amazonaws.com/blog/20201009155125/visiter-madagascar-cover-1152x605.jpg" alt="Madagascar" class="couvert" />
                     <div class="madagascar-content">
-                      <h1>Madagascar</h1>
+                      <h1>{{OptionLangue[getLangage].mada}}</h1>
                       <p class="madagascar-desc">
-                          
+                          {{OptionLangue[getLangage].description_region}}
                       </p>
 
-                      <SearchForm />
+                      <SearchForm :value="OptionLangue[getLangage].voir"/>
 
                     </div>
                   </div>
@@ -37,7 +37,7 @@ import Map from "../components/Map"
 import SearchForm from "../components/SearchForm"
 import langue from '../service/Multilangue.js'
 
-///{{OptionLangue[getLangage].titre_5_bloc}}
+///
 export default {
     name:'Carte',
      components: {
@@ -62,9 +62,12 @@ export default {
         overlay:true,
         timeout: null,
         OptionLangue:langue,
+        fr:'fr',
+        mg:'mg',
       }
    },
     methods:{
+         ...mapActions('Langage',['setLangage']),
         clearTimeout() {
 			if (this.timeout) {
 				clearTimeout(this.timeout)
@@ -76,8 +79,15 @@ export default {
 			this.timeout = setTimeout(() => {
 				this.clearTimeout()
 				callback()
-			}, 1000)
+			}, 300)
         },
+        changeLangue(){
+            if(this.getLangage == 'mg'){
+                this.setLangage(this.fr)
+            }else{
+                this.setLangage(this.mg)
+            }
+      }
    }
 }
 </script>

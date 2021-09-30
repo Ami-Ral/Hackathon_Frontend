@@ -4,10 +4,10 @@
 
       <datalist id="country">
 
-        <option v-for="path in paths" v-bind:value="path.nom" />
+        <option v-for="(path,index) in paths" v-bind:value="path.nom" :key="index"/>
       </datalist>
 
-      <input type="submit" value="Voir une région">
+      <input type="submit" :value="value">
    </form>
 </template>
 <script>
@@ -16,6 +16,12 @@ import MapService from '../service/Map.js'
 
 export default {
     name:'List',
+    props:{
+        value:{
+            type:String,
+            default:()=>''
+        }
+    },
     data:function() {
         return{
             paths:[],
