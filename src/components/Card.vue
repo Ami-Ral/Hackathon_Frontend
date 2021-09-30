@@ -133,7 +133,7 @@ export default {
  .detail{
         position:absolute;
         padding: 10px;
-        top:25vh;
+        top:23vh;
         left: 3vh;
     }
 }
@@ -141,7 +141,7 @@ export default {
   .detail{
         position:absolute;
         padding: 10px;
-        top:20vh;
+        top:18vh;
         left: 3vh;
     }
 }
@@ -150,7 +150,7 @@ export default {
     .detail{
         position:absolute;
         padding: 10px;
-        top:18vh;
+        top:16vh;
         left: 3vh;
     }
 }

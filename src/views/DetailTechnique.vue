@@ -159,7 +159,7 @@
                 </div>
                 <div class="container p-4">
                   <div class="d-flex plus-info" style="font-size: 1.1rem;">
-                    <div class="mb-2 d-inline-block" style="margin-right: .5rem;"><b>Pour plus d'information</b></div>
+                    <div class="mb-2 d-inline-block" style="margin-right: .5rem;"><b>{{OptionLangue[getLangage].mada}}</b></div>
                     <div v-if="datas">
                       <a :href="datas.techique[0].source" class="text-secondary" target="_blank">{{ datas.techique[0].source }}</a>
                     </div>
@@ -182,7 +182,7 @@ import Header from "../components/Header"
 import { mapGetters, mapActions } from 'vuex'
 import Footer from "../components/Footer"
 import VueSlickCarousel from 'vue-slick-carousel'
-
+import langue from '../service/Multilangue.js'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
@@ -201,6 +201,7 @@ export default {
         overlay:true,
         timeout: null,
         datas: null,
+         OptionLangue:langue,
         scrollId:"#scrollId3",
         rechercheId:'#scrollId3',
         showup:false,

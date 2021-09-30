@@ -166,7 +166,6 @@ export default {
         AllClimat1:[],
         nbr_list2:8,
         rechercheId:'#scrollId3',
-        
         fr:'fr',
         mg:'mg',
       }
@@ -227,10 +226,15 @@ export default {
             return climat
         },
         initialValue2(table){
-           this.AllTechnique2 = table
+            if(table != undefined){
+                this.AllTechnique2 = table
+            }
+           
         },
         initialValue1(table){
-           this.AllClimat1 = table
+            if(table != undefined){
+                this.AllClimat1 = table
+            }
         },
         backgroundStyles(image) {
 				return {

@@ -319,7 +319,9 @@
       return techniques
     },
     initialValue(table){
-       this.AllTechnique2 = table
+      if(table != undefined ){
+         this.AllTechnique2 = table
+      }
     },
     afficherPlus(){
             var langage = this.getLangage

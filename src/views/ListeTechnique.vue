@@ -20,6 +20,7 @@
 <script>
 import HeaderAdmin from "../components/HeaderAdmin"
 import Tabs from "../components/Tabs"
+import langue from '../service/Multilangue.js'
 export default {
     name:'ListeTechnique',
     components: {

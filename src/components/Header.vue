@@ -35,20 +35,20 @@
             </ul>
             <ul class="navbar-nav me-auto d-flex langue">
                 <div class="header__top__right__language">
-                    <img :src="src1" v-if="getLangage=='fr'? true :false" alt="" width="30px" height="30px"/>
-                    <img :src="src2" v-else alt="" width="30px" height="30px"/>
+                    <img :src="src1" v-if="getLangage=='fr'? true :false" alt="" width="30px" height="30px" class="round"/>
+                    <img :src="src2" v-else alt="" width="30px" height="30px" class="round"/>
                     <div v-if="getLangage=='fr'? true :false">Français</div>
                     <div v-else>Malagasy</div>
                     <span class="arrow_carrot-down"></span>
                     <ul class="pt-2">
-                        <li class="d-flex px-2 pt-1" @click="set()" v-if="getLangage=='fr'? true :false"><img :src="src2" alt=""  width="30px" height="30px"/><a  class="mg ">Malagasy </a></li>
-                        <li class="d-flex px-2 pt-1" @click="set()" v-else><img :src="src1" alt="" width="30px" height="30px"/><a  class="mg ">Français</a></li>
+                        <li class="d-flex px-2 pt-1" @click="set()" v-if="getLangage=='fr'? true :false"><img  class="round" :src="src2" alt=""  width="30px" height="30px"/><a  class="mg ">Malagasy </a></li>
+                        <li class="d-flex px-2 pt-1" @click="set()" v-else><img :src="src1" alt="" width="30px"  class="round" height="30px"/><a  class="mg ">Français</a></li>
                     </ul>
                 </div>
             </ul>
              <ul class="navbar-nav me-auto mb-0 mb-lg-0 navbar-right">
                  
-                <li class="nav-item">
+                <li class="nav-item"> 
                     <i class="fab fa-facebook-f"></i>
                 </li>
                 <li class="nav-item">
@@ -62,14 +62,14 @@
         <div class="collapse navcollaspse pr-4" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto d-flex langue2">
                 <div class="header__top__right__language">
-                    <img :src="src1" v-if="getLangage=='fr'? true :false" alt="" width="30px" height="30px"/>
-                    <img :src="src2" v-else alt="" width="30px" height="30px"/>
+                    <img :src="src1" v-if="getLangage=='fr'? true :false" alt="" width="30px" height="30px" class="round"/>
+                    <img :src="src2" v-else alt="" width="30px" height="30px" class="round" />
                     <div v-if="getLangage=='fr'? true :false">Français</div>
                     <div v-else>Malagasy</div>
                     <span class="arrow_carrot-down"></span>
                     <ul class="pt-2">
-                        <li class="d-flex px-2 pt-1" @click="set()" v-if="getLangage=='fr'? true :false"><img :src="src2" alt=""  width="30px" height="30px"/><a  class="mg ">Malagasy </a></li>
-                        <li class="d-flex px-2 pt-1" @click="set()" v-else><img :src="src1" alt="" width="30px" height="30px"/><a  class="mg ">Français</a></li>
+                        <li class="d-flex px-2 pt-1" @click="set()" v-if="getLangage=='fr'? true :false"><img :src="src2" alt=""  class="round" width="30px" height="30px"/><a  class="mg ">Malagasy </a></li>
+                        <li class="d-flex px-2 pt-1" @click="set()" v-else><img :src="src1" alt=""  class="round" width="30px" height="30px"/><a  class="mg ">Français</a></li>
                     </ul>
                 </div>
             </ul>
@@ -218,6 +218,9 @@ import { mapGetters,mapActions} from 'vuex'
 </script>
 
 <style scoped>
+.round{
+    border-radius: 50% !important
+}
 #bgcolor{
     box-shadow: rgb(0, 0, 0,0.9);
 
@@ -335,6 +338,7 @@ import { mapGetters,mapActions} from 'vuex'
 	color: #ffffff;
 	padding: 5px 10px;
 }
+
 @media (min-width: 1200px) {
 
     .navbar-nav.navbar-center {
@@ -408,14 +412,14 @@ import { mapGetters,mapActions} from 'vuex'
      .navbar-nav2{
         list-style: none;
         display: flex;
-        padding-left: 27% !important;
+        padding-left: 0% !important;
         flex-direction: row
     }
     .navbar-nav3{
         list-style: none;
         align-items: center;
         display: flex;
-        padding-left: 40% !important;
+        padding-left: 39% !important;
         flex-direction: row
     }
      .botton{
@@ -429,7 +433,8 @@ import { mapGetters,mapActions} from 'vuex'
         top:55px;
     }
     .navbar-nav3{
-         margin-top: -20px
+         margin-top: -20px;
+    
      }
     .navbar-nav3 i{
         font-size: 20px!important;
@@ -437,19 +442,24 @@ import { mapGetters,mapActions} from 'vuex'
     .navbar-nav2{
         margin-left: -30px!important
     }
+     .langue2{
+        position: absolute;
+        left:52%;
+        top: -6vh
+    }
 }
 @media only screen and (max-width: 767px) {
     .navbar-nav2{
         list-style: none;
         display: flex;
-        padding-left: 20% !important;
+        padding-left: 15% !important;
         flex-direction: row
     }
     .navbar-nav3{
         list-style: none;
         align-items: center;
         display: flex;
-        padding-left: 35% !important;
+        padding-left: 38% !important;
         flex-direction: row
     }
     .botton{
@@ -469,8 +479,16 @@ import { mapGetters,mapActions} from 'vuex'
         font-size: 20px!important;
     }
     .navbar-nav2{
-        margin-left: -45px!important
+       text-align: center!important;
+       margin-right: 20%!important
     }
+    .langue2{
+        position: absolute;
+        left:52%;
+        top: -6vh
+    }
+    
+
 }
 @media only screen and (max-width: 479px) {
     .botton{
@@ -483,7 +501,7 @@ import { mapGetters,mapActions} from 'vuex'
      .navbar-nav2{
         list-style: none;
         display: flex;
-        padding-left: 10% !important;
+        padding-left: 30% !important;
         flex-direction: row
     }
     .navcollaspse{

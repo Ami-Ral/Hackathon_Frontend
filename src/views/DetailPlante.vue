@@ -344,6 +344,15 @@ export default {
       })
       
     },
+    beforeMount(){
+        var id_plante =parseInt(this.$route.params.id);
+        var langage = this.getLangage
+        Plantes.getOne(langage,id_plante)
+            .then((res)=>{
+                this.change(res.data)
+            })
+            .catch(()=>{})
+    },
     mounted() {
       window.addEventListener('scroll', this.handleResize);
       this.handleResize();
@@ -407,14 +416,16 @@ export default {
             return techniques
         },
         initialValue2(table){
-           this.AllTechnique2 = table
+            if(table != undefined){
+                this.AllTechnique2 = table
+            }
         },
 		setTimeout(callback) {
 			this.clearTimeout()
 			this.timeout = setTimeout(() => {
 				this.clearTimeout()
 				callback()
-			}, 300)
+			}, 0)
         },
         change(data){
             this.images=data.images;
@@ -437,7 +448,7 @@ export default {
             var start = 0
             Techniques.getAll(langage,nbr_list,start)
             .then((res)=>{
-               this.AllTechnique2 = res.data
+                this.AllTechnique2 = res.data
             })
             .catch(()=>{})
         },

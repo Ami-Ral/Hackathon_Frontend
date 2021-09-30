@@ -55,7 +55,7 @@ export default {
     },
     methods:{
         showDetail(e, id){
-            this.$router.push("region/"+id);
+            this.$router.push("region/"+ id);
         },
         hoverDoc : function(e){
             const desc = document.getElementById("desc");
