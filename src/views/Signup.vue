@@ -3,23 +3,23 @@
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="header-default"  >
-                    <Header :bgcolor="bgcolor" :active2="active2" :fontWeight2="fontWeight2"/>
+                    <Header :bgcolor="bgcolor" :active2="active6" :fontWeight2="fontWeight6"/>
                 </header>
               <section class="ftco-section">
-              <div class="container">
-                  <div class="row justify-content-center">
+              <div class="container" >
+                  <div class="row justify-content-center " >
                     <div class="col-md-6 text-center mb-5">
                       <h2 class="heading-section"> </h2>
                     </div>
                   </div>
-                  <div class="row justify-content-center">
-                    <div class="col-md-12 col-lg-10">
-                      <div class="wrap d-md-flex">
-                        <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
-                          <div class="text w-100">
+                  <div class="row justify-content-center" >
+                    <div class="col-md-12 col-lg-10" >
+                      <div class="wrap d-md-flex" >
+                        <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last" >
+                          <div class="text w-100" >
                             <h2>Bienvenue à vous!</h2>
                             <p>AFAAS HACHATHON </p>
-                            <a href="#" class="btn btn-white btn-outline-white">Visiter</a>
+                            <router-link to='/' class="btn btn-white btn-outline-white">Visiter</router-link>
                           </div>
                         </div>
                         <div class="login-wrap p-4 p-lg-5">
@@ -27,44 +27,40 @@
                             <div class="w-100">
                               <h3 class="mb-4">Nouveau compte</h3>
                             </div>
-                            <div class="w-100">
-                              <p class="social-media d-flex justify-content-end">
-                                <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-                                <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-                              </p>
-                            </div>
                           </div>
-                          <form action="#" class="signin-form">
+                          <form action="#" class="signin-form" @submit.prevent="handleSignup">
                             <div class="form-group mb-3">
                               <label class="label" for="name">Nom: </label>
-                              <input type="text" class="form-control" placeholder="Nom" required>
+                              <input type="text" class="form-control" v-model="user.nom" placeholder="Nom" required>
                             </div>
                             <div class="form-group mb-3">
                               <label class="label" for="name">Prenom: </label>
-                              <input type="text" class="form-control" placeholder="Prenom" required>
+                              <input type="text" class="form-control" v-model="user.prenom" placeholder="Prenom" required>
+                            </div>
+                            <div class="form-group mb-3">
+                              <label class="label" for="name">Appelation: </label>
+                              <input type="text" class="form-control" v-model="user.appelation" placeholder="Prenom" required>
                             </div>
                             <div class="form-group mb-3">
                               <label class="label" for="name">Email:</label>
-                              <input type="text" class="form-control" placeholder="Pseudo" required>
+                              <input type="text" class="form-control" v-model="user.email" placeholder="Pseudo" required>
                             </div>
                             <div class="form-group mb-3">
                               <label class="label" for="password">Mot de passe:</label>
-                              <input type="password" class="form-control" placeholder="Password" required>
+                              <input type="password" class="form-control"  v-model="user.password" placeholder="Password" required>
+                            </div>
+                            <div class="form-group mb-3">
+                              <label class="label" for="password">Confirmation de mot de passe:</label>
+                              <input type="password" class="form-control" v-model="user.new_password" placeholder="Password" required>
+                            </div>
+                             <div class="form-group mb-3">
+                              <label class="label" for="password">Type de compte:</label>
+                              <input type="text" readonly class="form-control" value="Vulgarisateur" placeholder="Password" required>
                             </div>
                             <div class="form-group">
                               <button type="submit" class="form-control btn btn-primary submit px-3">Créer un compte</button>
                             </div>
-                            <div class="form-group d-md-flex">
-                              <div class="w-50 text-left">
-                                <label class="checkbox-wrap checkbox-primary mb-0">Se souvenir de moi
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                                </label>
-                              </div>
-                              <div class="w-50 text-md-right">
-                                <a href="#">Mot de passe oublié</a>
-                              </div>
-                            </div>
+                            
                           </form>
                         </div>
                       </div>
@@ -83,11 +79,15 @@
 </template>
 <script>
 import Header from "../components/Header"
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name:'DetailTechnique',
      components: {
       Header
+    },
+    computed: {
+      ...mapGetters('admins',['statusError']),
     },
     created(){
       this.setTimeout(() => {
@@ -97,26 +97,41 @@ export default {
     data:function() {
       return{
         bgcolor :'rgb(37, 141, 84)',
-         active2:'white!important',
-        fontWeight2:'bolder',
+        active6:'white!important',
+        fontWeight6:'bolder',
         overlay:true,
         timeout: null,
+        user:{
+          nom:'',
+          prenom:'',
+          email:'',
+          password:'',
+          new_password:'',
+          appelation:'',
+          droit:'vulgarisateur'
+        }
       }
    },
     methods:{
+      ...mapActions('admins',['register']),
         clearTimeout() {
-			if (this.timeout) {
-				clearTimeout(this.timeout)
-				this.timeout = null
-				}
+          if (this.timeout) {
+            clearTimeout(this.timeout)
+            this.timeout = null
+          }
 			},
-		setTimeout(callback) {
-			this.clearTimeout()
-			this.timeout = setTimeout(() => {
-				this.clearTimeout()
-				callback()
-			}, 1000)
-        },
+      setTimeout(callback) {
+        this.clearTimeout()
+        this.timeout = setTimeout(() => {
+          this.clearTimeout()
+          callback()
+        }, 1000)
+      },
+      handleSignup(){
+        var user = this.user
+        console.log(user)
+        this.register(user)
+      }
    }
 }
 </script>
@@ -127,18 +142,13 @@ export default {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-/*!
- * Bootstrap v4.3.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 The Bootstrap Authors
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
-  --pink: #e83e8c;
-  --red: #dc3545;
+  --pink: rgb(37, 141, 84);
+  --red: rgb(37, 141, 84);
   --orange: #fd7e14;
   --yellow: #ffc107;
   --green: #28a745;
@@ -152,7 +162,7 @@ export default {
   --success: #28a745;
   --info: #17a2b8;
   --warning: #ffc107;
-  --danger: #dc3545;
+  --danger: rgb(37, 141, 84);
   --light: #f8f9fa;
   --dark: #343a40;
   --breakpoint-xs: 0;
@@ -1985,7 +1995,7 @@ textarea.form-control {
   width: 100%;
   margin-top: 0.25rem;
   font-size: 80%;
-  color: #dc3545; }
+  color: rgb(37, 141, 84); }
 
 .invalid-tooltip {
   position: absolute;
@@ -2002,14 +2012,14 @@ textarea.form-control {
   border-radius: 0.25rem; }
 
 .was-validated .form-control:invalid, .form-control.is-invalid {
-  border-color: #dc3545;
+  border-color: rgb(37, 141, 84);
   padding-right: calc(1.5em + 0.75rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
   background-repeat: no-repeat;
   background-position: center right calc(0.375em + 0.1875rem);
   background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
   .was-validated .form-control:invalid:focus, .form-control.is-invalid:focus {
-    border-color: #dc3545;
+    border-color: rgb(37, 141, 84);
     -webkit-box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25); }
   .was-validated .form-control:invalid ~ .invalid-feedback,
@@ -2022,11 +2032,11 @@ textarea.form-control {
   background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem); }
 
 .was-validated .custom-select:invalid, .custom-select.is-invalid {
-  border-color: #dc3545;
+  border-color: rgb(37, 141, 84);
   padding-right: calc((1em + 0.75rem) * 3 / 4 + 1.75rem);
   background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px, url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E") #fff no-repeat center right 1.75rem/calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
   .was-validated .custom-select:invalid:focus, .custom-select.is-invalid:focus {
-    border-color: #dc3545;
+    border-color: rgb(37, 141, 84);
     -webkit-box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25); }
   .was-validated .custom-select:invalid ~ .invalid-feedback,
@@ -2040,7 +2050,7 @@ textarea.form-control {
   display: block; }
 
 .was-validated .form-check-input:invalid ~ .form-check-label, .form-check-input.is-invalid ~ .form-check-label {
-  color: #dc3545; }
+  color: rgb(37, 141, 84); }
 
 .was-validated .form-check-input:invalid ~ .invalid-feedback,
 .was-validated .form-check-input:invalid ~ .invalid-tooltip, .form-check-input.is-invalid ~ .invalid-feedback,
@@ -2048,9 +2058,9 @@ textarea.form-control {
   display: block; }
 
 .was-validated .custom-control-input:invalid ~ .custom-control-label, .custom-control-input.is-invalid ~ .custom-control-label {
-  color: #dc3545; }
+  color: rgb(37, 141, 84); }
   .was-validated .custom-control-input:invalid ~ .custom-control-label::before, .custom-control-input.is-invalid ~ .custom-control-label::before {
-    border-color: #dc3545; }
+    border-color: rgb(37, 141, 84); }
 
 .was-validated .custom-control-input:invalid ~ .invalid-feedback,
 .was-validated .custom-control-input:invalid ~ .invalid-tooltip, .custom-control-input.is-invalid ~ .invalid-feedback,
@@ -2066,10 +2076,10 @@ textarea.form-control {
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25); }
 
 .was-validated .custom-control-input:invalid:focus:not(:checked) ~ .custom-control-label::before, .custom-control-input.is-invalid:focus:not(:checked) ~ .custom-control-label::before {
-  border-color: #dc3545; }
+  border-color: rgb(37, 141, 84); }
 
 .was-validated .custom-file-input:invalid ~ .custom-file-label, .custom-file-input.is-invalid ~ .custom-file-label {
-  border-color: #dc3545; }
+  border-color: rgb(37, 141, 84); }
 
 .was-validated .custom-file-input:invalid ~ .invalid-feedback,
 .was-validated .custom-file-input:invalid ~ .invalid-tooltip, .custom-file-input.is-invalid ~ .invalid-feedback,
@@ -2077,7 +2087,7 @@ textarea.form-control {
   display: block; }
 
 .was-validated .custom-file-input:invalid:focus ~ .custom-file-label, .custom-file-input.is-invalid:focus ~ .custom-file-label {
-  border-color: #dc3545;
+  border-color: rgb(37, 141, 84);
   -webkit-box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25); }
 
@@ -2326,8 +2336,8 @@ fieldset:disabled a.btn {
 
 .btn-danger {
   color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545; }
+  background-color: rgb(37, 141, 84);
+  border-color: rgb(37, 141, 84); }
   .btn-danger:hover {
     color: #fff;
     background-color: #c82333;
@@ -2337,8 +2347,8 @@ fieldset:disabled a.btn {
     box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5); }
   .btn-danger.disabled, .btn-danger:disabled {
     color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545; }
+    background-color: rgb(37, 141, 84);
+    border-color: rgb(37, 141, 84); }
   .btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled).active,
   .show > .btn-danger.dropdown-toggle {
     color: #fff;
@@ -2515,23 +2525,23 @@ fieldset:disabled a.btn {
       box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5); }
 
 .btn-outline-danger {
-  color: #dc3545;
-  border-color: #dc3545; }
+  color: rgb(37, 141, 84);
+  border-color: rgb(37, 141, 84); }
   .btn-outline-danger:hover {
     color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545; }
+    background-color: rgb(37, 141, 84);
+    border-color: rgb(37, 141, 84); }
   .btn-outline-danger:focus, .btn-outline-danger.focus {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5); }
   .btn-outline-danger.disabled, .btn-outline-danger:disabled {
-    color: #dc3545;
+    color: rgb(37, 141, 84);
     background-color: transparent; }
   .btn-outline-danger:not(:disabled):not(.disabled):active, .btn-outline-danger:not(:disabled):not(.disabled).active,
   .show > .btn-outline-danger.dropdown-toggle {
     color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545; }
+    background-color: rgb(37, 141, 84);
+    border-color: rgb(37, 141, 84); }
     .btn-outline-danger:not(:disabled):not(.disabled):active:focus, .btn-outline-danger:not(:disabled):not(.disabled).active:focus,
     .show > .btn-outline-danger.dropdown-toggle:focus {
       -webkit-box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
@@ -4297,7 +4307,7 @@ input[type="button"].btn-block {
 
 .badge-danger {
   color: #fff;
-  background-color: #dc3545; }
+  background-color: rgb(37, 141, 84); }
   a.badge-danger:hover, a.badge-danger:focus {
     color: #fff;
     background-color: #bd2130; }
@@ -5518,7 +5528,7 @@ button.bg-warning:focus {
   background-color: #d39e00 !important; }
 
 .bg-danger {
-  background-color: #dc3545 !important; }
+  background-color: rgb(37, 141, 84) !important; }
 
 a.bg-danger:hover, a.bg-danger:focus,
 button.bg-danger:hover,
@@ -5593,7 +5603,7 @@ button.bg-dark:focus {
   border-color: #ffc107 !important; }
 
 .border-danger {
-  border-color: #dc3545 !important; }
+  border-color: rgb(37, 141, 84) !important; }
 
 .border-light {
   border-color: #f8f9fa !important; }
@@ -8150,7 +8160,7 @@ a.text-warning:hover, a.text-warning:focus {
   color: #ba8b00 !important; }
 
 .text-danger {
-  color: #dc3545 !important; }
+  color: rgb(37, 141, 84) !important; }
 
 a.text-danger:hover, a.text-danger:focus {
   color: #a71d2a !important; }
@@ -8322,16 +8332,16 @@ h1, h2, h3, h4, h5,
       width: 100%; } }
 
 .text-wrap {
-  background: #f75959;
-  background: -moz-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, #f75959), color-stop(100%, #f35587));
-  background: -webkit-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-  background: -o-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-  background: -ms-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-  background: -webkit-linear-gradient(315deg, #f75959 0%, #f35587 100%);
-  background: -o-linear-gradient(315deg, #f75959 0%, #f35587 100%);
-  background: linear-gradient(135deg, #f75959 0%, #f35587 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f75959', endColorstr='#f35587', GradientType=1 );
+  background: rgb(37, 141, 84);
+  background: -moz-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgb(37, 141, 84)), color-stop(100%, rgb(37, 141, 84)));
+  background: -webkit-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: -o-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: -ms-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: -webkit-linear-gradient(315deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: -o-linear-gradient(315deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: linear-gradient(135deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgb(37, 141, 84)', endColorstr='rgb(37, 141, 84)', GradientType=1 );
   color: #fff; }
   .text-wrap .text h2 {
     font-weight: 900;
@@ -8478,30 +8488,30 @@ h1, h2, h3, h4, h5,
   .btn:hover, .btn:active, .btn:focus {
     outline: none; }
   .btn.btn-primary {
-    background: #f35588;
-    border: 1px solid #f35588;
+    background: rgb(37, 141, 84);
+    border: 1px solid rgb(37, 141, 84);
     color: #fff;
-    background: #f75959;
-    background: -moz-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-    background: -webkit-gradient(left top, right bottom, color-stop(0%, #f75959), color-stop(100%, #f35587));
-    background: -webkit-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-    background: -o-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-    background: -ms-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-    background: -webkit-linear-gradient(315deg, #f75959 0%, #f35587 100%);
-    background: -o-linear-gradient(315deg, #f75959 0%, #f35587 100%);
-    background: linear-gradient(135deg, #f75959 0%, #f35587 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f75959', endColorstr='#f35587', GradientType=1 ); }
+    background: rgb(37, 141, 84);
+    background: -moz-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%,rgb(37, 141, 84)), color-stop(100%, rgb(37, 141, 84)));
+    background: -webkit-linear-gradient(-45deg,rgb(37, 141, 84) 0%,rgb(37, 141, 84) 100%);
+    background: -o-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    background: -ms-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    background: -webkit-linear-gradient(315deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    background: -o-linear-gradient(315deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    background: linear-gradient(135deg,rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgb(37, 141, 84)', endColorstr='rgb(37, 141, 84)', GradientType=1 ); }
     .btn.btn-primary:hover {
-      border: 1px solid #f35588;
-      background: #f35588;
+      border: 1px solid rgb(37, 141, 84);
+      background: rgb(37, 141, 84);
       color: #fff; }
     .btn.btn-primary.btn-outline-primary {
-      border: 1px solid #f35588;
+      border: 1px solid rgb(37, 141, 84);
       background: transparent;
-      color: #f35588; }
+      color: rgb(37, 141, 84); }
       .btn.btn-primary.btn-outline-primary:hover {
         border: 1px solid transparent;
-        background: #f35588;
+        background: rgb(37, 141, 84);
         color: #fff; }
   .btn.btn-white {
     background: #fff;

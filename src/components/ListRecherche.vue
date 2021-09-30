@@ -7,9 +7,25 @@
                         <span class="under-title"></span>
                     </div>
                 </div>
-               <div v-if="items != undefined ? true : false" class="row row-cols-lg-4 row-cols-1 row-cols-md-2 row-cols-sm-2 ml-lg-6 pt-2 mx-4 mx-md-0 mx-lg-0 mx-sm-0">
-                    <div class="col col-lg-3  col-sm-6 col-md-6 col-10  mt-lg-3 mt-4 mx-4 mx-lg-0 mx-md-0 mx-sm-0" v-for="(item,index) in items" :key="index">
-                        <CardRecherche :donnee="item" :NameRoute="NameRoute"/>
+               <div v-if="items.techniques.length != 0 ? true : false" class="row row-cols-lg-4 row-cols-1 row-cols-md-2 row-cols-sm-2 ml-lg-6 pt-2 mx-4 mx-md-0 mx-lg-0 mx-sm-0">
+                    <div class="col col-lg-3  col-sm-6 col-md-6 col-10  mt-lg-3 mt-4 mx-4 mx-lg-0 mx-md-0 mx-sm-0" v-for="(item,index) in items.techniques" :key="index">
+                        <CardTechnique :donnee="item" />
+                    </div>
+                </div>
+                
+                <div v-if="items.plantes.length != 0 ? true : false" class="row row-cols-lg-4 row-cols-1 row-cols-md-2 row-cols-sm-2 ml-lg-6 pt-2 mx-4 mx-md-0 mx-lg-0 mx-sm-0">
+                    <div class="col col-lg-3  col-sm-6 col-md-6 col-10  mt-lg-3 mt-4 mx-4 mx-lg-0 mx-md-0 mx-sm-0" v-for="(item2,index) in items.plantes" :key="index">
+                        <CardPlante :donnee="item2" />
+                    </div>
+                </div>
+                <div v-if="items.regions.length != 0 ? true : false" class="row row-cols-lg-4 row-cols-1 row-cols-md-2 row-cols-sm-2 ml-lg-6 pt-2 mx-4 mx-md-0 mx-lg-0 mx-sm-0">
+                    <div class="col col-lg-3  col-sm-6 col-md-6 col-10  mt-lg-3 mt-4 mx-4 mx-lg-0 mx-md-0 mx-sm-0" v-for="(item2,index) in items.regions" :key="index">
+                        <CardRegion :donnee="item3" />
+                    </div>
+                </div>
+                <div v-if="items.climats.length != 0 ? true : false" class="row row-cols-lg-4 row-cols-1 row-cols-md-2 row-cols-sm-2 ml-lg-6 pt-2 mx-4 mx-md-0 mx-lg-0 mx-sm-0">
+                    <div class="col col-lg-3  col-sm-6 col-md-6 col-10  mt-lg-3 mt-4 mx-4 mx-lg-0 mx-md-0 mx-sm-0" v-for="(item4,index) in items.climats" :key="index">
+                        <CardClimat :donnee="item4" />
                     </div>
                 </div>
                 <div class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 ml-lg-6 justify-content-lg-center text-center justify-content-center">
@@ -21,13 +37,20 @@
         </div>
 </template>
 <script>
-import CardRecherche from "./CardRecherche.vue"
+import CardClimat from "./CardClimat.vue"
+import CardPlante from "./CardPlante.vue"
+import CardRegion from "./CardRegion.vue"
+import CardTechnique from "./CardTechnique.vue"
 import langue from '../service/Multilangue.js'
 import { mapGetters} from 'vuex'
 export default {
     name:'ListRecherche',
      components: {
-       Card,
+       CardClimat,
+       CardTechnique,
+       CardRegion,
+       CardPlante
+
     },
     props:{
         items:{
@@ -38,10 +61,6 @@ export default {
             type:String,
             default:()=>""
         },
-        NameRoute:{
-            type:Number,
-            default:()=>1
-        }
     },
     computed: {
       ...mapGetters('Langage',['getLangage'])
@@ -53,10 +72,6 @@ export default {
     },
     methods:{
         afficherPlus(){
-            /*var _vm = this
-            setTimeout(function() {
-                _vm.items = _vm.items.concat(_vm.backItems2); 
-            },100)*/
             console.log('afficher plus')
         }
     }

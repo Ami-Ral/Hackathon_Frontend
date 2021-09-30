@@ -3,7 +3,7 @@
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="header-default"  >
-                    <Header :bgcolor="bgcolor" :active2="active2" :fontWeight2="fontWeight2"/>  
+                    <Header :bgcolor="bgcolor" :active2="active6" :fontWeight2="fontWeight6"/>  
                 </header>
               <section class="ftco-section">
               <div class="container">
@@ -19,44 +19,29 @@
                           <div class="text w-100">
                             <h2>Bienvenue à vous!</h2>
                             <p>AFAAS HACKATHON</p>
-                            <a href="#" class="btn btn-white btn-outline-white">Créer un compte</a>
+                            <router-link to='/user/signup' class="btn btn-white btn-outline-white">Créer un compte</router-link>
                           </div>
                         </div>
                         <div class="login-wrap p-4 p-lg-5">
                           <div class="d-flex">
                             <div class="w-100">
                               <h3 class="mb-4">Se connecter</h3>
-                            </div>
-                            <div class="w-100">
-                              <p class="social-media d-flex justify-content-end">
-                                <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-                                <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-                              </p>
+                              <p class="text-center" style="color:red">{{statusError}}</p>
                             </div>
                           </div>
-                          <form action="#" class="signin-form">
+                          <form action="#" class="signin-form" @submit.prevent="handleLogin">
                             <div class="form-group mb-3">
                               <label class="label" for="name">Email</label>
-                              <input type="text" class="form-control" placeholder="Email" required>
+                              <input type="text" class="form-control" placeholder="Email" v-model="user.email" required>
                             </div>
                             <div class="form-group mb-3">
                               <label class="label" for="password">Mot de passe</label>
-                              <input type="password" class="form-control" placeholder="Mot de passe" required>
+                              <input type="password" class="form-control"  v-model="user.password" placeholder="Mot de passe" required>
                             </div>
                             <div class="form-group">
                               <button type="submit" class="form-control btn btn-primary submit px-3">Se connecter</button>
                             </div>
-                            <div class="form-group d-md-flex">
-                              <div class="w-50 text-left">
-                                <label class="checkbox-wrap checkbox-primary mb-0">Se souvenir de moi
-                                <input type="checkbox" checked>
-                                <span class="checkmark"></span>
-                                </label>
-                              </div>
-                              <div class="w-50 text-md-right">
-                                <a href="#">Mot de passe oublié</a>
-                              </div>
-                            </div>
+                           
                           </form>
                         </div>
                       </div>
@@ -75,11 +60,15 @@
 </template>
 <script>
 import Header from "../components/Header"
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name:'DetailTechnique',
      components: {
       Header
+    },
+     computed: {
+      ...mapGetters('admins',['statusError']),
     },
     created(){
       this.setTimeout(() => {
@@ -89,26 +78,37 @@ export default {
     data:function() {
       return{
         bgcolor :'rgb(37, 141, 84)',
-         active2:'white!important',
-        fontWeight2:'bolder',
+         active6:'white!important',
+        fontWeight6:'bolder',
         overlay:true,
         timeout: null,
+        user:{
+          email:'',
+          password:''
+        }
       }
    },
     methods:{
+      
+      ...mapActions('admins',['login']),
         clearTimeout() {
-			if (this.timeout) {
-				clearTimeout(this.timeout)
-				this.timeout = null
+        if (this.timeout) {
+          clearTimeout(this.timeout)
+          this.timeout = null
 				}
 			},
 		setTimeout(callback) {
-			this.clearTimeout()
-			this.timeout = setTimeout(() => {
-				this.clearTimeout()
-				callback()
-			}, 1000)
-        },
+        this.clearTimeout()
+        this.timeout = setTimeout(() => {
+          this.clearTimeout()
+          callback()
+        }, 1000)
+      },
+      handleLogin(){
+        var user = this.user
+        console.log(user)
+        this.login(user)
+      }
    }
 }
 </script>
@@ -8314,16 +8314,16 @@ h1, h2, h3, h4, h5,
       width: 100%; } }
 
 .text-wrap {
-  background: #f75959;
-  background: -moz-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, #f75959), color-stop(100%, #f35587));
-  background: -webkit-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-  background: -o-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-  background: -ms-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-  background: -webkit-linear-gradient(315deg, #f75959 0%, #f35587 100%);
-  background: -o-linear-gradient(315deg, #f75959 0%, #f35587 100%);
-  background: linear-gradient(135deg, #f75959 0%, #f35587 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f75959', endColorstr='#f35587', GradientType=1 );
+  background: rgb(37, 141, 84);
+  background: -moz-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgb(37, 141, 84)), color-stop(100%, rgb(37, 141, 84)));
+  background: -webkit-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: -o-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: -ms-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: -webkit-linear-gradient(315deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: -o-linear-gradient(315deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  background: linear-gradient(135deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgb(37, 141, 84)', endColorstr='rgb(37, 141, 84)', GradientType=1 );
   color: #fff; }
   .text-wrap .text h2 {
     font-weight: 900;
@@ -8470,30 +8470,30 @@ h1, h2, h3, h4, h5,
   .btn:hover, .btn:active, .btn:focus {
     outline: none; }
   .btn.btn-primary {
-    background: #f35588;
-    border: 1px solid #f35588;
+    background: rgb(37, 141, 84);
+    border: 1px solid rgb(37, 141, 84);
     color: #fff;
-    background: #f75959;
-    background: -moz-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-    background: -webkit-gradient(left top, right bottom, color-stop(0%, #f75959), color-stop(100%, #f35587));
-    background: -webkit-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-    background: -o-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-    background: -ms-linear-gradient(-45deg, #f75959 0%, #f35587 100%);
-    background: -webkit-linear-gradient(315deg, #f75959 0%, #f35587 100%);
-    background: -o-linear-gradient(315deg, #f75959 0%, #f35587 100%);
-    background: linear-gradient(135deg, #f75959 0%, #f35587 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f75959', endColorstr='#f35587', GradientType=1 ); }
+    background: rgb(37, 141, 84);
+    background: -moz-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%,rgb(37, 141, 84)), color-stop(100%, rgb(37, 141, 84)));
+    background: -webkit-linear-gradient(-45deg,rgb(37, 141, 84) 0%,rgb(37, 141, 84) 100%);
+    background: -o-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    background: -ms-linear-gradient(-45deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    background: -webkit-linear-gradient(315deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    background: -o-linear-gradient(315deg, rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    background: linear-gradient(135deg,rgb(37, 141, 84) 0%, rgb(37, 141, 84) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgb(37, 141, 84)', endColorstr='rgb(37, 141, 84)', GradientType=1 ); }
     .btn.btn-primary:hover {
-      border: 1px solid #f35588;
-      background: #f35588;
+      border: 1px solid rgb(37, 141, 84);
+      background: rgb(37, 141, 84);
       color: #fff; }
     .btn.btn-primary.btn-outline-primary {
-      border: 1px solid #f35588;
+      border: 1px solid rgb(37, 141, 84);
       background: transparent;
-      color: #f35588; }
+      color: rgb(37, 141, 84); }
       .btn.btn-primary.btn-outline-primary:hover {
         border: 1px solid transparent;
-        background: #f35588;
+        background: rgb(37, 141, 84);
         color: #fff; }
   .btn.btn-white {
     background: #fff;

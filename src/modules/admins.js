@@ -47,9 +47,7 @@ const actions = {
                 Vue.$cookies.set('admin', res.data)
                 commit('loginSuccess', res.data)
                 console.log('admin connected')
-                router.push({name: "AdminHome",params:{
-                    publier:'publier'
-                }});
+                router.push({name: "Admin"});
             }
                 
             })
@@ -63,7 +61,7 @@ const actions = {
         sessionStorage.removeItem('admin');
         Vue.$cookies.remove('admin')
         commit('logout');
-        router.push('/admin/login');
+        router.push('/');
     },
 
     test(){
@@ -82,9 +80,7 @@ const actions = {
         Admin.register(admin)
             .then((res) => {
                     commit('registerSuccess', res.data);
-                    router.push({name: "AdminHome",params:{
-                        publier:'publier'
-                    }});
+                    router.push({name: "Admin"});
 
                 })
             .catch((error) => {

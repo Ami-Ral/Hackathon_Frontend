@@ -44,7 +44,7 @@ export default {
     },
     methods:{
         HandleSearch(){
-            if(searchValue){
+            if(this.searchValue){
                 var vm = this
                 this.$router.push({
                     name:'ResultatRecherche',
