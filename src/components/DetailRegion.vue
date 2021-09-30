@@ -210,9 +210,9 @@ export default {
         },
         getOfflineData(){
             const appData = this.$offlineStorage.get('detail-map-page');
-            this.techniques = appData.techniques,
-            this.plantes = appData.plantes,
-            this.climat = appData.climat,
+            this.techniques = appData.techniques;
+            this.plantes = appData.plantes;
+            this.climat = appData.climat;
             this.details = appData.details;
         },
         setOfflineData(){
