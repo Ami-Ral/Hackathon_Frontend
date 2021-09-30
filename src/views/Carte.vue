@@ -12,9 +12,9 @@
                   <div class="right-part">
                     <img src="https://lesvolsdalexi.s3.ca-central-1.amazonaws.com/blog/20201009155125/visiter-madagascar-cover-1152x605.jpg" alt="Madagascar" class="couvert" />
                     <div class="madagascar-content">
-                      <h1>{{OptionLangue[getLangage].mada}}</h1>
+                      <h1>Madagascar</h1>
                       <p class="madagascar-desc">
-                          {{OptionLangue[getLangage].description_region}}
+                          Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur porro libero voluptate itaque similique totam quidem numquam quibusdam doloribus sit, mollitia dolorem, modi. Modi ut molestiae ipsum, adipisci aut quis!
                       </p>
 
                       <SearchForm />
@@ -54,9 +54,6 @@ export default {
         fontWeight3:'bolder',
         overlay:true,
         timeout: null,
-        OptionLangue:langue,
-        fr:'fr',
-        mg:'mg',
       }
    },
     methods:{
