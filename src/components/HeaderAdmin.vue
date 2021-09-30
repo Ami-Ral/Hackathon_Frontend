@@ -45,7 +45,7 @@
                             </form>
                             <li class="nav-item dropdown mb-4 mr-4" style="padding-right:50px !important">
                               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  <em style="color:white;font-weigth:bold"><i class="fa fa-user"></i> Admin</em>
+                                  <em style="color:white;font-weigth:bold"><i class="fa fa-user"></i> Vulgarisateur</em>
                                 </a>
                                 <ul class="dropdown-menu shadow bg-dark" style="width:40px!important" aria-labelledby="navbarDropdown">
                                    <li @click="logout()">

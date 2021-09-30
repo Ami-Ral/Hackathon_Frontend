@@ -10,7 +10,7 @@
                       <HeaderAdmin/>
                    </div>
                    <div class="body ">
-
+                       <h1 class="red">En cours de developpement!!</h1>
                    </div>
                </div>
            </div>
@@ -49,6 +49,10 @@ export default {
 }
 </script>
 <style scoped>
-
+.red{
+    text-align: center;
+    color:red;
+    margin-top: 20%;
+}
 </style>
 
