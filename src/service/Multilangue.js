@@ -62,8 +62,8 @@ var langue = ({
         titre_5_bloc :"UN BONUS" ,
         sous_titre_5_bloc :" Comment devenir un 'Vulgarisateur' ?" ,
         description_5_bloc :"Comme on ne pourrait pas remplir tout seuls les données , le paysans , vulgarisateurs,les agriculteurs ,...tout le monde pourra ajouter  des informations,juste que les informations doivent d'abord passer un série de vérifation. " ,
-        climat_rel :" Climats adaptés:",
-        region_rel :" Régions adaptés : :" ,
+        climat_rel :" Climats adaptés :",
+        region_rel :" Régions adaptés :" ,
         plante_rel :"PLantes adaptés :",
         type_sol :" Type du sol",
         struct_sol :"Structure du sol",
@@ -80,7 +80,7 @@ var langue = ({
         espece:'Espèce',
         embranchement:'Embranchement',
         famille:'Famille',
-        login :"Se connecter",
+        login:'Se connecter',
     },
     mg:{
         lumiere:'Hazavana',
@@ -108,7 +108,7 @@ var langue = ({
         onglet1 : "Famokarana",
         onglet1_description : "Karazana hai-tao izay mikatsaka ny hampihena ny ezaka ara-batana sy ny fandaniana ara-bola ary ny mampiakatra ny tombom-barotra.",
         onglet2 : "Toe-tany",
-        onglet2_description : "Toe-javatra iainana izay maneho amin'ny fotoana voatondro izay hiankina amin'ny anton-javatra na masontsivana isan-karazany (mari-pana, rotsakorana).",
+        onglet2_description : "Toe-javatra iainana izay maneho amin'ny fotoana voatondro izay hiankina amin'ny anton-javatra na masontsivana isan-  karazany (mari-pana, rotsakorana).",
         onglet3 : "Teknika",
         onglet3_description : "Fitambaran'ireo fomba ampiasaina hamokarana asa na hahazoana valiny voafaritra.",
         onglet4 : "Rafitra", 
@@ -163,7 +163,7 @@ var langue = ({
         type_sol :" Karazana tany",
         struct_sol :" Firafitry ny tany",
         text_sol :"Volavolan-tany ",
-        login :"Hiditra",
+        login:'Hiditra',
     }
 })
 export default langue
