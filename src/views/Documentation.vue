@@ -198,6 +198,7 @@ import { mapGetters,mapActions} from 'vuex'
 import Footer from "../components/Footer"
 import langue from '../service/Multilangue.js'
 
+
 export default {
     name:'DetailTechnique',
      components: {

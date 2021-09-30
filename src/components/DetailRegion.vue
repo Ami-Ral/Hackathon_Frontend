@@ -8,7 +8,7 @@
                             <div class="desccc-item">
                                 <img src="../assets/images/shovel.png" alt="Tanimboly" />
                                 <div>
-                                    <span><b>Type de Sol</b></span>
+                                    <span><b>{{OptionLangue[getLangage].type_sol}}</b></span>
                                     <span class="desccc-item-value">
                                         {{ details['type_sol_'+getLangage] }}
                                     </span>
@@ -17,7 +17,7 @@
                             <div class="desccc-item">
                                 <img src="../assets/images/ground.png" alt="Tanimboly" />
                                 <div>
-                                    <span><b>Structure du sol</b></span>
+                                    <span><b>{{OptionLangue[getLangage].struct_sol}}</b></span>
                                     <span class="desccc-item-value">
                                         {{ details['structure_sol_'+getLangage] }}
                                     </span>
@@ -26,7 +26,7 @@
                             <div class="desccc-item">
                                 <img src="../assets/images/soil.png" alt="Tanimboly" />
                                 <div>
-                                    <span><b>Texture du sol</b></span>
+                                    <span><b>{{OptionLangue[getLangage].type_sol}}</b></span>
                                     <span class="desccc-item-value">
                                         {{ details['texture_sol_'+getLangage] }}
                                     </span>
@@ -60,7 +60,7 @@
         <div style="position: relative; z-index: 2; padding: 1rem; background-color: #222;">
             <div class="relations-list">
                 <h4 class="mt-4">
-                    <b style="text-transform:uppercase">Techniques relatives</b>
+                    <b style="text-transform:uppercase">{{OptionLangue[getLangage].techn_rel}}</b>
                 </h4>
                 <VueSlickCarousel v-if="techniques.length" v-bind="setting3" style="padding: 1rem;">
 
@@ -75,7 +75,7 @@
             </div>
             <div class="relations-list">
                 <h4 class="mt-4">
-                    <b style="text-transform:uppercase">Plantes relatives</b>
+                    <b style="text-transform:uppercase">{{OptionLangue[getLangage].climat_rel}}</b>
                 </h4>
                 <VueSlickCarousel v-if="techniques.length" v-bind="setting3" style="padding: 1rem;">
 
@@ -90,7 +90,7 @@
             </div>
             <div class="relations-list">
                 <h4 class="mt-4">
-                    <b style="text-transform:uppercase">{{OptionLangue[getLangage].finalisation_5_bloc}}</b>
+                    <b style="text-transform:uppercase">{{OptionLangue[getLangage].climat_rel}}</b>
                 </h4>
                 <VueSlickCarousel v-if="climat.length" v-bind="setting3" style="padding: 1rem;">
 
@@ -175,6 +175,23 @@ export default {
     computed: {
       ...mapGetters('Langage',['getLangage'])
     },
+    mounted () {
+        const self = this;
+        this.$on('offline', () => {
+            self.getOfflineData();
+        })
+
+        if(this.isOffline){
+            self.getOfflineData();
+        }
+
+    },
+    updated(){
+        if(!this.update_path) this.changeZoom();
+        if (this.isOnline) {
+            this.setOfflineData();
+        }
+    },
     beforeMount(){
         const self = this;
         let tmp = window.location.pathname.split('/');
@@ -187,12 +204,25 @@ export default {
             self.techniques = res.data.techniques;
         })
     },
-    updated(){
-        if(!this.update_path) this.changeZoom();
-    },
     methods:{
         showDetail(id){
             this.$router.push("region/"+ id);
+        },
+        getOfflineData(){
+            const appData = this.$offlineStorage.get('detail-map-page');
+            this.techniques = appData.techniques;
+            this.plantes = appData.plantes;
+            this.climat = appData.climat;
+            this.details = appData.details;
+        },
+        setOfflineData(){
+            const self = this;
+            this.$offlineStorage.set('detail-map-page', {
+                techniques : self.techniques,
+                plantes : self.plantes,
+                climat : self.climat,
+                details : self.details,
+            });
         },
         changeZoom(){
             this.update_path = true;

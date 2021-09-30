@@ -27,9 +27,9 @@
                   <div class="col-12 col-sm-6 col-md-3 col-lg-3 text-justify">
                     <p class="px-0 pt-0 pt-md-5 pt-sm-5 pt-lg-5">{{OptionLangue[getLangage].nous_contacter}}</p>
                     <ul class="px-md-2 px-lg-2 px-sm-2 px-3">
-                      <li><a href="#" >+261346668165</a></li>
-                      <li><a href="#" >support@tanimboly.com</a></li>
-                      <li><a href="#" >support@facebook.com</a></li>
+                      <li><a href="#" >+261 34 666 81</a></li>
+                      <li><a href="#" >support@tanimboly.org</a></li>
+                      <li><a href="#" >contact@facebook.com</a></li>
                       <li><a href="#" >support@instagram.com</a></li>
                     </ul>
                   </div>

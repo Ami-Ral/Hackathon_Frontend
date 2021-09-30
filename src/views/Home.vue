@@ -1,6 +1,6 @@
 
 <template>
-  <div v-if="AllTechnique2 != undefined ? true : false">
+  <div  v-if="AllTechnique2 != undefined ? true : false">
     <transition name="fade2">
     <div class="" v-if="!overlay">
       <header  id="scrollId">

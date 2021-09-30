@@ -116,29 +116,37 @@ export default {
        this.getAll2()
       this.setTimeout(() => {
           this.overlay = false
-
-          this.initialValue2(this.AllTechnique)
-          this.initialValue1(this.AllClimat)
-           if(this.AllTechnique == undefined){
-              this.changeDataFooter()
-           }
-          if(this.AllClimat == undefined){
-                var langage = this.getLangage
-                var nbr_list = this.nbr_list2 
-                var start = 0
-                Climats.getAll(langage,nbr_list,start)
-                .then((res)=>{
-                    this.AllClimat1 = res.data
-                })
-                .catch(()=>{})
+          if(this.isOnline){
+              this.initialValue2(this.AllTechnique)
+              this.initialValue1(this.AllClimat)
+               if(this.AllTechnique == undefined){
+                  this.changeDataFooter()
+               }
+              if(this.AllClimat == undefined){
+                    var langage = this.getLangage
+                    var nbr_list = this.nbr_list2 
+                    var start = 0
+                    Climats.getAll(langage,nbr_list,start)
+                    .then((res)=>{
+                        this.AllClimat1 = res.data
+                    })
+                    .catch(()=>{})
+              }
           }
           
       })
-      console.log(this.AllClimat1);
     },
     mounted() {
       window.addEventListener('scroll', this.handleResize);
-      this.handleResize()
+      this.handleResize();
+        const self = this;
+        this.$on('offline', () => {
+            self.getOfflineData();
+        })
+
+        if(this.isOffline){
+            self.getOfflineData();
+        }
     },
     destroyed() {
       window.removeEventListener('scroll', this.handleResize);
@@ -163,6 +171,11 @@ export default {
         mg:'mg',
       }
    },
+    updated(){
+        if (this.isOnline) {
+            this.setOfflineData();
+        }
+    },
    methods:{
         ...mapActions('Technique',['getAllTechnique']),
         ...mapActions('Climat',['getAllClimat']),
@@ -188,6 +201,19 @@ export default {
 				callback()
 			}, 1000)
         }, 
+        getOfflineData(){
+            const appData = this.$offlineStorage.get('climat-page');
+            this.AllTechnique2 = appData.AllTechnique2;
+            this.AllClimat1 = appData.AllClimat1;
+            this.AllClimat = 1;
+        },
+        setOfflineData(){
+            const self = this;
+            this.$offlineStorage.set('climat-page', {
+                AllTechnique2 : self.AllTechnique2,
+                AllClimat1 : self.AllClimat1,
+            });
+        },
         getAll2(){
             var langage = this.getLangage
             var nbr_list = 3
