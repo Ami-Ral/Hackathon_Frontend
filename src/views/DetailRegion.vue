@@ -3,9 +3,9 @@
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="header-default"  >
-                    <Header :bgcolor="bgcolor" :active3="active" :fontWeight3="fontWeight3"/>
+                    <Header :bgcolor="bgcolor" :active3="active" :fontWeight3="fontWeight3" :set="changeLangue"/>
                 </header>
-                <Details />
+                <Details :key="updateDetail" />
             </div>
         </transition>
         <div class="d-flex justify-content-center overlay"  v-if="overlay">
@@ -45,6 +45,9 @@ export default {
         nbr_list:5,
         nbr_list2:5,
         NameRoute:3,
+        updateDetail: false,
+        fr:'fr',
+        mg:'mg',
       }
    },
     computed: {
@@ -63,6 +66,7 @@ export default {
       window.removeEventListener('scroll', this.handleResize);
     },
     methods:{
+        ...mapActions('Langage',['setLangage']),
         clearTimeout() {
 			if (this.timeout) {
 				clearTimeout(this.timeout)
@@ -84,6 +88,15 @@ export default {
                 this.showup = false
             }
         },
+        changeLangue(){
+            if(this.getLangage == 'mg'){
+                this.setLangage(this.fr);
+            }else{
+                this.setLangage(this.mg)
+            }
+
+            this.updateDetail = !this.updateDetail;
+        }
     }
 }
 </script>

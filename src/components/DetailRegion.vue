@@ -118,6 +118,9 @@ import { mapGetters} from 'vuex'
 
 export default {
     name:'List',
+    props:{
+        
+    },
     data:function() {
 
         return{
@@ -262,7 +265,9 @@ export default {
     background-position: center;
     background-attachment: fixed;
 }
-
+ .card-img-top{
+	height: 150px;
+}
 h4{
     color: #fffc;
 }

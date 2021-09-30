@@ -8,7 +8,7 @@
             <div id="main-container" v-if="datas">
                 <div class="container pt-4">
                   <div class="d-flex top-text-aci">
-                    <span>Agriculture</span>
+                    <span>{{OptionLangue[getLangage].agriculture_tec}}</span>
                     <span>Climato</span>
                     <span>Intelligente</span>
                     <span style="margin-left: auto" v-if="datas.techique[0].info_fr == undefined? false :true">{{ datas.techique[0].info_fr }}</span>
@@ -186,6 +186,7 @@ import langue from '../service/Multilangue.js'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
+
 export default {
     name:'DetailTechnique',
      components: {
@@ -201,7 +202,7 @@ export default {
         overlay:true,
         timeout: null,
         datas: null,
-         OptionLangue:langue,
+        OptionLangue:langue,
         scrollId:"#scrollId3",
         rechercheId:'#scrollId3',
         showup:false,
@@ -275,6 +276,14 @@ export default {
     },
     methods:{
         ...mapActions('Langage',['setLangage']),
+                changeLangue(){
+            if(this.getLangage == 'mg'){
+                this.setLangage(this.fr);
+            }else{
+                this.setLangage(this.mg)
+            }
+
+        },
         clearTimeout() {
           if (this.timeout) {
             clearTimeout(this.timeout)
@@ -319,6 +328,7 @@ export default {
         },
         getTechnique(){
           var langage = this.getLangage
+          var self = this
           var nbr_list = 3;
           var start = 0
           fetch(self.baseUrl + `technique/list/${langage}/${nbr_list}/${start}`)

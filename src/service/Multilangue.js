@@ -81,6 +81,10 @@ var langue = ({
         embranchement:'Embranchement',
         famille:'Famille',
         login:'Se connecter',
+        agriculture_tec:"Fambolena",
+        climato_tec: "Toe-tany",
+        intelligente_tec:"Manarapenitra",
+        eau_tec: "rano"
     },
     mg:{
         lumiere:'Hazavana',
@@ -164,6 +168,10 @@ var langue = ({
         struct_sol :" Firafitry ny tany",
         text_sol :"Volavolan-tany ",
         login:'Hiditra',
+        agriculture_tec:"Fambolena",
+        climato_tec: "Toe-tany",
+        intelligente_tec:"Manarapenitra",
+        eau_tec: "rano"
     }
 })
 export default langue

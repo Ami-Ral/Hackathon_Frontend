@@ -26,6 +26,7 @@ import List from "../components/List"
 import BarRecherche from "../components/BarRecherche"
 import Plantes from '../service/Plantes'
 import { setTimeout } from 'timers';
+import Techniques from '../service/Techniques'
 
 export default {
     name:'Plantes',
@@ -83,6 +84,9 @@ export default {
               }
           }
       })
+    },
+    beforeMount(){
+         
     },
     mounted() {
       window.addEventListener('scroll', this.handleResize);
@@ -148,10 +152,15 @@ export default {
             return Plante
         },
         getAll2(){
+          
             var langage = this.getLangage
-            var nbr_list = this.nbr_list2-2
-            let techniques = this.getAllTechnique({langage,nbr_list})
-            return techniques
+            var nbr_list = 3 
+            var start = 0
+            Techniques.getAll(langage,nbr_list,start)
+            .then((res)=>{
+                this.AllTechnique2 = res.data
+            })
+            .catch(()=>{})
         },
         initialValue2(table){
             if(table != undefined){
