@@ -75,21 +75,6 @@ const routes = [
         name: 'Admin',
         props: true ,
         component: Admin,
-        beforeEnter(to, from, next){ 
-            if (store.getters["admins/statusConnexion"]==true) {
-                next()
-            } else {
-                var adresseActuelle = window.location;
-                if(adresseActuelle.pathname == "/user/login"){
-                    return next()
-                }else{
-                    next({
-                        name: "Admin" 
-                    });
-                }
-                
-            }
-        }
     },
     {
         path: '/admin/add/climat',

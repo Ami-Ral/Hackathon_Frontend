@@ -8,9 +8,9 @@
             <div id="main-container" v-if="datas">
                 <div class="container pt-4">
                   <div class="d-flex top-text-aci">
-                    <span>{{ }}</span>
-                    <span>Climato</span>
-                    <span>Intelligente</span>
+                    <span>{{OptionLangue[getLangage].agriculture_tec}}</span>
+                    <span>{{OptionLangue[getLangage].climato_tec}}</span>
+                    <span>{{OptionLangue[getLangage].intelligente_tec}}</span>
                     <span style="margin-left: auto" v-if="datas.techique[0].info_fr == undefined? false :true">{{ datas.techique[0].info_fr }}</span>
                     <span style="margin-left: auto" v-else>{{ datas.techique[0].info_mg }}</span>
                   </div>
@@ -23,17 +23,17 @@
                 <div class="container" v-if="datas">
                   <div class="row">
                     <div class="col-md-4 col-sm-6 item-section-tt">
-                      <h6 class="text-muted mt-3">Productivité</h6>
+                      <h6 class="text-muted mt-3">{{OptionLangue[getLangage].productivite}}</h6>
                       <span v-if="datas.techique[0].productivite_fr == undefined?false:true"><b>{{ datas.techique[0].productivite_fr }}</b></span>
                       <span v-else><b>{{ datas.techique[0].productivite_mg }}</b></span>
                     </div>
                     <div class="col-md-4 col-sm-6 item-section-tt">
-                      <h6 class="text-muted mt-3">Adaptation</h6>
+                      <h6 class="text-muted mt-3">{{OptionLangue[getLangage].adaptation}}</h6>
                       <span v v-if="datas.techique[0].adaptation_fr == undefined ? false:true"><b>{{ datas.techique[0].adaptation_fr }}</b></span>
                        <span v-else><b>{{ datas.techique[0].adaptation_mg}}</b></span>
                     </div>
                     <div class="col-md-4 col-sm-6 item-section-tt">
-                      <h6 class="text-muted mt-3">Mitigation</h6>
+                      <h6 class="text-muted mt-3">{{OptionLangue[getLangage].mitigation}}</h6>
                       <span v-if="datas.techique[0].mitigation_fr==undefined? false:true"><b>{{ datas.techique[0].mitigation_fr }}</b></span>
                       <span v-else><b>{{ datas.techique[0].mitigation_mg }}</b></span>
                     </div>
@@ -44,7 +44,7 @@
                   <div class="desc-part shadow p-5">
                     <div class="row">
                       <div class="col-lg-4 col-md-12">
-                        <h2>Description</h2>
+                        <h2>{{OptionLangue[getLangage].description_tec}}</h2>
                         <div class="underline"></div>
                       </div>
                       <div class="col-lg-8 col-md-12">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="row mt-4">
                       <div class="col-lg-4 col-md-12">
-                        <h2>Matériels</h2>
+                        <h2>{{OptionLangue[getLangage].materiels_tec}}</h2>
                         <div class="underline"></div>
                       </div>
                       <div class="col-lg-8 col-md-12">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="row mt-5">
                       <div class="col-lg-4 col-md-12">
-                        <h2>Étapes</h2>
+                        <h2>{{OptionLangue[getLangage].etapes_tec}}</h2>
                         <div class="underline"></div>
                       </div>
                       <div class="col-lg-8 col-md-12">
@@ -95,7 +95,7 @@
                     </div>
                     <div class="row mt-5">
                       <div class="col-lg-4 col-md-12">
-                        <h2>Plantes</h2>
+                        <h2>{{OptionLangue[getLangage].plante_tec}}</h2>
                         <div class="underline"></div>
                       </div>
                       <div class="col-lg-8 col-md-12">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="row mt-4">
                       <div class="col-lg-4 col-md-12">
-                        <h2>Climats</h2>
+                        <h2>{{OptionLangue[getLangage].climats_tec}}</h2>
                         <div class="underline"></div>
                       </div>
                       <div class="col-lg-8 col-md-12">
@@ -139,7 +139,7 @@
                     </div>
                     <div class="row mt-4">
                       <div class="col-lg-4 col-md-12">
-                        <h2>Regions</h2>
+                        <h2>{{OptionLangue[getLangage].regions_tec}}</h2>
                         <div class="underline"></div>
                       </div>
                       <div class="col-lg-8 col-md-12">
@@ -186,6 +186,7 @@ import langue from '../service/Multilangue.js'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
+
 export default {
     name:'DetailTechnique',
      components: {
@@ -201,7 +202,7 @@ export default {
         overlay:true,
         timeout: null,
         datas: null,
-         OptionLangue:langue,
+        OptionLangue:langue,
         scrollId:"#scrollId3",
         rechercheId:'#scrollId3',
         showup:false,
@@ -275,6 +276,14 @@ export default {
     },
     methods:{
         ...mapActions('Langage',['setLangage']),
+                changeLangue(){
+            if(this.getLangage == 'mg'){
+                this.setLangage(this.fr);
+            }else{
+                this.setLangage(this.mg)
+            }
+
+        },
         clearTimeout() {
           if (this.timeout) {
             clearTimeout(this.timeout)
@@ -319,6 +328,7 @@ export default {
         },
         getTechnique(){
           var langage = this.getLangage
+          var self = this
           var nbr_list = 3;
           var start = 0
           fetch(self.baseUrl + `technique/list/${langage}/${nbr_list}/${start}`)

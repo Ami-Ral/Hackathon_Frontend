@@ -90,7 +90,7 @@
                     <router-link class="nav-link "  :style="{color:active4,fontWeight:fontWeight4}"  to="/plantes">{{OptionLangue[getLangage].plante}}</router-link>
                 </li>
                 <li class="nav-item mr-5">
-                    <router-link class="nav-link "  :style="{color:active4,fontWeight:fontWeight4}"  to="/documentation">{{OptionLangue[getLangage].doc}}</router-link>
+                    <router-link class="nav-link "  :style="{color:active6,fontWeight:fontWeight6}"  to="/documentation">{{OptionLangue[getLangage].doc}}</router-link>
                 </li>
                 <li class="nav-item mr-5">
                     <router-link class="nav-link "  :style="{color:active7,fontWeight:fontWeight7}"  to="/user/login">{{OptionLangue[getLangage].login}}</router-link>

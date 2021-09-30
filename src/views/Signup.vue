@@ -3,7 +3,7 @@
         <transition name="fade">
             <div v-if="!overlay">
                 <header id="header-default"  >
-                    <Header :bgcolor="bgcolor" :active2="active6" :fontWeight2="fontWeight6"/>
+                    <Header :bgcolor="bgcolor" :active2="active6" :fontWeight2="fontWeight6" :set="changeLangue"/>
                 </header>
               <section class="ftco-section">
               <div class="container" >
@@ -17,48 +17,48 @@
                       <div class="wrap d-md-flex" >
                         <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last" >
                           <div class="text w-100" >
-                            <h2>Bienvenue à vous!</h2>
+                            <h2>{{OptionLangue[getLangage].bienvenue}}</h2>
                             <p>AFAAS HACHATHON </p>
-                            <router-link to='/' class="btn btn-white btn-outline-white">Visiter</router-link>
+                            <router-link to='/' class="btn btn-white btn-outline-white">{{OptionLangue[getLangage].visite}}</router-link>
                           </div>
                         </div>
                         <div class="login-wrap p-4 p-lg-5">
                           <div class="d-flex">
                             <div class="w-100">
-                              <h3 class="mb-4">Nouveau compte</h3>
+                              <h3 class="mb-4">{{OptionLangue[getLangage].nouveu}}</h3>
                             </div>
                           </div>
                           <form action="#" class="signin-form" @submit.prevent="handleSignup">
                             <div class="form-group mb-3">
-                              <label class="label" for="name">Nom: </label>
-                              <input type="text" class="form-control" v-model="user.nom" placeholder="Nom" required>
+                              <label class="label" for="name">{{OptionLangue[getLangage].nom}}</label>
+                              <input type="text" class="form-control" v-model="user.nom"  required>
                             </div>
                             <div class="form-group mb-3">
-                              <label class="label" for="name">Prenom: </label>
-                              <input type="text" class="form-control" v-model="user.prenom" placeholder="Prenom" required>
+                              <label class="label" for="name">{{OptionLangue[getLangage].prenom}}</label>
+                              <input type="text" class="form-control" v-model="user.prenom"  required>
                             </div>
                             <div class="form-group mb-3">
-                              <label class="label" for="name">Appelation: </label>
-                              <input type="text" class="form-control" v-model="user.appelation" placeholder="Prenom" required>
+                              <label class="label" for="name">{{OptionLangue[getLangage].appelation}}</label>
+                              <input type="text" class="form-control" v-model="user.appelation"  required>
                             </div>
                             <div class="form-group mb-3">
-                              <label class="label" for="name">Email:</label>
-                              <input type="text" class="form-control" v-model="user.email" placeholder="Pseudo" required>
+                              <label class="label" for="name">{{OptionLangue[getLangage].email_log}}</label>
+                              <input type="text" class="form-control" v-model="user.email"  required>
                             </div>
                             <div class="form-group mb-3">
-                              <label class="label" for="password">Mot de passe:</label>
-                              <input type="password" class="form-control"  v-model="user.password" placeholder="Password" required>
+                              <label class="label" for="password">{{OptionLangue[getLangage].mot_de_passe_log}}</label>
+                              <input type="password" class="form-control"  v-model="user.password"  required>
                             </div>
                             <div class="form-group mb-3">
-                              <label class="label" for="password">Confirmation de mot de passe:</label>
-                              <input type="password" class="form-control" v-model="user.new_password" placeholder="Password" required>
+                              <label class="label" for="password">{{OptionLangue[getLangage].conf}}</label>
+                              <input type="password" class="form-control" v-model="user.new_password"  required>
                             </div>
                              <div class="form-group mb-3">
-                              <label class="label" for="password">Type de compte:</label>
-                              <input type="text" readonly class="form-control" value="Vulgarisateur" placeholder="Password" required>
+                              <label class="label" for="password">{{OptionLangue[getLangage].type_compte}}</label>
+                              <input type="text" readonly class="form-control" value="Vulgarisateur"  required>
                             </div>
                             <div class="form-group">
-                              <button type="submit" class="form-control btn btn-primary submit px-3">Créer un compte</button>
+                              <button type="submit" class="form-control btn btn-primary submit px-3">{{OptionLangue[getLangage].creer_un_compte}}</button>
                             </div>
                             
                           </form>
@@ -80,6 +80,7 @@
 <script>
 import Header from "../components/Header"
 import { mapGetters, mapActions } from 'vuex'
+import langue from '../service/Multilangue.js'
 
 export default {
     name:'DetailTechnique',
@@ -88,6 +89,7 @@ export default {
     },
     computed: {
       ...mapGetters('admins',['statusError']),
+       ...mapGetters('Langage',['getLangage']),
     },
     created(){
       this.setTimeout(() => {
@@ -101,6 +103,7 @@ export default {
         fontWeight6:'bolder',
         overlay:true,
         timeout: null,
+        OptionLangue:langue,
         user:{
           nom:'',
           prenom:'',
@@ -109,11 +112,15 @@ export default {
           new_password:'',
           appelation:'',
           droit:'vulgarisateur'
-        }
+        },
+        fr:'fr',
+        mg:'mg',
+      
       }
    },
     methods:{
       ...mapActions('admins',['register']),
+      ...mapActions('Langage',['setLangage']),
         clearTimeout() {
           if (this.timeout) {
             clearTimeout(this.timeout)
@@ -131,6 +138,13 @@ export default {
         var user = this.user
         console.log(user)
         this.register(user)
+      },
+      changeLangue(){
+            if(this.getLangage == 'mg'){
+                this.setLangage(this.fr)
+            }else{
+                this.setLangage(this.mg)
+            }
       }
    }
 }

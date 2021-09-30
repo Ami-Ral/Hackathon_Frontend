@@ -16,18 +16,18 @@
                                     <div class="under-image"></div>
                                     <div class="container detail">
                                         <div  class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-0">
-                                            <div class="col-lg-12 col-sm-12 col-md-12 col-12 mt-0  mt-lg-5">
+                                            <div class="col-lg-12 col-sm-12 col-md-12 col-12 mt-0  mt-lg-0 mb-4">
                                                 <h4 v-if="plante.nom_fr != undefined ? true :false" class="title mt-4">{{plante.nom_fr}}</h4>
                                                 <h4 class="title mt-4" v-else>{{plante.nom_mg}}</h4>
                                             </div>
                                         </div>
                                         <div class="row row-cols-lg-4 row-cols-1 row-cols-md-1 row-cols-sm-1">
-                                            <div class="col-lg-2 col-sm-3 col-md-3 col-3 mt-2 mx-0">
+                                            <div class="col-lg-2 col-sm-3 col-md-3 col-3 mt-0 mx-0">
                                                 <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1">
-                                                    <div class="col-lg-3 col-sm-12 col-md-3 col-12 mt-4">
+                                                    <div class="col-lg-3 col-sm-12 col-md-3 col-12 mt-2">
                                                         <img src="../assets/images/Icones/green-energy.png" alt="" srcset="" width="40px" height="40px">
                                                     </div>
-                                                     <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-4">
+                                                     <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-2">
                                                          <h6>Lumière</h6>
                                                          <p>{{plante.lumiere}}</p>
                                                     </div>
@@ -35,10 +35,10 @@
                                             </div>
                                             <div class="col-lg-2 col-sm-3 col-md-3 col-3 mt-2   mx-0 px-0" >
                                                 <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-0">
-                                                    <div class="col-lg-3 col-sm-12 col-md-3 col-12 mt-4">
+                                                    <div class="col-lg-3 col-sm-12 col-md-3 col-12 mt-2">
                                                         <img src="../assets/images/Icones/humidity (1).png" alt="" srcset="" width="40px" height="40px">
                                                     </div>
-                                                     <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-4">
+                                                     <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-2">
                                                          <h6>Humidité</h6>
                                                          <p>{{plante.humidite}}</p>
                                                     </div>
@@ -46,10 +46,10 @@
                                             </div>
                                             <div class="col-lg-2 col-sm-3 col-md-3 col-3 mt-2 mx-0 px-0">
                                                 <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-0">
-                                                    <div class="col-lg-3 col-sm-12 col-md-3 col-12 mt-4">
+                                                    <div class="col-lg-3 col-sm-12 col-md-3 col-12 mt-2">
                                                         <img src="../assets/images/Icones/harvest.png" alt="" srcset="" width="40px" height="40px">
                                                     </div>
-                                                     <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-4">
+                                                     <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-2">
                                                          <h6>Floraison</h6>
                                                          <p>{{plante.floraison}}</p>
                                                     </div>
@@ -57,10 +57,10 @@
                                             </div>
                                             <div class="col-lg-2 col-sm-3 col-md-3 col-3 mt-2 mx-0 px-0">
                                                 <div class="row row-cols-lg-3 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-0">
-                                                    <div class="col-lg-3 col-sm-12 col-md-3 col-12 mt-4">
+                                                    <div class="col-lg-3 col-sm-12 col-md-3 col-12 mt-2">
                                                         <img src="../assets/images/Icones/humidity (2).png" alt="" srcset="" width="40px" height="40px">
                                                     </div>
-                                                     <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-4">
+                                                     <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-2">
                                                          <h6>Température</h6>
                                                          <p>{{plante.temperature}}</p>
                                                     </div>

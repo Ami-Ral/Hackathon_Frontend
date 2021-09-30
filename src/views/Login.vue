@@ -17,9 +17,9 @@
                       <div class="wrap d-md-flex">
                         <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
                           <div class="text w-100">
-                            <h2>Bienvenue à vous!</h2>
+                            <h2>{{OptionLangue[getLangage].bienvenue}}</h2>
                             <p>AFAAS HACKATHON</p>
-                            <router-link to='/user/signup' class="btn btn-white btn-outline-white">Créer un compte</router-link>
+                            <router-link to='/user/signup' class="btn btn-white btn-outline-white">{{OptionLangue[getLangage].creer_un_compte}}</router-link>
                           </div>
                         </div>
                         <div class="login-wrap p-4 p-lg-5">
@@ -31,15 +31,15 @@
                           </div>
                           <form action="#" class="signin-form" @submit.prevent="handleLogin">
                             <div class="form-group mb-3">
-                              <label class="label" for="name">Email</label>
+                              <label class="label" for="name">{{OptionLangue[getLangage].email_log}}</label>
                               <input type="text" class="form-control" placeholder="Email" v-model="user.email" required>
                             </div>
                             <div class="form-group mb-3">
-                              <label class="label" for="password">Mot de passe</label>
+                              <label class="label" for="password">{{OptionLangue[getLangage].mot_de_passe_log}}</label>
                               <input type="password" class="form-control"  v-model="user.password" placeholder="Mot de passe" required>
                             </div>
                             <div class="form-group">
-                              <button type="submit" class="form-control btn btn-primary submit px-3">Se connecter</button>
+                              <button type="submit" class="form-control btn btn-primary submit px-3">{{OptionLangue[getLangage].login}}</button>
                             </div>
                            
                           </form>
