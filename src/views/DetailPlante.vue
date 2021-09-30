@@ -12,7 +12,7 @@
                         <div class="col-lg-12 col-sm-12 col-md-12 col-12 mt-4" >
                             <VueSlickCarousel  ref="c1" :asNavFor="$refs.c2" v-bind="setting2">
                                 <div v-for="(image0,index) in images" :key="index" style="width:100% !important;height:200px!important">
-                                    <img :src="baseUrl + image0.path.split('public')[1]" alt="" srcset="" width="100%" height="450px">
+                                    <img :src="baseUrl + image0.path.split('public')[1]" class="img-cover" alt="" srcset="" width="100%" height="450px">
                                     <div class="under-image"></div>
                                     <div class="container detail">
                                         <div  class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-0">
@@ -482,6 +482,10 @@ export default {
   margin-top: 0px;
   position: relative;
   padding: 0;
+}
+.img-cover{
+    object-fit: cover;
+    object-position: center;
 }
 .card-body{
      background: rgb(15, 15, 17) top center;

@@ -1,29 +1,46 @@
 <template>
-    <div class="card" v-if="donnee != undefined ? true : false">
+<div class="card" v-if="donnee != undefined ? true : false">
 
-        <router-link  style="text-decoration:none;color:white"  class="card2" :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}">
-            <img :src="baseUrl + donnee.couverture.split('public')[1]" alt="" class="card-image">
-            <div class="under-image"></div>
-            <div class="detail" v-if="donnee.nom_fr == undefined || donnee.nom_fr=='null' ? false:true">
-                <h4><router-link :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
-                <h6>{{donnee.info_fr}}</h6>
-            </div>
-            <div class="detail" v-else>
-                <h4><router-link :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}" style="text-decoration:none;color:white">{{donnee.nom_mg}}</router-link></h4>
-                <h6>{{donnee.info_mg}}</h6>
-            </div>
-        </router-link>
-    </div>
+    <router-link  style="text-decoration:none;color:white" v-if="NameRoute == 1 ? true:false" class="card2" :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}">
+        <img :src="donnee.couverture" alt="" class="card-image">
+        <div class="under-image"></div>
+        <div class="detail" v-if="donnee.nom_fr == undefined || donnee.nom_fr=='null' ? false:true">
+            <h4><router-link :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
+            <h6>{{donnee.info_fr}}</h6>
+        </div>
+        <div class="detail" v-else>
+            <h4><router-link :to="{name:'DetailTechnique',params:{id:parse(donnee.id_technique)}}" style="text-decoration:none;color:white">{{donnee.nom_mg}}</router-link></h4>
+            <h6>{{donnee.info_mg}}</h6>
+        </div>
+    </router-link>
+
+    <router-link style="text-decoration:none;color:white" v-else-if="NameRoute == 3" class="card2" :to="{name:'DetailPlante',params:{id:parse(donnee.id_plante)}}">
+        <img :src="baseUrl + donnee.path_image.split('public')[1]" alt="" class="card-image">
+        <div class="under-image"></div> 
+        <div class="detail" v-if="donnee.nom_fr==undefined || donnee.nom_fr=='null' ? false:true">
+            <h4><router-link :to="{name:'DetailPlante',params:{id:parse(donnee.id_plante)}}" style="text-decoration:none;color:white">{{donnee.nom_fr}}</router-link></h4>
+            <h6>{{donnee.nom_scientifique}}</h6>
+        </div>
+        <div class="detail" v-else>
+            <h4><router-link :to="{name:'DetailPlante',params:{id:parse(donnee.id_plante)}}" style="text-decoration:none;color:white">{{donnee.nom_mg}}</router-link></h4>
+            <h6>{{donnee.nom_scientifique}}</h6>
+        </div>
+    </router-link>
+</div>
 </template>
 <script>
 import baseUrl from '../service/baseUrl.js'
 
 export default {
-    name:"CardTechnique",
+    name:"Card",
     props:{
         donnee:{
             type:Object,
             default:()=>{} 
+        },
+        NameRoute:{
+            type:Number,
+            default:()=>1
         },
     },
     created(){
@@ -116,7 +133,7 @@ export default {
  .detail{
         position:absolute;
         padding: 10px;
-        top:25vh;
+        top:23vh;
         left: 3vh;
     }
 }
@@ -124,7 +141,7 @@ export default {
   .detail{
         position:absolute;
         padding: 10px;
-        top:20vh;
+        top:18vh;
         left: 3vh;
     }
 }
@@ -133,7 +150,7 @@ export default {
     .detail{
         position:absolute;
         padding: 10px;
-        top:18vh;
+        top:16vh;
         left: 3vh;
     }
 }

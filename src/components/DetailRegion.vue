@@ -79,7 +79,7 @@
                 </h4>
                 <VueSlickCarousel v-if="plantes.length" v-bind="setting3" style="padding: 1rem;">
 
-                    <router-link :to="{name:'DetailTechnique',params:{id:parseInt(plante.id_technique)}}" class="card ml-4 border-none" v-for="(plante,index) in plantes" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
+                    <router-link :to="{name:'DetailPlante',params:{id:parseInt(plante.id_plante)}}" class="card ml-4 border-none" v-for="(plante,index) in plantes" :key="index" style="margin-right:10px;width:30px !important;text-decoration:none">
                         <img :src="baseUrl + plante.image.replace('public','')" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="card-text pb-0" style="font-size:12px" v-if="plante.nom_fr != undefined ? true :false">{{plante.nom_fr}}</p>

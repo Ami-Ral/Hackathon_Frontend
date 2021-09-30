@@ -25,7 +25,7 @@ import { toDataUrl } from '../helper/images.js'
 
 import Header from "../components/Header"
 import Footer from "../components/Footer"
-import List from "../components/List"
+import List from "../components/Listcopy"
 import BarRecherche from "../components/BarRecherche"
 
 
