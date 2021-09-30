@@ -82,7 +82,7 @@
                        </div>
                     </div >
                     <div v-if="getOne != undefined && getOne != 'null'?true:false" class="row row-cols-lg-2 row-cols-1 row-cols-md-2 row-cols-sm-1 pt-1 mx-0 flex bg-color mt-4 px-0 pb-5 mb-4">
-                        <div class="col-lg-4 col-sm-12 col-md-5 col-12 border-style px-3">
+                        <div class="col-lg-4 col-sm-12 col-md-5 col-12 border-style px-3" v-if="plante">
                             <div class="row row-cols-lg-2 row-cols-2 row-cols-md-1 row-cols-sm-2 mt-4">
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/adn.png" alt="" srcset="" width="40px" height="40px">
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-8 col-sm-12 col-md-7 col-12 px-4 pd-b">
+                        <div class="col-lg-8 col-sm-12 col-md-7 col-12 px-4 pd-b" v-if='plante'>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-4">
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
                                     <h5>Description</h5>
@@ -329,27 +329,41 @@ export default {
       
       this.setTimeout(() => {
           this.overlay = false
-           this.change(this.getOne)
-           console.log(this.getOne)
-           this.initialValue2(this.AllTechnique)
-          if(this.getOne == undefined){
-              Plantes.getOne(langage,id_plante)
-              .then((res)=>{
-                    this.change(res.data)
-              })
-              .catch(()=>{})
+          if(this.isOnline){
+               this.change(this.getOne)
+               console.log(this.getOne)
+               this.initialValue2(this.AllTechnique)
+              if(this.getOne == undefined){
+                  Plantes.getOne(langage,id_plante)
+                  .then((res)=>{
+                        this.change(res.data)
+                  })
+                  .catch(()=>{})
+              }
           }
       })
       
     },
     mounted() {
       window.addEventListener('scroll', this.handleResize);
-      this.handleResize()
+      this.handleResize();
+        const self = this;
+        this.$on('offline', () => {
+            self.getOfflineData();
+        })
+
+        if(this.isOffline){
+            self.getOfflineData();
+        }
     },
     destroyed() {
       window.removeEventListener('scroll', this.handleResize);
     },
-    
+    updated(){
+        if (this.isOnline) {
+            this.setOfflineData();
+        }
+    },
     methods:{
         ...mapActions('Technique',['getAllTechnique']),
         ...mapActions('Plante',['getOnePlante']),
@@ -367,6 +381,24 @@ export default {
             }else{
                 this.showup = false
             }
+        },
+        getOfflineData(){
+            const appData = this.$offlineStorage.get('detail-plante-page');
+            this.AllTechnique2 = appData.AllTechnique2;
+            this.images = appData.images;
+            this.technique = appData.technique;
+            this.region = appData.region;
+            this.plante = appData.plante;
+        },
+        setOfflineData(){
+            const self = this;
+            this.$offlineStorage.set('detail-plante-page', {
+                AllTechnique2 : self.AllTechnique2,
+                images: self.images,
+                technique: self.technique,
+                region: self.region,
+                plante: self.plante,
+            });
         },
         getAll2(){
             var langage = this.getLangage

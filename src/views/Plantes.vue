@@ -130,13 +130,13 @@ export default {
 			}, 1000)
         },
         getOfflineData(){
-            const appData = this.$offlineStorage.get('technique-page');
+            const appData = this.$offlineStorage.get('plante-page');
             this.AllTechnique2 = appData.AllTechnique2;
             this.AllPlante2 = appData.AllPlante2;
         },
         setOfflineData(){
             const self = this;
-            this.$offlineStorage.set('technique-page', {
+            this.$offlineStorage.set('plante-page', {
                 AllTechnique2 : self.AllTechnique2,
                 AllPlante2 : self.AllPlante2,
             });
