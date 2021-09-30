@@ -122,13 +122,13 @@
                         <VueSlickCarousel    v-bind="settings">
                           <router-link  to="/climat" class="p-2" v-for="climat in datas.climats" :key="climat.id_climat">
                             <div  v-if="climat.nom_fr==undefined ? false:true"  class="card" style="border-radius: 0; border: none;">
-                              <img :src="climat.image" class="card-img-top" :alt="climat.nom_fr">
+                              <img :src="baseUrl + climat.image.replace('public','')" class="card-img-top" :alt="climat.nom_fr">
                               <div class="card-body">
                                 <h6 class="card-title">{{ climat.nom_fr }}</h6>
                               </div>
                             </div>
                             <div v-else class="card" style="border-radius: 0; border: none;">
-                              <img :src="climat.image" class="card-img-top" :alt="climat.nom_mg">
+                              <img :src="baseUrl + climat.image.replace('public','')" class="card-img-top" :alt="climat.nom_mg">
                               <div class="card-body">
                                 <h6 class="card-title">{{ climat.nom_mg }}</h6>
                               </div>
