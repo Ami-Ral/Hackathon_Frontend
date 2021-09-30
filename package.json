@@ -38,6 +38,7 @@
     "vue-cookies": "^1.7.4",
     "vue-jquery": "^1.0.6",
     "vue-loader": "^15.9.8",
+    "vue-offline": "^2.0.8",
     "vue-route": "^1.5.1",
     "vue-router": "^3.2.0",
     "vue-slick-carousel": "^1.0.6",

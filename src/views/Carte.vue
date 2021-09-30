@@ -36,7 +36,7 @@ import Map from "../components/Map"
 import SearchForm from "../components/SearchForm"
 
 export default {
-    name:'Plantes',
+    name:'Carte',
      components: {
       Header,
       Map,

@@ -35,6 +35,24 @@ export default {
             self.paths = res.data;
         })
     },
+    mounted () {
+        const self = this;
+        this.$on('offline', () => {
+            const appData = self.$offlineStorage.get('map-page');
+            self.paths = appData;
+        })
+
+        if(this.isOffline){
+            const appData = self.$offlineStorage.get('map-page');
+            self.paths = appData;
+        }
+
+    },
+    updated (){
+        if (this.isOnline) {
+            this.$offlineStorage.set('map-page', this.paths);
+        }
+    },
     methods:{
         showDetail(e, id){
             this.$router.push("region/"+id);
