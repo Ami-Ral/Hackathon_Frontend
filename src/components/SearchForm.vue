@@ -1,13 +1,12 @@
 <template>
-    <form>
-      <input list="country" type="text" name="country" />
+    <form v-on:submit="showDetail">
+      <input list="country" type="text" id="region-input" :data-id="value" name="country" v-on:keyup="handleOption" />
 
       <datalist id="country">
-
-        <option v-for="(path,index) in paths" v-bind:value="path.nom" :key="index"/>
+        <option v-for="(path,index) in paths">{{ path.nom }}</option>
       </datalist>
 
-      <input type="submit" :value="value">
+      <input type="submit" :value="value" />
    </form>
 </template>
 <script>
@@ -24,6 +23,7 @@ export default {
     data:function() {
         return{
             paths:[],
+            val : "0",
         }
     },
     beforeMount(){
@@ -34,9 +34,44 @@ export default {
         })
     },
     methods:{
-        test(){
-            alert("clicked");
+        showDetail(e, id){
+            e.preventDefault();
+            if(this.valInpath()){
+                this.$router.push("region/"+ this.val);
+            } else {
+                const input = document.querySelector("form input[type=submit]");
+                input.style.backgroundColor = "#863333";
+
+                setTimeout(() => {
+                    input.style.backgroundColor = "#1c6d41";
+                }, 1500)
+            }
         },
+        handleOption(e){
+            const valeur = e.target.value.toLowerCase();
+            const input = document.getElementById("region-input"); 
+            let none = true;
+
+            for(let i = 0; i < this.paths.length; i++){
+                if(this.paths[i].nom.toLowerCase() === valeur){
+                    this.val = this.paths[i].id_region;
+                    none = false;
+                }
+            }
+
+            if(none){
+                this.val = "0";
+                input.style.backgroundColor = "#a006";
+            } else {
+                input.style.backgroundColor = "#0006";
+            }
+        },
+        valInpath(){
+            for(let i = 0; i < this.paths.length; i++){
+                if(this.paths[i].id_region === this.val) return true;
+            }
+            return false;
+        }
     },
 }
 </script>
@@ -65,6 +100,7 @@ form input:focus{
 form input[type=submit]{
     background-color: #1c6d41;
     color: white;
+    transition: background-color .3s;
 }
 
 </style>
