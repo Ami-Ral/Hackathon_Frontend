@@ -28,9 +28,6 @@
                 <li class="nav-item">
                     <router-link class="nav-link"  :style="{color:active6,fontWeight:fontWeight6}"  to="/documentation">{{OptionLangue[getLangage].doc}}</router-link>
                 </li>
-                <li class="nav-item mr-5">
-                    <router-link class="nav-link "  :style="{color:active7,fontWeight:fontWeight7}"  to="/user/login">{{OptionLangue[getLangage].login}}</router-link>
-                </li>
                 
             </ul>
             <ul class="navbar-nav me-auto d-flex langue">
@@ -48,15 +45,10 @@
             </ul>
              <ul class="navbar-nav me-auto mb-0 mb-lg-0 navbar-right">
                  
-                <li class="nav-item"> 
-                    <i class="fab fa-facebook-f"></i>
+                <li class="nav-item mr-4"> 
+                    <router-link to="/user/login" style="border-radius:20px"  type="button" class="btn btn-outline-light">{{OptionLangue[getLangage].login}}</router-link>
                 </li>
-                <li class="nav-item">
-                    <i class="fab fa-twitter"></i>
-                </li>
-                <li class="nav-item">
-                    <i class="fab fa-instagram"></i>
-                </li>
+               
             </ul>
         </div>
         <div class="collapse navcollaspse pr-4" id="navbarSupportedContent">
@@ -92,20 +84,9 @@
                 <li class="nav-item mr-5">
                     <router-link class="nav-link "  :style="{color:active6,fontWeight:fontWeight6}"  to="/documentation">{{OptionLangue[getLangage].doc}}</router-link>
                 </li>
-                <li class="nav-item mr-5">
-                    <router-link class="nav-link "  :style="{color:active7,fontWeight:fontWeight7}"  to="/user/login">{{OptionLangue[getLangage].login}}</router-link>
-                </li>
             </ul>
             <ul class="navbar-nav3">
-                <li class="nav-item">
-                    <i class="fab fa-facebook-f"></i>
-                </li>
-                <li class="nav-item">
-                    <i class="fab fa-twitter"></i>
-                </li>
-                <li class="nav-item">
-                    <i class="fab fa-instagram"></i>
-                </li>
+                <router-link to="/user/login" style="border-radius:20px"  type="button" class="btn btn-outline-light">{{OptionLangue[getLangage].login}}</router-link>
             </ul>
             
             
@@ -252,7 +233,7 @@ import { mapGetters,mapActions} from 'vuex'
     color: rgb(219, 219, 219)
 }
 .navbar-right li{
-    margin-left: 15px;
+    margin-left: 0px;
     color: #888  !important
 }
 .navbar-right i:hover,.navbar-left:hover{
@@ -362,7 +343,7 @@ import { mapGetters,mapActions} from 'vuex'
         margin-left: 10px
     }
     .navbar-right {
-        margin-left: 90% !important
+        margin-left: 88% !important
     }
     .navcollaspse{
         display: none
@@ -416,6 +397,9 @@ import { mapGetters,mapActions} from 'vuex'
     .navbar-right {
         margin-left: 90% !important
     }
+    .navbar-nav3{
+        padding-left: 49% !important;
+    }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
      .navbar-nav2{
@@ -428,7 +412,7 @@ import { mapGetters,mapActions} from 'vuex'
         list-style: none;
         align-items: center;
         display: flex;
-        padding-left: 39% !important;
+        padding-left: 42% !important;
         flex-direction: row
     }
      .botton{
@@ -468,7 +452,7 @@ import { mapGetters,mapActions} from 'vuex'
         list-style: none;
         align-items: center;
         display: flex;
-        padding-left: 38% !important;
+        padding-left: 36% !important;
         flex-direction: row
     }
     .botton{
@@ -517,7 +501,8 @@ import { mapGetters,mapActions} from 'vuex'
         top:55px;
     }
      .navbar-nav3{
-         margin-top: -20px
+         margin-top: -20px;
+         padding-left: 38% !important;
      }
     .navbar-nav3 i{
         font-size: 20px!important;

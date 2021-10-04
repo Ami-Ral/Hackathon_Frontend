@@ -189,7 +189,6 @@ var langue = ({
         climat_rel : "Toe-tany mety :",
         region_rel : "Faritra mety :" ,
         plante_rel : "Zava-maniry mety",
-        tech_rel :"Teknika mety" ,
         type_sol :" Karazana tany",
         struct_sol :" Firafitry ny tany",
         text_sol :"Volavolan-tany ",
