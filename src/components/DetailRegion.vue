@@ -60,7 +60,7 @@
         <div style="position: relative; z-index: 2; padding: 1rem; background-color: #222;">
             <div class="relations-list">
                 <h4 class="mt-4">
-                    <b style="text-transform:uppercase">{{OptionLangue[getLangage].techn_rel}}</b>
+                    <b style="text-transform:uppercase">{{OptionLangue[getLangage].tech_rel}}</b>
                 </h4>
                 <VueSlickCarousel v-if="techniques.length" v-bind="setting3" style="padding: 1rem;">
 

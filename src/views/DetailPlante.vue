@@ -28,7 +28,7 @@
                                                         <img src="../assets/images/Icones/green-energy.png" alt="" srcset="" width="40px" height="40px">
                                                     </div>
                                                      <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-2">
-                                                         <h6>Lumière</h6>
+                                                         <h6>{{OptionLangue[getLangage].lumiere}}</h6>
                                                          <p>{{plante.lumiere}}</p>
                                                     </div>
                                                 </div>
@@ -39,7 +39,7 @@
                                                         <img src="../assets/images/Icones/humidity (1).png" alt="" srcset="" width="40px" height="40px">
                                                     </div>
                                                      <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-2">
-                                                         <h6>Humidité</h6>
+                                                         <h6>{{OptionLangue[getLangage].humidite}}</h6>
                                                          <p>{{plante.humidite}}</p>
                                                     </div>
                                                 </div>
@@ -50,7 +50,7 @@
                                                         <img src="../assets/images/Icones/harvest.png" alt="" srcset="" width="40px" height="40px">
                                                     </div>
                                                      <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-2">
-                                                         <h6>Floraison</h6>
+                                                         <h6>{{OptionLangue[getLangage].floraison}}</h6>
                                                          <p>{{plante.floraison}}</p>
                                                     </div>
                                                 </div>
@@ -61,7 +61,7 @@
                                                         <img src="../assets/images/Icones/humidity (2).png" alt="" srcset="" width="40px" height="40px">
                                                     </div>
                                                      <div class="col-lg-9 col-sm-12 col-md-9 col-12 mt-2">
-                                                         <h6>Température</h6>
+                                                         <h6>{{OptionLangue[getLangage].temperature}}</h6>
                                                          <p>{{plante.temperature}}</p>
                                                     </div>
                                                 </div>
@@ -86,48 +86,48 @@
                             <div class="row row-cols-lg-2 row-cols-2 row-cols-md-1 row-cols-sm-2 mt-4">
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/adn.png" alt="" srcset="" width="40px" height="40px">
-                                    <h6 class="mt-2">Nom scientifique</h6>
+                                    <h6 class="mt-2">{{OptionLangue[getLangage].nom_science}}</h6>
                                     <p>{{plante.nom_scientifique}}</p>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/planete-terre.png" alt="" srcset="" width="40px" height="40px">
-                                    <h6 class="mt-2">Regne</h6>
+                                    <h6 class="mt-2">{{OptionLangue[getLangage].regne}}</h6>
                                     <p>{{plante.regne}}</p>
                                 </div>
                             </div>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-4">
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/branche.png" alt="" srcset="" width="40px" height="40px">
-                                    <h6 class="mt-2">Embranchement</h6>
+                                    <h6 class="mt-2">{{OptionLangue[getLangage].embranchement}}</h6>
                                     <p>{{plante.embranchement}}</p>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/classification.png" alt="" srcset="" width="40px" height="40px">
-                                    <h6 class="mt-2">Classe</h6>
+                                    <h6 class="mt-2">{{OptionLangue[getLangage].classe}}</h6>
                                     <p>{{plante.classe}}</p>
                                 </div>
                             </div>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-4">
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/bonsai.png" alt="" srcset="" width="40px" height="40px">
-                                    <h6 class="mt-2">Ordre</h6>
+                                    <h6 class="mt-2">{{OptionLangue[getLangage].ordre}}</h6>
                                     <p>{{plante.ordre}}</p>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/famille.png" alt="" srcset="" width="40px" height="40px">
-                                    <h6 class="mt-2">Famille</h6>
+                                    <h6 class="mt-2">{{OptionLangue[getLangage].famille}}</h6>
                                     <p>{{plante.famille}}</p>
                                 </div>
                             </div>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-4">
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/feuille.png" alt="" srcset="" width="40px" height="40px">
-                                    <h6 class="mt-2">Genre</h6>
+                                    <h6 class="mt-2">{{OptionLangue[getLangage].genre}}</h6>
                                     <p>{{plante.genre}}</p>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6 col-6 ">
                                     <img src="../assets/images/Icones/cactus.png" alt="" srcset="" width="40px" height="40px">
-                                    <h6 class="mt-2">Éspèce</h6>
+                                    <h6 class="mt-2">{{OptionLangue[getLangage].espece}}</h6>
                                     <p>{{plante.espece}}</p>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                         <div class="col-lg-8 col-sm-12 col-md-7 col-12 px-4 pd-b" v-if='plante'>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-4">
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
-                                    <h5>Description</h5>
+                                    <h5>{{OptionLangue[getLangage].description}}</h5>
                                     <span></span>
                                 </div>
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
@@ -145,7 +145,7 @@
                             </div>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-2">
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
-                                    <h5>Techniques</h5>
+                                    <h5>{{OptionLangue[getLangage].technique}}</h5>
                                     <span></span>
                                 </div>
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
@@ -162,7 +162,7 @@
                             </div>
                             <div class="row row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-4">
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
-                                    <h5>Region</h5>
+                                    <h5>{{OptionLangue[getLangage].region}}</h5>
                                     <span></span>
                                 </div>
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 ">
@@ -200,6 +200,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 import Plantes from '../service/Plantes'
 import Techniques from '../service/Techniques'
+import langue from '../service/Multilangue.js'
 
 export default {
     name:'DetailPlante',
@@ -216,6 +217,7 @@ export default {
         fontWeight4:'bolder',
         overlay:true,
         timeout: null,
+        OptionLangue:langue,
         scrollId:"#scrollId3",
         scrolly: 0,
         baseUrl:baseUrl,
@@ -318,7 +320,7 @@ export default {
    },
     computed: {
       ...mapGetters('Technique',['AllTechnique']),
-      ...mapGetters('Langage',['getLangage']),
+      ...mapGetters('Langage',['getLangage']), 
        ...mapGetters('Plante',['getOne'])
     },
     created(){

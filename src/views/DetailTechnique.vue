@@ -159,7 +159,7 @@
                 </div>
                 <div class="container p-4">
                   <div class="d-flex plus-info" style="font-size: 1.1rem;">
-                    <div class="mb-2 d-inline-block" style="margin-right: .5rem;"><b>{{OptionLangue[getLangage].mada}}</b></div>
+                    <div class="mb-2 d-inline-block" style="margin-right: .5rem;"><b>{{OptionLangue[getLangage].infos}}</b></div>
                     <div v-if="datas">
                       <a :href="datas.techique[0].source" class="text-secondary" target="_blank">{{ datas.techique[0].source }}</a>
                     </div>
