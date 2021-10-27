@@ -110,7 +110,7 @@
 import langue from '../service/Multilangue.js'
 import baseUrl from '../service/baseUrl.js'
 import MapService from '../service/Map.js'
-import Footer from "./Footer"
+//import Footer from "./Footer"
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
@@ -172,7 +172,7 @@ export default {
         }
     },
     components:{   
-      Footer,
+      
       VueSlickCarousel
     },
     computed: {

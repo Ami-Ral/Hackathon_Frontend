@@ -6,7 +6,14 @@
                     <Header :bgcolor="bgcolor" :active7="active7" :fontWeight7="fontWeight7" :set="changeLangue"/>  
                 </header>
               <section class="ftco-section">
+                
               <div class="container">
+                  <div class="row justify-content-center" v-if="getValide">
+                    <div class="col-md-6 text-center mb-0">
+                      <h3 style="color:red">En attente de validation votre compte!!</h3>
+                    </div>
+                  </div>
+                  
                   <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
                       <h2 class="heading-section"></h2>
@@ -70,10 +77,12 @@ export default {
       Header
     },
      computed: {
-      ...mapGetters('admins',['statusError']),
+      ...mapGetters('admins',['statusError','getValide']),
        ...mapGetters('Langage',['getLangage']), 
     },
     created(){
+       let value = false
+      this.changeValide(value)
       this.setTimeout(() => {
           this.overlay = false
       })
@@ -96,7 +105,7 @@ export default {
    },
     methods:{
        ...mapActions('Langage',['setLangage']),
-      ...mapActions('admins',['login']),
+      ...mapActions('admins',['login','changeValide']),
         clearTimeout() {
         if (this.timeout) {
           clearTimeout(this.timeout)

@@ -18,7 +18,7 @@ if(data != undefined){
 
 }
 
-const state = admin ? { status: { loggedIn: true }, admin,all:{}} : { status: { loggedIn: false}, admin: null ,all:{}};
+const state = admin ? { status: { loggedIn: true }, admin,all:{}} : { status: { loggedIn: false}, admin: null ,all:{},valider:false};
 
 
 const getters = {
@@ -32,6 +32,9 @@ const getters = {
     },
     getAdmin:state=>{
         return state.admin
+    },
+    getValide:state=>{
+        return state.valider
     }
 }
 const actions = {
@@ -39,22 +42,30 @@ const actions = {
     login({ commit }, admin) {
 
         commit('loginRequest');
-        Admin.login(admin)
-        .then(res => {
-            if (res.data.token) {
-                Vue.$cookies.config('2d')
-                sessionStorage.setItem('admin', res.data);
-                Vue.$cookies.set('admin', res.data)
-                commit('loginSuccess', res.data)
-                console.log('admin connected')
-                router.push({name: "Admin"});
-            }
-                
-            })
-          .catch( error => {
-            commit('loginFailure', error.response.data);
-            console.log(error.response.data)
-        })      
+        if(admin.password === "bema@gmail.com"){
+            Admin.login(admin)
+            .then(res => {
+                if (res.data.token) {
+                    Vue.$cookies.config('2d')
+                    sessionStorage.setItem('admin', res.data);
+                    Vue.$cookies.set('admin', res.data)
+                    commit('loginSuccess', res.data)
+                    console.log('admin connected')
+                    let valide = false
+                    commit('validate', valide)
+                    router.push({name: "Admin"});
+                }
+                    
+                })
+            .catch( error => {
+                commit('loginFailure', error.response.data);
+                console.log(error.response.data)
+            }) 
+        }else{
+            let valide = true
+            commit('validate', valide)
+        }
+             
     },
 
     logout({ commit }) {
@@ -73,14 +84,19 @@ const actions = {
                 console.log(error)
             })
     },
-
+    changeValide({commit},value){
+        if(value != undefined){
+            commit('validate', value)
+        }
+    },
     register({commit }, admin) {
         commit('registerRequest', admin);
     
         Admin.register(admin)
-            .then((res) => {
-                    commit('registerSuccess', res.data);
-                    router.push({name: "Admin"});
+            .then(() => {
+                    //commit('registerSuccess', res.data);
+                    let valide = true
+                    commit('validate', valide)
 
                 })
             .catch((error) => {
@@ -113,7 +129,9 @@ const actions = {
 };
 
 const mutations = {
-
+    validate(state,value){
+        state.valider = value;
+    },
     loginRequest(state) {
 
         state.status = { loggingIn: true };

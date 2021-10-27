@@ -8,6 +8,7 @@ import Plantes from '../views/Plantes.vue'
 import Climat from '../views/Climat.vue'
 import DetailTechnique from '../views/DetailTechnique.vue'
 import DetailPlante from '../views/DetailPlante.vue'
+import DetailRegion from '../views/DetailRegion.vue'
 
 import Admin from '../views/Admin.vue'
 import AddClimat from '../views/AddClimat.vue'
@@ -23,7 +24,7 @@ import ListeTechnique from '../views/ListeTechnique'
 import ListePlante from '../views/ListePlante'
 import ListeClimat from '../views/ListeClimat'
 
-import { store } from '../store';
+//import { store } from '../store';
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,12 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home,
+    },
+    {
+        path: '/region/:id',
+        name: 'DetailRegion',
+        props: true ,
+        component: DetailRegion,
     },
     {
         path: '/techniques',

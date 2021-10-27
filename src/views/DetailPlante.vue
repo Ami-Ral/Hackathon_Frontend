@@ -10,7 +10,7 @@
                     <div class="container-fluid mx-0 px-0 pb-1">
                     <div class="row row-cols-lg-1 row-cols-1 row-cols-md-1 row-cols-sm-1 mt-0">
                         <div class="col-lg-12 col-sm-12 col-md-12 col-12 mt-4" >
-                            <VueSlickCarousel  ref="c1" :asNavFor="$refs.c2" v-bind="setting2">
+                            <VueSlickCarousel  ref="c1"  v-bind="setting2">
                                 <div v-for="(image0,index) in images" :key="index" style="width:100% !important;height:200px!important">
                                     <img :src="baseUrl + image0.path.split('public')[1]" class="img-cover" alt="" srcset="" width="100%" height="450px">
                                     <div class="under-image"></div>
@@ -213,6 +213,7 @@ export default {
     data:function() {
       return{
         bgcolor :'rgb(37, 141, 84)',
+        refe:null,
         active4:'white!important',
         fontWeight4:'bolder',
         overlay:true,

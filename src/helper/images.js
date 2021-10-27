@@ -1,3 +1,5 @@
+import baseUrl from '../service/baseUrl.js'
+
 export function toDataUrl(url, callback) {
     if(!url.includes("data:image")){
         var xhr = new XMLHttpRequest();

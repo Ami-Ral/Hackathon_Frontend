@@ -213,6 +213,7 @@
               </a>
             </div>
           </div>
+          <!--
           <div class="row row-cols-lg-6 row-cols-md-4 row-cols-4 row-cols-sm-3 mt-3  px-lg-5">
             <div class="col-4 col-sm-4 col-md-4 col-lg-2" v-for="item in sponsor2" :key="item.image">
               <a :href="item.url" target="_blank" class="mx-lg-5">
@@ -220,6 +221,7 @@
               </a>
             </div>
           </div>
+          -->
       </div>
       </div>
 
@@ -299,12 +301,14 @@
             image: require('../assets/images/AVANA_HUB.jpeg')
           },
         ],
+        /*
         sponsor2:[
           {
             url:'https://iteam-s.mg/',
             image:require('../assets/images/iteams.png')
           },
         ]
+        */
       }
    },
     computed: {
