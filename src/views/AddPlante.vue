@@ -10,7 +10,6 @@
                       <HeaderAdmin/>
                    </div>
                    <div class="body">
-                       <h4 class="red"><i class="fas fa-exclamation-triangle"></i>En cours de developpement<i class="fas fa-exclamation-triangle"></i></h4>
                        <form action="">
                            <div class="row mt-2  d-flex justify-content-center row-cols-lg-2 row-cols-1 row-cols-md-1 row-cols-sm-1 " style="height:80vh">
                                 <div class="col-lg-3 pt-4 col-sm-2 col-md-2 col-2 bg-dark">

@@ -21,10 +21,9 @@
                                   Ajouter
                                 </a>
                                 <ul class="dropdown-menu shadow bg-dark" aria-labelledby="navbarDropdown">
-                                  <li><router-link class="dropdown-item" to="/admin/add/technique" href="#"><i class="fas fa-cogs"></i> Technique</router-link></li>
-                                  <li><router-link class="dropdown-item" to="/admin/add/climat" href="#"><i class="fas fa-cloud-sun-rain"></i> Climat</router-link></li>
-                                  <li><router-link class="dropdown-item" to="/admin/add/plante" href="#"><i class="fas fa-tree"></i> Plante</router-link></li>
-                                  <li><router-link class="dropdown-item" to="/admin/add/region"  href="#"><i class="fas fa-globe-africa"></i> Region</router-link></li>
+                                  <li><router-link class="dropdown-item" to="/admin/technique/add" href="#"><i class="fas fa-cogs"></i> Technique</router-link></li>
+                                  <li><router-link class="dropdown-item" to="/admin/climat/add" href="#"><i class="fas fa-cloud-sun-rain"></i> Climat</router-link></li>
+                                  <li><router-link class="dropdown-item" to="/admin/plante/add" href="#"><i class="fas fa-tree"></i> Plante</router-link></li>
                                 </ul>
                               </li>
                               <li class="nav-item dropdown ">
@@ -32,10 +31,10 @@
                                   Listes
                                 </a>
                                 <ul class="dropdown-menu shadow bg-dark" aria-labelledby="navbarDropdown">
-                                  <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-cogs"></i> Technique</router-link></li>
-                                      <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-cloud-sun-rain"></i> Climat</router-link></li>
-                                      <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-tree"></i> Plante</router-link></li>
-                                      <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-globe-africa"></i> Region</router-link></li>
+                                  <li><router-link class="dropdown-item" to="/admin/technique/list"><i class="fas fa-cogs"></i> Technique</router-link></li>
+                                      <li><router-link class="dropdown-item" to="/admin/climat/list"><i class="fas fa-cloud-sun-rain"></i> Climat</router-link></li>
+                                      <li><router-link class="dropdown-item" to="/admin/plante/list"><i class="fas fa-tree"></i> Plante</router-link></li>
+                                      
                                 </ul>
                               </li>
                             </ul>

@@ -8,18 +8,20 @@ import Plantes from '../views/Plantes.vue'
 import Climat from '../views/Climat.vue'
 import DetailTechnique from '../views/DetailTechnique.vue'
 import DetailPlante from '../views/DetailPlante.vue'
-import DetailRegion from '../views/DetailRegion.vue'
 
 import Admin from '../views/Admin.vue'
 import AddClimat from '../views/AddClimat.vue'
 import AddPlante from '../views/AddPlante.vue'
-import AddRegion from '../views/AddRegion.vue'
 import AddTechnique from '../views/AddTechnique.vue'
 import ResultatRecherche from '../views/ResultatRecherche.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Documentation from '../views/Documentation'
 import NotFound from '../views/NotFound'
+
+import ListeTechnique from '../views/ListeTechnique'
+import ListePlante from '../views/ListePlante'
+import ListeClimat from '../views/ListeClimat'
 
 import { store } from '../store';
 
@@ -65,10 +67,19 @@ const routes = [
         component: DetailPlante,
     },
     {
-        path: '/region/:id',
-        name: 'DetailRegion',
-        props: true ,
-        component: DetailRegion,
+        path: '/admin/technique/list',
+        name: 'ListeTechnique',
+        component: ListeTechnique,
+    },
+    {
+        path: '/admin/plante/list',
+        name: 'ListePlante',
+        component: ListePlante,
+    },
+    {
+        path: '/admin/climat/list',
+        name: 'ListeClimat',
+        component: ListeClimat,
     },
     {
         path: '/admin/home',
@@ -77,88 +88,22 @@ const routes = [
         component: Admin,
     },
     {
-        path: '/admin/add/climat',
+        path: '/admin/climat/add',
         name: 'AddClimat',
         props: true ,
         component: AddClimat,
-        beforeEnter(to, from, next){ 
-            if (store.getters["admins/statusConnexion"]) {
-                next()
-            } else {
-                var adresseActuelle = window.location;
-                if(adresseActuelle.pathname == "/user/login"){
-                    return next()
-                }else{
-                    next({
-                        name: "Admin" 
-                    });
-                }
-                
-            }
-        }
     },
     {
-        path: '/admin/add/plante',
+        path: '/admin/plante/add',
         name: 'AddPlante',
         props: true ,
         component: AddPlante,
-        beforeEnter(to, from, next){ 
-            if (store.getters["admins/statusConnexion"]) {
-                next()
-            } else {
-                var adresseActuelle = window.location;
-                if(adresseActuelle.pathname == "/user/login"){
-                    return next()
-                }else{
-                    next({
-                        name: "Admin" 
-                    });
-                }
-                
-            }
-        }
     },
     {
-        path: '/admin/add/region',
-        name: 'AddRegion',
-        props: true ,
-        component: AddRegion,
-        beforeEnter(to, from, next){ 
-            if (store.getters["admins/statusConnexion"]) {
-                next()
-            } else {
-                var adresseActuelle = window.location;
-                if(adresseActuelle.pathname == "/user/login"){
-                    return next()
-                }else{
-                    next({
-                        name: "Admin" 
-                    });
-                }
-                
-            }
-        }
-    },
-    {
-        path: '/admin/add/technique',
+        path: '/admin/technique/add',
         name: 'AddTechnique',
         props: true ,
         component: AddTechnique,
-        beforeEnter(to, from, next){ 
-            if (store.getters["admins/statusConnexion"]) {
-                next()
-            } else {
-                var adresseActuelle = window.location;
-                if(adresseActuelle.pathname == "/user/login"){
-                    return next()
-                }else{
-                    next({
-                        name: "Admin" 
-                    });
-                }
-                
-            }
-        }
     },
     {
         path: '/recherche/:type/:value',
@@ -195,3 +140,18 @@ const router = new VueRouter({
 })
 
 export default router
+/**beforeEnter(to, from, next){ 
+            if (store.getters["admins/statusConnexion"]) {
+                next()
+            } else {
+                var adresseActuelle = window.location;
+                if(adresseActuelle.pathname == "/user/login"){
+                    return next()
+                }else{
+                    next({
+                        name: "Admin" 
+                    });
+                }
+                
+            }
+        } */

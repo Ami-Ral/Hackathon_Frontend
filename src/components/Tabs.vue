@@ -60,10 +60,9 @@
                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                   <div class="accordion-body">
                                     <ul class="head" aria-labelledby="navbarDropdown">
-                                     <li><router-link class="dropdown-item" to="/admin/add/technique"><i class="fas fa-cogs"></i> Technique</router-link></li>
-                                      <li><router-link class="dropdown-item" to="/admin/add/climat"><i class="fas fa-cloud-sun-rain"></i> Climat</router-link></li>
-                                      <li><router-link class="dropdown-item" to="/admin/add/plante"><i class="fas fa-tree"></i> Plante</router-link></li>
-                                      <li><router-link class="dropdown-item" to="/admin/add/region"><i class="fas fa-globe-africa"></i> Region</router-link></li>
+                                     <li><router-link class="dropdown-item" to="/admin/technique/add"><i class="fas fa-cogs"></i> Technique</router-link></li>
+                                      <li><router-link class="dropdown-item" to="/admin/climat/add"><i class="fas fa-cloud-sun-rain"></i> Climat</router-link></li>
+                                      <li><router-link class="dropdown-item" to="/admin/plante/add"><i class="fas fa-tree"></i> Plante</router-link></li>
                                     </ul>
                                   </div>
                                 </div>
@@ -77,10 +76,9 @@
                                 <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                   <div class="accordion-body"> 
                                     <ul class="head" aria-labelledby="navbarDropdown">
-                                      <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-cogs"></i> Technique</router-link></li>
-                                      <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-cloud-sun-rain"></i> Climat</router-link></li>
-                                      <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-tree"></i> Plante</router-link></li>
-                                      <li><router-link class="dropdown-item" to="/admin/home"><i class="fas fa-globe-africa"></i> Region</router-link></li>
+                                      <li><router-link class="dropdown-item" to="/admin/technique/list"><i class="fas fa-cogs"></i> Technique</router-link></li>
+                                      <li><router-link class="dropdown-item" to="/admin/climat/list"><i class="fas fa-cloud-sun-rain"></i> Climat</router-link></li>
+                                      <li><router-link class="dropdown-item" to="/admin/plante/list"><i class="fas fa-tree"></i> Plante</router-link></li>
                                     </ul>
                                   </div>
                                 </div>

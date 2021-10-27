@@ -193,6 +193,36 @@
           </div>
       </div>
       </div>
+
+      <div class="galery  pb-5">
+        <div class="container">
+          <div class="row align-items-center pt-5">
+            <div class="col col-lg-12 text-center my-lg-10">
+            <h2>{{OptionLangue[getLangage].sponsor}}</h2>
+            </div>
+          </div>
+          <div class="row align-items-center pt-1">
+            <div class="col col-lg-12 text-center my-lg-10">
+              <span class="under"></span>
+            </div>
+          </div>
+          <div class="row row-cols-lg-6 row-cols-md-4 row-cols-4 row-cols-sm-3 mt-5 justify-content-lg-center px-lg-5">
+            <div class="col-4 col-sm-4 col-md-4 col-lg-2" v-for="item in sponsor" :key="item.image">
+              <a :href="item.url" target="_blank" class="mx-lg-5">
+                <img :src="item.image" class="zoom" style="padding: 10px 0;" width="85px"  height="85px" alt="">
+              </a>
+            </div>
+          </div>
+          <div class="row row-cols-lg-6 row-cols-md-4 row-cols-4 row-cols-sm-3 mt-3  px-lg-5">
+            <div class="col-4 col-sm-4 col-md-4 col-lg-2" v-for="item in sponsor2" :key="item.image">
+              <a :href="item.url" target="_blank" class="mx-lg-5">
+                <img :src="item.image" class="zoom" style="padding: 10px 0;" width="85px"  height="85px" alt="">
+              </a>
+            </div>
+          </div>
+      </div>
+      </div>
+
       <Contact/>
       <Footer :showup="showup" :scrollId="scrollId" :rechercheId="rechercheId" :items="AllTechnique2"/>
     </div>
@@ -243,6 +273,38 @@
         mg:'mg',
         searchValue:'',
         typeSearch:0,
+        sponsor:[
+          {
+            url:'https://www.afaas-africa.org/fr/home-francais/',
+            image: require("../assets/images/AFAAS.png")
+          },
+          {
+            url:'https://fca-madagascar.org/',
+            image: require('../assets/images/FCA.png')
+          },
+          {
+            url:'https://europa.eu/european-union/index_fr',
+            image: require('../assets/images/Unioneuropene.png')
+          },
+          {
+            url:'https://www.ifad.org/en/',
+            image: require('../assets/images/JLIFAD.jpg')
+          },
+          {
+            url:'https://au.int/fr/caadp ',
+            image: require('../assets/images/CAADP.jpeg')
+          },
+           {
+            url:'https://www.facebook.com/AVANA-HUB-222214588337602/',
+            image: require('../assets/images/AVANA_HUB.jpeg')
+          },
+        ],
+        sponsor2:[
+          {
+            url:'https://iteam-s.mg/',
+            image:require('../assets/images/iteams.png')
+          },
+        ]
       }
    },
     computed: {

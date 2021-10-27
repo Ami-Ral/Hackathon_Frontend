@@ -37,7 +37,7 @@ var langue = ({
         a_propos : "Devenir un vulgarisateur",
         rechercher : "Rechercher",
         nous_contacter : "Nous contacter",
-        copyright : "Copyright © 2021 Tanimboly. Tout droits réserves.",
+        copyright : "Copyright © 2021 Tanimboly. Tous droits réserves.",
         list_technique :"Listes des techniques :",
         list_plante : "Listes des plantes :",
         list_region : "Listes des régions :",
@@ -107,6 +107,7 @@ var langue = ({
         type_compte:'Type de compte',
         visite:'Visiter',
         nom_science : "Nom scientifique",
+        sponsor:'SPONSORS'
     },
     mg:{
         nom_science : "Anarana siantifika",
@@ -161,7 +162,7 @@ var langue = ({
         a_propos : "Mombamomba anay",
         rechercher : "Hitady",
         nous_contacter : "Hiresaka aminay",
-        copyright : "Copyright © 2021 Tanimboly. Tout droits réserves.",
+        copyright : "Copyright © 2021 Tanimboly. Tous droits réserves.",
         list_technique :"Lisitr'ireo techniques :",
         list_plante : "Lisitr'ireo zava-maniry :",
         list_region : "Lisitr'ireo faritra :",
@@ -215,6 +216,7 @@ var langue = ({
         conf:'Fanamarinana teny miafina',
         type_compte:'Karazana kaonty',
         classe : "Kilasy",
+        sponsor:'MPANOHANA'
     }
 })
 export default langue
