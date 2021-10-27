@@ -17,7 +17,7 @@ import AddTechnique from '../views/AddTechnique.vue'
 import ResultatRecherche from '../views/ResultatRecherche.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
-import Documentation from '../views/Documentation'
+import Documentation from '../views/Documentation_v2.vue'
 import NotFound from '../views/NotFound'
 
 import ListeTechnique from '../views/ListeTechnique'
