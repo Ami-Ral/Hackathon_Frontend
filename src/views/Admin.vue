@@ -30,11 +30,14 @@
                             </template>
 
                             <template #cell(Nom)="data">
-                            <div class="div3"><p>{{ data.item['nom_'+ getLangage] }}</p></div>    
+                                <div class="div3"><p>{{ data.item['nom_'+ getLangage] }}</p></div>    
                             </template>
 
-                            <template #cell(Image_couverture)="data">
-                                <div class="div4"><p>{{ data.item.couverture }}</p></div>    
+                            <template #cell(Materiels)="data">
+                                <div class="div4"><p>{{ data.item['materiel_'+ getLangage] }}</p></div>    
+                            </template>
+                            <template #cell(Publier)="data">
+                                <div class="div4"><p>{{ data.item.publier }}</p></div>    
                             </template>
                             <template #cell(Actions)="data">
                                 <div class="card-option div8">
@@ -90,7 +93,8 @@ export default {
          fields: [
           'ID',
           'Nom',
-          'Image_couverture',
+          'Materiels',
+          'Publier',
           'Actions'
         ],
         items:[],
@@ -107,8 +111,9 @@ export default {
     created(){
       
     },
-    mounted() {
-        axios.get(this.baseUrl + `/technique/list/${this.getLangage}/${this.getItems}/${this.currentPage-1}`)
+    mounted() { // this.baseUrl + `/technique/list/${this.getLangage}/${this.getItems}/${this.currentPage-1}`
+        
+        axios.get('https://api.tanimboly.org/technique/list/fr/100/0/1/0 ')
         .then((res)=>{
             this.items = res.data
             console.log(res.data)

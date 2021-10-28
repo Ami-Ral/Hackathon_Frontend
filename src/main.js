@@ -28,6 +28,8 @@ Vue.use(AOS)
 Vue.use(VueOffline)
 import { TabsPlugin } from 'bootstrap-vue'
 Vue.use(TabsPlugin)
+import { FormFilePlugin } from 'bootstrap-vue'
+Vue.use(FormFilePlugin)
 Vue.config.productionTip =  true
 
 new Vue({

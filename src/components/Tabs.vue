@@ -19,7 +19,7 @@
                       <div class="container-fluid mx-0 px-0 my-0">
                         <div class="row row-cols-lg-2 row-cols-2 row-cols-md-2 row-cols-sm-2">
                             <div class="col-lg-11 col-sm-11 col-md-11 col-11 mt-3 mx-4 pt-0 pb-0">
-                                <h6 style="color:white"><i class="fas fa-user-circle" style="font-size:27px;color:white"></i> Nom Admin</h6>
+                                <h6 style="color:white"><i class="fas fa-user-circle" style="font-size:27px;color:white"></i> {{nom}}</h6>
                             </div>
                         </div>
                         
@@ -102,7 +102,7 @@
                   </div> 
 </template>
 <script>
-
+import Vue from 'vue'
 export default {
     name:'Tabs',
      components: {
@@ -111,9 +111,16 @@ export default {
     props:{
         
     },
+    created(){
+      if(Vue.$cookies.get('admin')){
+         this.nom =Vue.$cookies.get('admin').appelation
+      }
+      
+    },
     data:function() {
         return{
-            searchValue:''
+            searchValue:'',
+            nom:'Nom admin'
         }
     },
     methods:{
