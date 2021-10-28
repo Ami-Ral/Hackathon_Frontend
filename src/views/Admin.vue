@@ -37,7 +37,9 @@
                                 <div class="div4"><p>{{ data.item['materiel_'+ getLangage] }}</p></div>    
                             </template>
                             <template #cell(Publier)="data">
-                                <div class="div4"><p>{{ data.item.publier }}</p></div>    
+                                 <div class="custom-control custom-switch">
+                                    <input  type="checkbox" class="custom-control-input" :checked="data.item.publier" @change="changeStatus(data.item.id_technique,data.item.publier)" :id=" 'id_' + data.item.id_technique.toString()">
+                                </div>   
                             </template>
                             <template #cell(Actions)="data">
                                 <div class="card-option div8">
@@ -79,7 +81,7 @@
 import HeaderAdmin from "../components/HeaderAdmin"
 import Tabs from "../components/Tabs"
 import baseUrl from '../service/baseUrl.js'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters} from 'vuex'
 
 const axios = require('axios')
 export default {
@@ -123,7 +125,25 @@ export default {
       
     },
     methods: {
-       
+       changeStatus(id,status){
+          const axios = require('axios')
+          let new_status_publier;
+          if(status == 0){
+              new_status_publier = 1
+          }else{
+              new_status_publier = 0
+          }
+          var state ={
+              id_technique:id,
+              new_status_publier:new_status_publier
+          }
+          axios.post('https://api.tanimboly.org/technique/update_publier',state)
+          .then((res)=>{
+              console.log(res.data)
+          })
+          .catch(error=>console.log(error))
+           
+       }
     }
 }
 </script>
